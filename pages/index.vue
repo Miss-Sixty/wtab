@@ -10,7 +10,10 @@ function toggleDark() {
 </script>
 
 <template>
-  <div text-red>home--{{ x }},{{ y }}
-    <button @click="toggleDark">{{ $colorMode.value }}</button>
+  <div text-red>
+    home--{{ x }},{{ y }}
+    <button @click="toggleDark">
+      {{ $colorMode.value }}
+    </button>
   </div>
 </template>
