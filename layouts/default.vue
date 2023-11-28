@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const { x, y } = useMouse()
+
 </script>
 
 <template>
-  <div>
-    home--{{ x }},{{ y }}
+  <div w-screen h-screen h-100dvh bg-primary>
+    <slot />
   </div>
 </template>
