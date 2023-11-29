@@ -12,7 +12,7 @@ const menuList = [
 </script>
 
 <template>
-  <Menu as="div" relative>
+  <Menu as="div" relative inline-block>
     <MenuButton icon>
       <div i-solar-settings-bold text-lg />
     </MenuButton>
@@ -26,7 +26,8 @@ const menuList = [
         class="ring-black/5" mt1 ring-1 absolute w40 right-0 origin-top-right divide-y divide-gray-100 rounded-md
         bg-white shadow-lg
       >
-        <div v-for="(items, i) in menuList" :key="i" class="px-1 py-1">
+        <ThemeSelect />
+        <div v-for="(items, i) in menuList" :key="i" p1>
           <MenuItem v-for="(item, j) in items" v-slot="{ active }" :key="j">
             <button
               flex w-full rounded-md px-2 py-2 text-sm :class="[

@@ -20,8 +20,6 @@ const list: RootObject[] = [
     </NuxtLink>
 
     <div flex-auto />
-    <ColorPicker />
-    <ThemeSelect />
     <WtabMenu />
   </nav>
 </template>
