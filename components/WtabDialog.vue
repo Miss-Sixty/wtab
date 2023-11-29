@@ -16,6 +16,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  width: {
+    type: Number,
+    default: 600,
+  },
 })
 const emit = defineEmits(['update:modelValue'])
 const _modelValue = computed({
@@ -39,14 +43,15 @@ const _modelValue = computed({
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
-        <div class="flex min-h-full items-center justify-center p-4 text-center">
+        <div class="flex min-h-full items-center justify-center  text-center">
           <TransitionChild
             as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
             enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              :style="{ width: `${width}px` }"
+              class="transform overflow-hidden rounded-2xl bg-white p-6 text-left  shadow-xl transition-all"
             >
               <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
                 {{ title }}

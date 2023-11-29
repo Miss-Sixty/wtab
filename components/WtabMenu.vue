@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 
-const isOpenSettings = ref(false)
-const isOpenAbout = ref(false)
-const isOpenAddWidgets = ref(false)
+const openSettingsBase = ref(false)
+const openSettingsAbout = ref(false)
+const openSettingsAddWidgets = ref(false)
 const menuList = [
-  [{ label: '常规设置', active: () => isOpenSettings.value = true }],
-  [{ label: '添加小组件', active: () => isOpenAddWidgets.value = true }, { label: '编辑小组件', active: () => { } }],
-  [{ label: '关于', active: () => isOpenAbout.value = true }],
+  [{ label: '常规设置', active: () => openSettingsBase.value = true }],
+  [{ label: '添加小组件', active: () => openSettingsAddWidgets.value = true }, { label: '编辑小组件', active: () => { } }],
+  [{ label: '关于', active: () => openSettingsAbout.value = true }],
 ]
 </script>
 
@@ -42,8 +42,8 @@ const menuList = [
     </transition>
   </Menu>
   <ClientOnly>
-    <WtabSettings v-model="isOpenSettings" />
-    <WtabAbout v-model="isOpenAbout" />
-    <WtabAddWidgets v-model="isOpenAddWidgets" />
+    <SettingsBase v-model="openSettingsBase" />
+    <SettingsAddWidgets v-model="openSettingsAddWidgets" />
+    <SettingsAbout v-model="openSettingsAbout" />
   </ClientOnly>
 </template>
