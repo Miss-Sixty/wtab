@@ -34,32 +34,37 @@ const _modelValue = computed({
 
 <template>
   <TransitionRoot appear :show="_modelValue" as="template">
-    <Dialog as="div" class="relative z-10" @close="_modelValue = false">
+    <Dialog as="div" relative z10>
       <TransitionChild
         as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
         leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black/25" />
+        <div fixed inset-0 class="bg-black/25" />
       </TransitionChild>
 
-      <div class="fixed inset-0 overflow-y-auto">
-        <div class="flex min-h-full items-center justify-center  text-center">
-          <TransitionChild
-            as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
-            enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
-            leave-to="opacity-0 scale-95"
+      <div fixed inset-0 flex items-center justify-center>
+        <TransitionChild
+          as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
+          enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
+          leave-to="opacity-0 scale-95"
+        >
+          <DialogPanel
+            :style="{ width: `${width}px` }" flex flex-col md:h600px h-full transform overflow-hidden
+            md:rounded-xl bg-white pb6 shadow-xl transition-all md:mx-40px
           >
-            <DialogPanel
-              :style="{ width: `${width}px` }"
-              class="transform overflow-hidden rounded-2xl bg-white p-6 text-left  shadow-xl transition-all"
-            >
-              <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
+            <div flex justify-between items-center pl-6 pr-2 h52px shrink-0>
+              <DialogTitle as="h3" text-lg font-medium leading-6 text-gray-900>
                 {{ title }}
               </DialogTitle>
+              <button flex h-9 w-11 items-center justify-center rounded-lg hover:bg-gray-200 @click="_modelValue = false">
+                <div text-xl i-material-symbols-close-rounded />
+              </button>
+            </div>
+            <div overflow-y-auto px6 py1>
               <slot />
-            </DialogPanel>
-          </TransitionChild>
-        </div>
+            </div>
+          </DialogPanel>
+        </TransitionChild>
       </div>
     </Dialog>
   </TransitionRoot>
