@@ -37,6 +37,8 @@ export default defineStore('storeLayout', () => {
   const breakpointsData = useBreakpoints(breakpoints.value)
   const current: ComputedRef<string[]> = breakpointsData.current() // 当前布局断点
   const editMode = ref(false) // 编辑模式
+  const deviceType = ref('Desktop')
+  const rowsNum = ref(0)
 
   // 一共多少列
   const colsNum: ComputedRef<number> = computed(() => {
@@ -89,6 +91,8 @@ export default defineStore('storeLayout', () => {
     editMode,
     breakpoints,
     colsNum,
+    rowsNum,
     layouts,
+    deviceType,
   }
 })

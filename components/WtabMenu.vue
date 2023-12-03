@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+import useLayoutStore from '@/stores/layout'
+
+const layoutStore = useLayoutStore()
 
 const openSettingsBase = ref(false)
 const openSettingsAbout = ref(false)
 const openSettingsAddWidgets = ref(false)
 const menuList = [
   [{ label: '常规设置', active: () => openSettingsBase.value = true }],
-  [{ label: '添加小组件', active: () => openSettingsAddWidgets.value = true }, { label: '编辑小组件', active: () => { } }],
+  [{ label: '添加小组件', active: () => openSettingsAddWidgets.value = true }, { label: '编辑小组件', active: () => layoutStore.editMode = true }],
   [{ label: '关于', active: () => openSettingsAbout.value = true }],
 ]
 </script>
 
 <template>
-  <Menu as="div" relative inline-block>
+  <Menu as="div" relative inline-block z-1>
     <MenuButton icon>
       <div i-solar-settings-bold text-lg />
     </MenuButton>

@@ -4,6 +4,12 @@ html, body {
   --uno: bg-base font-sans;
 }
 
+#__nuxt {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .dark {
   color-scheme: dark;
 }

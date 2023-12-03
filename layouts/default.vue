@@ -1,9 +1,18 @@
 <script setup lang="ts">
+// import settings from '@/config/settings'
 
+// import useLayoutStore from '@/stores/layout'
+
+// const layoutStore = useLayoutStore()
+
+// const width = computed(() => {
+//   const width = settings.deviceList.find(item => item.type === layoutStore.deviceType)?.width
+//   return width
+// })
 </script>
 
 <template>
-  <div w-screen h-screen h-100dvh bg-primary>
+  <main flex flex-col flex-1 h-screen overflow-hidden justify-center>
     <slot />
-  </div>
+  </main>
 </template>
