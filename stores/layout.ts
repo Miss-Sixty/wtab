@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useBreakpoints } from '@vueuse/core'
-import { nanoid } from 'nanoid/non-secure'
 import settings from '@/config/settings'
 
 const dayjs = useDayjs()
@@ -40,6 +39,8 @@ export default defineStore('storeLayout', () => {
   const deviceType = ref('Desktop')
   const rowsNum = ref(0)
   const gridBoundingClientRect = ref(null)
+  // 存放拖拽组件数据
+  const dragData = ref()
 
   // 一共多少列
   // const colsNum: ComputedRef<number> = computed(() => {
@@ -48,35 +49,37 @@ export default defineStore('storeLayout', () => {
   //   return Number(colsNum)
   // })
 
-  function addWidget(widget: any, component: 'string', size: string) {
+  function addWidget(data: any) {
+    const { widget, component, size } = data
+    console.log(11, widget, component, size)
 
-    // const position: any = {} // 布局位置
-    // const [w, h] = size.split(':').map(Number)
-    // const { devices } = settings
+    const position: any = {} // 布局位置
+    const [w, h] = size.split(':').map(Number)
+    const { devices }: any = settings
 
-    // for (const device in devices) {
-    //   console.log(11, device)
-
-    //   // 首次添加
-    //   if (devices[device].layouts.length === 0) {
-    //     position[device] = [0, 0]
-    //     continue
-    //   }
-    // }
+    for (const device in devices) {
+      // 首次添加
+      if (devices[device].layouts.length === 0) {
+        position[device] = [0, 0]
+        continue
+      }
+    }
 
     // console.log(22, position)
 
     // const [x, y] = findPosition([w, h], layouts.value, +colsNum)
     // position[colsNum] = [x, y]
 
-    // const id = `${component}-${nanoid()}`
     // addRoute(component)
-    // layouts.value.push({ id, widgetData: widget, widgetSize: size, position, update: dayjs().valueOf(), component })
+    const widgetData = { widgetData: widget, widgetSize: size, position, update: dayjs().valueOf(), component }
+    layouts.value.push(widgetData)
   }
 
-  function delWidget(widget: any) {
-    // const index = layouts.value.findIndex((item: any) => item.id === widget.id)
-    // layouts.value.splice(index, 1)
+  function delWidget(data: any) {
+    const { widget } = data
+    const index = layouts.value.findIndex((item: any) => item.widgetData.id === widget.id)
+    if (index !== -1)
+      layouts.value.splice(index, 1)
   }
 
   // const router = useRouter()

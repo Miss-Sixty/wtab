@@ -1,5 +1,6 @@
 <script setup>
 import { Navigation, Pagination } from 'swiper/modules'
+import { nanoid } from 'nanoid/non-secure'
 import widgetJson from '@/widgets'
 import useDraggablea from '@/composables/useDraggable'
 import useLayoutStore from '@/stores/layout'
@@ -15,6 +16,7 @@ async function init() {
 init()
 
 const copyRef = ref()
+let widgetData
 let pointerDom
 async function onStart() {
   await nextTick()
@@ -25,13 +27,17 @@ async function onStart() {
   copyRef.value.appendChild(copyDom)
 }
 
+const isIntersecting = ref(false)
 function onMove(pos) {
   const { right, left, top, bottom } = layoutStore.gridBoundingClientRect
   const { x, y } = pos
-  const isIntersecting = !(x < left || x > right || y < top || y > bottom)
-  isIntersecting ? layoutStore.addWidget(111) : layoutStore.delWidget(111)
-  // console.log(11, isIntersecting)
+  isIntersecting.value = !(x < left || x > right || y < top || y > bottom)
 }
+watch(isIntersecting, (val) => {
+  const id = `${widgetData.component}-${nanoid()}`
+  widgetData.widget.id = id
+  val ? layoutStore.addWidget(widgetData) : layoutStore.delWidget(widgetData)
+})
 
 let saveOnStart
 const { isDragging, style } = useDraggablea({
@@ -40,9 +46,10 @@ const { isDragging, style } = useDraggablea({
   onBeforeStart: start => saveOnStart = start,
 })
 
-function pointerdown(e) {
+function pointerdown(e, widget, component, size) {
   // 向上查找，直到找到 id 为 widgets-container 的元素
   const widgetsContainerDom = e.target.closest('#widgets-container')
+  widgetData = { widget, component, size }
   pointerDom = widgetsContainerDom
   saveOnStart(widgetsContainerDom, e)
 }
@@ -56,7 +63,7 @@ function pointerdown(e) {
         <SwiperSlide v-for="(data, size, j) in list.sizes" :key="j" flex items-center justify-center>
           <WidgetsContainer
             id="widgets-container" type="add" :size="size" :widget="{ ...list.data, ...data }"
-            :component="list.key" @pointerdown.stop="pointerdown"
+            :component="list.key" @pointerdown.stop="pointerdown($event, { ...list.data, ...data }, list.key, size)"
           />
         </SwiperSlide>
       </Swiper>
