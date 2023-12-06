@@ -15,6 +15,10 @@ body {
   color-scheme: dark;
 }
 
+/* Webkit浏览器 */
 ::-webkit-scrollbar {
-  height: 0px;
+  display: none;
 }
+/* Firefox浏览器 */
+/* scrollbar-width: none;
+-ms-overflow-style: none; */

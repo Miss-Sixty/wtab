@@ -79,6 +79,12 @@ const { distanceX } = usePointerSwipe(gridRef, {
       gridRef.value.scrollLeft = scrollLeftStart.value + distanceX.value
   },
 })
+
+watch(() => layoutStore.editMode, async (val) => {
+  await nextTick()
+  const gridRect = gridRef.value?.getBoundingClientRect()
+  layoutStore.gridBoundingClientRect = val ? gridRect : null
+})
 </script>
 
 <template>

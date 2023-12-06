@@ -4,14 +4,6 @@ import useLayoutStore from '@/stores/layout'
 defineEmits(['widgetContextmenu'])
 const layoutStore = useLayoutStore()
 const { layouts, baseMargin, baseSize, editMode } = storeToRefs(layoutStore)
-
-const gridRef = ref()
-
-watch(() => layoutStore.editMode, async (val) => {
-  await nextTick()
-  const gridRect = gridRef.value?.getBoundingClientRect()
-  layoutStore.gridBoundingClientRect = val ? gridRect : null
-})
 </script>
 
 <template>

@@ -38,7 +38,7 @@ export default defineStore('storeLayout', () => {
   const editMode = ref(false) // 编辑模式
   const activeDevice = ref('desktop')
   const rowsNum = ref(0)
-  const gridBoundingClientRect = ref(null)
+  const gridBoundingClientRect: any = ref(null)
   const devices: any = ref(settings.devices)
 
   // 一共多少列
