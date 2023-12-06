@@ -14,24 +14,3 @@ body {
 .dark {
   color-scheme: dark;
 }
-
-/* swiper */
-.swiper-button-prev,
-.swiper-button-next {
-  width: 28px;
-  border-radius: 50%;
-  background: #B1B9C0;
-  height: 28px;
-
-}
-.swiper-button-prev:hover,
-.swiper-button-next:hover{
-  background: #9DA4AA;
-}
-
-:root {
-  --swiper-navigation-size: 12px;
-  --swiper-navigation-top-offset: 50%;
-  --swiper-navigation-sides-offset: 10px;
-  --swiper-navigation-color: #fff;
-}

@@ -51,10 +51,7 @@ export default defineStore('storeLayout', () => {
 
   function addWidget(data: any) {
     const { widget, component, size } = data
-    console.log(11, widget, component, size)
-
     const position: any = {} // 布局位置
-    const [w, h] = size.split(':').map(Number)
     const { devices }: any = settings
 
     for (const device in devices) {

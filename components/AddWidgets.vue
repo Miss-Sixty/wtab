@@ -56,15 +56,17 @@ function pointerdown(e, widget, component, size) {
 </script>
 
 <template>
-  <div w-sm overflow-y-auto grid grid-cols-1 gap-3>
+  <div w-sm overflow-y-auto grid grid-cols-1 gap-3 class="add-widgets">
     <div v-if="isDragging" ref="copyRef" :style="style" z-10 top-0 left-0 :class="{ fixed: isDragging }" />
     <div v-for="(list, i) in widgetList" :key="i" flex h-96 flex-col overflow-hidden rounded-lg class="bg-black/10">
       <Swiper w-full flex-1 navigation loop pagination :modules="modules">
-        <SwiperSlide v-for="(data, size, j) in list.sizes" :key="j" flex items-center justify-center>
-          <WidgetsContainer
-            id="widgets-container" type="add" :size="size" :widget="{ ...list.data, ...data }"
-            :component="list.key" @pointerdown.stop="pointerdown($event, { ...list.data, ...data }, list.key, size)"
-          />
+        <SwiperSlide v-for="(data, size, j) in list.sizes" :key="j">
+          <div flex items-center justify-center h-full>
+            <WidgetsContainer
+              id="widgets-container" type="add" :size="size" :widget="{ ...list.data, ...data }"
+              :component="list.key" @pointerdown.stop="pointerdown($event, { ...list.data, ...data }, list.key, size)"
+            />
+          </div>
         </SwiperSlide>
       </Swiper>
       <div h-24 p-4 leading-none>
@@ -78,3 +80,29 @@ function pointerdown(e, widget, component, size) {
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.add-widgets {
+  .swiper {
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: 28px;
+      border-radius: 50%;
+      background: #B1B9C0;
+      height: 28px;
+    }
+
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover {
+      background: #9DA4AA;
+    }
+  }
+}
+
+:root {
+  --swiper-navigation-size: 12px;
+  --swiper-navigation-top-offset: 50%;
+  --swiper-navigation-sides-offset: 10px;
+  --swiper-navigation-color: #fff;
+}
+</style>
