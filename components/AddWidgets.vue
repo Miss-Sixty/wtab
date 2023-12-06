@@ -39,11 +39,9 @@ watch(isIntersecting, (val) => {
   val ? layoutStore.addWidget(widgetData) : layoutStore.delWidget(widgetData)
 })
 
-let saveOnStart
-const { isDragging, style } = useDraggablea({
+const { isDragging, style, start } = useDraggablea({
   onStart,
   onMove,
-  onBeforeStart: start => saveOnStart = start,
 })
 
 function pointerdown(e, widget, component, size) {
@@ -51,7 +49,7 @@ function pointerdown(e, widget, component, size) {
   const widgetsContainerDom = e.target.closest('#widgets-container')
   widgetData = { widget, component, size }
   pointerDom = widgetsContainerDom
-  saveOnStart(widgetsContainerDom, e)
+  start(widgetsContainerDom, e)
 }
 </script>
 
@@ -82,21 +80,17 @@ function pointerdown(e, widget, component, size) {
 </template>
 
 <style lang="scss">
-.add-widgets {
-  .swiper {
-    .swiper-button-prev,
-    .swiper-button-next {
-      width: 28px;
-      border-radius: 50%;
-      background: #B1B9C0;
-      height: 28px;
-    }
+.swiper-button-prev,
+.swiper-button-next {
+  width: 28px;
+  border-radius: 50%;
+  background: #B1B9C0;
+  height: 28px;
+}
 
-    .swiper-button-prev:hover,
-    .swiper-button-next:hover {
-      background: #9DA4AA;
-    }
-  }
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: #9DA4AA;
 }
 
 :root {

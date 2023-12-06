@@ -36,17 +36,12 @@ export interface UseDraggableOptions {
    * Callback when dragging end.
    */
   onEnd?: (position: Position, event: PointerEvent) => void
-
-  /**
-   * start
-   */
-  onBeforeStart?: any
 }
 
 export default function useDraggable(
   options: UseDraggableOptions = {},
 ) {
-  const { onBeforeStart, draggingElement = defaultWindow, containerElement, onMove, onEnd, onStart } = options
+  const { draggingElement = defaultWindow, containerElement, onMove, onEnd, onStart } = options
   const pressedDelta = ref<Position>()
   const position = ref<Position>({ x: 0, y: 0 })
   const start = (dom: HTMLElement, e: PointerEvent) => {
@@ -66,7 +61,7 @@ export default function useDraggable(
     onStart?.(pos, e)
   }
 
-  const move = (e: PointerEvent) => {
+  const move = (e: any) => {
     if (!pressedDelta.value)
       return
 
@@ -91,7 +86,6 @@ export default function useDraggable(
     onEnd?.(position.value, e)
   }
 
-  onBeforeStart(start)
   useEventListener(draggingElement, 'pointermove', move)
   useEventListener(draggingElement, 'pointerup', end)
 
@@ -101,5 +95,6 @@ export default function useDraggable(
     style: computed(
       () => `transform: translate(${pressedDelta.value?.x || 0}px, ${pressedDelta.value?.y || 0}px)`,
     ),
+    start,
   }
 }

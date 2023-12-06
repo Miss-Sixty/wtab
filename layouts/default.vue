@@ -13,7 +13,7 @@ const layoutStore = useLayoutStore()
 
 <template>
   <main flex flex-1 h-screen w-screen overflow-hidden justify-center>
-    <div flex-1>
+    <div flex-1 overflow-hidden>
       <slot />
     </div>
     <div v-if="layoutStore.editMode" bg-blue>

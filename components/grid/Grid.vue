@@ -8,10 +8,6 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-  colsNum: {
-    type: Number,
-    required: true,
-  },
   baseSize: {
     type: Number,
     required: true,
@@ -59,11 +55,9 @@ const { dragging, childXY, draggingId, placeholderData } = useGesture({
   baseSize: computed(() => props.baseSize), // 基础尺寸
   baseMargin: computed(() => props.baseMargin), // 基础间距
   layouts: computed(() => props.modelValue),
-  colsNum: computed(() => props.colsNum),
 })
 
 provide('gridContextKey', {
-  colsNum: computed(() => props.colsNum),
   baseSize: computed(() => props.baseSize),
   baseMargin: computed(() => props.baseMargin),
   layouts: computed(() => props.modelValue),
@@ -78,10 +72,11 @@ const { distanceX } = usePointerSwipe(gridRef, {
   threshold: 0,
   pointerTypes: ['mouse'],
   onSwipeStart() {
-    scrollLeftStart.value = gridRef.value.scrollLeft
+    scrollLeftStart.value = gridRef.value?.scrollLeft || 0
   },
   onSwipe() {
-    gridRef.value.scrollLeft = scrollLeftStart.value + distanceX.value
+    if (gridRef.value)
+      gridRef.value.scrollLeft = scrollLeftStart.value + distanceX.value
   },
 })
 </script>
@@ -89,9 +84,12 @@ const { distanceX } = usePointerSwipe(gridRef, {
 <template>
   <ClientOnly>
     <div
-      ref="gridRef" relative transition-all flex overflow-x-auto overflow-y-hidden bg-yellow h-full
+      ref="gridRef" relative transition-all bg-yellow h-full overflow-x-auto
       :style="{ padding: `${clientHeightPadding}px 2.5rem` }"
     >
+      <!-- <div w-500 bg-blue h-100>
+        22
+      </div> -->
       <GridItem
         v-show="dragging" :id="placeholderData?.id" :key="placeholderData?.id" bg-red-200
         :placeholder="placeholderData"
