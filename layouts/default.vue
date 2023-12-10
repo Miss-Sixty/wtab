@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import settings from '@/config/settings'
+defineEmits(['widgetContextmenu'])
 
 // const width = computed(() => {
 //   const width = settings.deviceList.find(item => item.type === layoutStore.deviceType)?.width

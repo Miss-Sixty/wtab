@@ -9,7 +9,10 @@ const { layouts, baseMargin, baseSize, editMode, colsNum } = storeToRefs(layoutS
 <template>
   <ClientOnly>
     <Grid v-model="layouts" :cols-num="colsNum" :base-size="baseSize" :base-margin="baseMargin" :edit-mode="editMode">
-      <GridItem v-for="item in layouts" :id="item.id" :key="item.id" bg-green>
+      <GridItem
+        v-for="item in layouts" :id="item.id" :key="item.id" bg-green
+        @contextmenu.prevent.stop="$emit('widgetContextmenu', $event)"
+      >
         <WidgetsContainer
           :type="editMode ? 'del' : ''" :size="item.widgetSize" :widget="item"
           :component="item.component"
