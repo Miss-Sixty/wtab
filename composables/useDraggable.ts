@@ -16,13 +16,6 @@ export interface UseDraggableOptions {
   draggingElement?: MaybeRefOrGetter<HTMLElement | SVGElement | Window | Document | null | undefined>
 
   /**
-   * Element for calculating bounds (If not set, it will use the event's target).
-   *
-   * @default undefined
-   */
-  containerElement?: MaybeRefOrGetter<HTMLElement | SVGElement | null | undefined>
-
-  /**
    * Callback when the dragging starts. Return `false` to prevent dragging.
    */
   onStart?: (position: Position, event: PointerEvent) => void | false
@@ -36,26 +29,41 @@ export interface UseDraggableOptions {
    * Callback when dragging end.
    */
   onEnd?: (position: Position, event: PointerEvent) => void
+
+  /**
+   *  @default undefined
+   */
+  relativeElement?: MaybeRefOrGetter<HTMLElement | SVGElement | null | undefined>
 }
 
 export default function useDraggable(
   options: UseDraggableOptions = {},
 ) {
-  const { draggingElement = defaultWindow, containerElement, onMove, onEnd, onStart } = options
+  const { draggingElement = defaultWindow, relativeElement, onMove, onEnd, onStart } = options
   const pressedDelta = ref<Position>()
   const position = ref<Position>({ x: 0, y: 0 })
   const start = (dom: HTMLElement, e: PointerEvent) => {
     if (!dom)
       return
-    const container = toValue(containerElement)
-    const containerRect = container?.getBoundingClientRect?.()
-    const targetRect = dom?.getBoundingClientRect()
+    // 阻止冒泡
+    e.stopPropagation()
+    const relative = toValue(relativeElement)
 
-    pressedDelta.value = { x: targetRect.x, y: targetRect.y }
+    const { x = 0, y = 0 } = relative?.getBoundingClientRect?.() || {}
+    const targetRect = dom?.getBoundingClientRect()
+    console.log(22, targetRect)
+    console.log(33, e.clientX, e.clientY)
+
+    pressedDelta.value = { x: targetRect.x - x, y: targetRect.y - y }
     const pos = {
-      x: e.clientX - (container ? targetRect.left - containerRect!.left : targetRect.left),
-      y: e.clientY - (container ? targetRect.top - containerRect!.top : targetRect.top),
+      x: e.clientX - targetRect.left,
+      y: e.clientY - targetRect.top,
+      // x: e.clientX - (relative ? targetRect.left - containerRect!.left : targetRect.left),
+      // y: e.clientY - (relative ? targetRect.top - containerRect!.top : targetRect.top),
     }
+
+    console.log(55, pressedDelta.value)
+    console.log(44, pos)
 
     position.value = pos
     onStart?.(pos, e)
@@ -64,24 +72,23 @@ export default function useDraggable(
   const move = (e: any) => {
     if (!pressedDelta.value)
       return
+    // 阻止冒泡
+    e.stopPropagation()
+    const relative = toValue(relativeElement)
+    const { x = 0, y = 0 } = relative?.getBoundingClientRect?.() || {}
+    // const targetRect = e.target!.getBoundingClientRect()
+    const { x: positionX, y: positionY } = position.value
+    pressedDelta.value = { x: e.clientX - positionX - x, y: e.clientY - positionY - y }
+    // console.log(55, pressedDelta.value)
 
-    const container = toValue(containerElement)
-    const containerRect = container?.getBoundingClientRect?.()
-    const targetRect = e.target!.getBoundingClientRect()
-    let { x, y } = position.value
-    x = e.clientX - x
-    if (container)
-      x = Math.min(Math.max(0, x), containerRect!.width - targetRect!.width)
-    y = e.clientY - y
-    if (container)
-      y = Math.min(Math.max(0, y), containerRect!.height - targetRect!.height)
-    pressedDelta.value = { x, y }
     onMove?.(pressedDelta.value, e)
   }
 
   const end = (e: PointerEvent) => {
     if (!pressedDelta.value)
       return
+    // 阻止冒泡
+    e.stopPropagation()
     pressedDelta.value = undefined
     onEnd?.(position.value, e)
   }
@@ -93,7 +100,11 @@ export default function useDraggable(
     isDragging: computed(() => !!pressedDelta.value),
     pressedDelta,
     style: computed(
-      () => `transform: translate(${pressedDelta.value?.x || 0}px, ${pressedDelta.value?.y || 0}px)`,
+      () => ({
+        transform: `translate(${pressedDelta.value?.x || 0}px, ${pressedDelta.value?.y || 0}px)`,
+        x: pressedDelta.value?.x || 0,
+        y: pressedDelta.value?.y || 0,
+      }),
     ),
     start,
   }

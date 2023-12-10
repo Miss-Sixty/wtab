@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onLongPress } from '@vueuse/core'
+
 defineOptions({
   name: 'GridItem',
 })
@@ -64,12 +66,14 @@ const dragStyle = computed(() => {
     transition: 'none',
   }
 })
+
+const itemRef = ref()
 </script>
 
 <template>
   <div
-    :id="`grid-item-${id}`" class="absolute rounded-lg transition-all" :class="editMode ? 'touch-none' : 'touch-auto'"
-    :style="{ ...initStyle, ...dragStyle }"
+    :id="`grid-item-${id}`" ref="itemRef" class="absolute rounded-lg transition-all"
+    :class="editMode ? 'touch-none' : 'touch-auto'" :style="{ ...initStyle, ...dragStyle }"
   >
     <slot />
   </div>

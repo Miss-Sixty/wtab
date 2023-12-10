@@ -1,32 +1,9 @@
 import { useEventListener } from '@vueuse/core'
 
 export default (config: any) => {
-  const { listener, el, baseSize, baseMargin, layouts, colsNum, rowsNum } = config
+  const { listener, el, baseSize, baseMargin, layouts, colsNum } = config
   const dragging = ref(false)
   const pointerDown = ref(false)
-  let startEventListener: any
-  let moveEventListener: any
-  let endEventListener: any
-  let cancelEventListener: any
-
-  watch(listener, (bl) => {
-    if (bl) {
-      startEventListener = useEventListener(el.value, 'pointerdown', start)
-      moveEventListener = useEventListener(window, 'pointermove', move)
-      endEventListener = useEventListener(window, 'pointerup', end)
-      cancelEventListener = useEventListener(window, 'pointercancel', end)
-    }
-    else {
-      startEventListener()
-      moveEventListener()
-      endEventListener()
-      cancelEventListener()
-      startEventListener = undefined
-      moveEventListener = undefined
-      endEventListener = undefined
-      cancelEventListener = undefined
-    }
-  })
 
   const startXY = ref([0, 0])
   const childXY = ref([0, 0])
@@ -34,7 +11,6 @@ export default (config: any) => {
   const draggingData = computed(() =>
     layouts.value.find((item: any) => item.id === draggingId.value),
   )
-
   const draggingXYWH = computed(() => {
     const { widgetSize, position } = draggingData.value
     const [widgetW, widgetH] = widgetSize.split(':').map(Number)
@@ -48,19 +24,10 @@ export default (config: any) => {
     if (e.button !== 0)
       return
     e.preventDefault()
-    let child: any = e.target
 
     // 一直查找父级，如果找到e.target还没找到 id 里有grid-item，就停止查找
-    while (child && !child.id.includes('grid-item')) {
-      // 如果找到的元素是el.target，就停止查找
-      if (child === el.value) {
-        child = null
-        break
-      }
-      // 如果找到了id为grid-item的元素，就把child赋值为该元素
-      child = child.parentNode
-      draggingId.value = child.id.replace('grid-item-', '')
-    }
+    const child = e.target.closest('[id^="grid-item"]')
+    draggingId.value = child.id.replace('grid-item-', '')
 
     if (!child)
       return
@@ -90,10 +57,10 @@ export default (config: any) => {
 
     // 边界计算，超出边界时，placeholderGridItem 不可移动到该位置，且不与其他元素重叠
     const { widgetSize } = draggingData.value
-    const [widgetW, widgetH] = widgetSize.split(':').map(Number)
+    const [widgetW] = widgetSize.split(':').map(Number)
 
-    if (placeholderY + widgetH > rowsNum.value)
-      placeholderX = rowsNum.value - widgetW
+    if (placeholderX + widgetW > colsNum.value)
+      placeholderX = colsNum.value - widgetW
 
     if (placeholderX <= 0)
       placeholderX = 0
@@ -123,6 +90,30 @@ export default (config: any) => {
       placeholderData.value = undefined
     }, 150)
   }
+
+  let startEventListener: any
+  let moveEventListener: any
+  let endEventListener: any
+  let cancelEventListener: any
+
+  watch(listener, (bl) => {
+    if (bl) {
+      startEventListener = useEventListener(el.value, 'pointerdown', start)
+      moveEventListener = useEventListener(window, 'pointermove', move)
+      endEventListener = useEventListener(window, 'pointerup', end)
+      cancelEventListener = useEventListener(window, 'pointercancel', end)
+    }
+    else {
+      startEventListener()
+      moveEventListener()
+      endEventListener()
+      cancelEventListener()
+      startEventListener = undefined
+      moveEventListener = undefined
+      endEventListener = undefined
+      cancelEventListener = undefined
+    }
+  })
 
   return { dragging, childXY, draggingId, draggingData, placeholderData }
 }

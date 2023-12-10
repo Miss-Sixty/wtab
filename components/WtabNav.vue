@@ -25,7 +25,7 @@ const list: RootObject[] = [
 </script>
 
 <template>
-  <nav px2 py1 flex items-center h14 border-b>
+  <nav px2 flex items-center>
     <div flex flex-1 gap-1>
       <NuxtLink v-for="(item, i) in list" :key="i" :to="item.to" exact-active-class="bg-base" icon>
         <div :class="item.icon" text-lg />
@@ -52,17 +52,16 @@ const list: RootObject[] = [
     </div>
     <div flex flex-1 justify-end gap-2>
       <button
-        v-show="!layoutStore.editMode"
-        border
-        py2 px4 rounded-md text-black text-sm leading-none class="hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+        v-show="!layoutStore.editMode" border py2 px4 rounded-md text-black text-sm leading-none
+        class="hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
         @click="layoutStore.editMode = true"
       >
         编辑
       </button>
       <div v-show="layoutStore.editMode" flex gap-2>
         <button
-          border
-          py2 px4 rounded-md text-black text-sm leading-none class="hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+          border py2 px4 rounded-md text-black text-sm leading-none
+          class="hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
           @click="layoutStore.editMode = false"
         >
           取消

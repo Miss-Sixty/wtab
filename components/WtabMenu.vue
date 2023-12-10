@@ -46,7 +46,7 @@ const menuList = [
   </Menu>
   <ClientOnly>
     <SettingsBase v-model="openSettingsBase" />
-    <SettingsAddWidgets v-model="openSettingsAddWidgets" />
+    <AddWidgets v-model="openSettingsAddWidgets" />
     <SettingsAbout v-model="openSettingsAbout" />
   </ClientOnly>
 </template>

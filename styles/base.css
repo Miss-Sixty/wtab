@@ -2,7 +2,7 @@ html,
 body {
   height: 100vh;
   overflow: hidden;
-  --uno: bg-base font-sans;
+  background-color: #FACC15;
 }
 
 #__nuxt {
@@ -16,9 +16,9 @@ body {
 }
 
 /* Webkit浏览器 */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */
 /* Firefox浏览器 */
 /* scrollbar-width: none;
 -ms-overflow-style: none; */

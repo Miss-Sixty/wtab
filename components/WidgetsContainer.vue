@@ -54,12 +54,20 @@ function handleClick() {
   props.type === 'edit' && layoutStore.delWidget(props.widget)
 }
 
-const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component}/index.vue`))
+// const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component}/index.vue`))
 </script>
 
 <template>
-  <div relative select-none :class="scale" :style="{ ...widgetWH }" bg-red rounded-lg>
-    11
+  <div relative select-none :class="scale" :style="widgetWH" bg-red rounded-lg>
+    <template v-if="type">
+      <button
+        :class="iconScale" absolute left-0 top-0 class="-translate-x-1/4 -translate-y-1/4" text-2xl cursor-pointer
+        @click="handleClick"
+      >
+        <div bg-white :class="[type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold']" />
+      </button>
+    </template>
+
     <!-- <component :is="AsyncComp" :style="widgetWH" overflow-hidden :type="type" :widget="widget" /> -->
     <!-- <div absolute bottom-0 class="translate-y-3/4" left-0 right-0 flex justify-center will-change-auto duration-150>
       <div
