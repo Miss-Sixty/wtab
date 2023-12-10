@@ -1,56 +1,7 @@
 <script setup lang="ts">
 import { computePosition, flip, shift } from '@floating-ui/dom'
-import useLayoutStore from '@/stores/layout'
 
 const emit = defineEmits(['settingsBase', 'addWidgets', 'editMode', 'about', 'delWidgets'])
-
-// const emit = defineEmits(['update:addWidget', 'del'])
-// const layoutStore = useLayoutStore()
-// const { editMode } = storeToRefs(layoutStore)
-// const options: any = {
-//   settingIcon: {
-//     placement: 'bottom-end',
-//     middleware: [
-//       offset(6),
-//       flip(),
-//       shift(),
-//       { fn: () => (styles.value.transformOrigin = '90% 0%') },
-//     ],
-//     transformOrigin: '90% 0%',
-//   },
-//   widgetContextmenu: {
-//     placement: 'bottom-start',
-//     middleware: [
-//       offset(6),
-//       flip(),
-//       shift(),
-//       {
-//         fn: ({ placement }: any) => {
-//           const placementMap: any = {
-//             'bottom-start': '0% 0%',
-//             'bottom-end': '100% 0%',
-//             'top-start': '0% 100%',
-//             'top-end': '100% 100%',
-//           }
-//           return (styles.value.transformOrigin = placementMap[placement])
-//         },
-//       },
-//     ],
-//     transformOrigin: '90% 0%',
-//   },
-//   base: {
-//     placement: 'right-start',
-//     middleware: [
-//       flip(),
-//       shift(),
-//       {
-//         fn: ({ placement }: any) =>
-//           (styles.value.transformOrigin = placement === 'left-start' ? '90% 0%' : '0% 0%'),
-//       },
-//     ],
-//     transformOrigin: '0% 0%',
-//   },
-// }
 
 function originMiddlewareFn(type: string) {
   const placementMap: any = {
