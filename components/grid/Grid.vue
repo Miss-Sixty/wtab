@@ -65,7 +65,7 @@ provide('gridContextKey', {
 <template>
   <ClientOnly>
     <div
-      ref="gridRef" bg-yellow relative mx-auto transition-all :style="{
+      ref="gridRef" relative mx-auto transition-all :style="{
         width: widthStyle,
         height: heightStyle,
       }"

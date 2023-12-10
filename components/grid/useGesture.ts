@@ -27,10 +27,10 @@ export default (config: any) => {
 
     // 一直查找父级，如果找到e.target还没找到 id 里有grid-item，就停止查找
     const child = e.target.closest('[id^="grid-item"]')
-    draggingId.value = child.id.replace('grid-item-', '')
-
     if (!child)
       return
+    draggingId.value = child.id.replace('grid-item-', '')
+
     placeholderData.value = { id: 'placeholder', ...draggingXYWH.value }
     pointerDown.value = true
 

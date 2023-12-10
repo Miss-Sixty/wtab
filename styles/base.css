@@ -2,7 +2,7 @@ html,
 body {
   height: 100vh;
   overflow: hidden;
-  background-color: #FACC15;
+  /* background-color: #FACC15; */
 }
 
 #__nuxt {

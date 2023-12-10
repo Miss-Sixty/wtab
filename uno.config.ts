@@ -22,7 +22,6 @@ export default defineConfig({
           950: '#052e16',
         },
       },
-
     },
     breakpoints: {
       md: `${40 * 16}px`,

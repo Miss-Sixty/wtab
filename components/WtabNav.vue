@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import {
-  RadioGroup,
-  RadioGroupLabel,
-  RadioGroupOption,
-} from '@headlessui/vue'
-import settings from '@/config/settings'
-
 import useLayoutStore from '@/stores/layout'
+
+defineEmits(['handleSettingIcon'])
 
 const layoutStore = useLayoutStore()
 
@@ -22,58 +17,33 @@ const list: RootObject[] = [
   { text: '游戏', to: '', icon: 'i-solar-gamepad-bold' },
   { text: '更多', to: '', icon: 'i-solar-menu-dots-square-bold' },
 ]
+
+const settingIconRef = ref()
 </script>
 
 <template>
-  <nav px2 flex items-center>
-    <div flex flex-1 gap-1>
-      <NuxtLink v-for="(item, i) in list" :key="i" :to="item.to" exact-active-class="bg-base" icon>
-        <div :class="item.icon" text-lg />
-      </NuxtLink>
-    </div>
-
-    <div flex justify-center grow-2>
-      <RadioGroup v-if="layoutStore.editMode" v-model="layoutStore.deviceType">
-        <RadioGroupLabel class="sr-only">
-          设备类型布局
-        </RadioGroupLabel>
-        <div flex justify-around gap-0.5 bg-gray-200 rounded-md h-full>
-          <RadioGroupOption v-for="item in settings.deviceList" v-slot="{ checked }" :key="item.type" :value="item.type">
-            <button
-              flex items-center gap-0.5 py2 px4 rounded-md hover:bg-violet-500 hover:text-white :class="[
-                checked ? 'bg-violet-500 text-white' : 'text-gray-900',
-              ]" @click="layoutStore.deviceType = item.type"
-            >
-              <div :class="item.icon" text-lg /><span leading-none>{{ item.type }}</span>
-            </button>
-          </RadioGroupOption>
-        </div>
-      </RadioGroup>
-    </div>
-    <div flex flex-1 justify-end gap-2>
+  <nav px2 flex items-center gap-1>
+    <NuxtLink v-for="(item, i) in list" :key="i" :to="item.to" exact-active-class="bg-base" icon>
+      <div :class="item.icon" text-lg />
+    </NuxtLink>
+    <div flex-auto />
+    <div v-show="layoutStore.editMode" flex gap-2>
       <button
-        v-show="!layoutStore.editMode" border py2 px4 rounded-md text-black text-sm leading-none
+        border py2 px4 rounded-md text-black text-sm leading-none
         class="hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-        @click="layoutStore.editMode = true"
+        @click="layoutStore.editMode = false"
       >
-        编辑
+        取消
       </button>
-      <div v-show="layoutStore.editMode" flex gap-2>
-        <button
-          border py2 px4 rounded-md text-black text-sm leading-none
-          class="hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-          @click="layoutStore.editMode = false"
-        >
-          取消
-        </button>
-        <button
-          bg-violet-500 py2 px4 rounded-md text-white text-sm leading-none
-          class="hover:bg-violet/100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-        >
-          保存
-        </button>
-      </div>
-      <WtabMenu />
+      <button
+        bg-violet-500 py2 px4 rounded-md text-white text-sm leading-none
+        class="hover:bg-violet/100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+      >
+        保存
+      </button>
     </div>
+    <button ref="settingIconRef" icon @click="$emit('handleSettingIcon', settingIconRef)">
+      <div text-lg i-solar-settings-bold />
+    </button>
   </nav>
 </template>
