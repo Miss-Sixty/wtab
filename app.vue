@@ -38,9 +38,12 @@ onMounted(() => {
   })
 })
 
-function widgetContextmenu(e: any) {
+// 存储右键点击的 widget 数据
+const widgetData = ref()
+function widgetContextmenu({ e, widget }: any) {
   const virtualEl = getBoundingClientRect(e)
   contextMunuRef.value?.open({ ref: virtualEl, type: 'widget' })
+  widgetData.value = widget
 }
 </script>
 
@@ -50,8 +53,13 @@ function widgetContextmenu(e: any) {
     <NuxtPage @widget-contextmenu="widgetContextmenu" />
   </NuxtLayout>
   <ContextMenu
-    ref="contextMunuRef" @settings-base="settingsBaseVisible = true" @add-widgets="addWidgetsVisible = true"
-    @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true"
+    ref="contextMunuRef"
+    @settings-base="settingsBaseVisible = true"
+    @add-widgets="addWidgetsVisible = true"
+    @edit-mode="layoutStore.editMode = true"
+    @about="aboutVisible = true"
+    @del-widgets="layoutStore.delWidget(widgetData)"
+    @closed="widgetData = null"
   />
 
   <SettingsBase v-model="settingsBaseVisible" />
