@@ -103,7 +103,7 @@ defineExpose({ open })
       <ul
         v-show="popperVisible" ref="floatingRef" transform-gpu animate-duration-150ms animate-fast :style="styles"
         ring-black:5 mt1 ring-1 absolute w40 right-0 origin-top-right divide-y divide-gray-100 rounded-md bg-white
-        shadow-lg z-1
+        shadow-lg z-1 transition-all
       >
         <div v-for="(items, i) in showMenuList" :key="i" p1>
           <template v-for="(item, j) in items" :key="j">

@@ -28,10 +28,10 @@ const _modelValue = computed({
   <Teleport to="body">
     <div fixed left-0 top-0 z-999 @contextmenu.prevent.stop>
       <Transition enter-active-class="animate-fade-in" leave-active-class="animate-fade-out">
-        <div v-show="modelValue" animate-duration-200ms fixed inset-0 h-full w-full backdrop-blur bg-black:25 />
+        <div v-show="modelValue" animate-duration-150ms fixed inset-0 h-full w-full backdrop-blur bg-black:25 />
       </Transition>
       <Transition enter-active-class="animate-zoom-in" leave-active-class="animate-zoom-out">
-        <div v-show="modelValue" fixed inset-0 flex items-center justify-center animate-duration-200ms>
+        <div v-show="modelValue" fixed inset-0 flex items-center justify-center animate-duration-150ms>
           <div
             :style="{ width: `${width}px` }" flex flex-col md:h600px h-full transform overflow-hidden md:rounded-xl
             bg-white pb6 shadow-xl transition-all md:mx-40px
