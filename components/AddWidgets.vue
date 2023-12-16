@@ -37,7 +37,7 @@ init()
   </WtabDialog>
 </template>
 
-<style lang="scss">
+<style>
 .swiper-button-prev,
 .swiper-button-next {
   width: 28px;

@@ -54,7 +54,7 @@ function handleClick() {
   props.type === 'edit' && layoutStore.delWidget(props.widget)
 }
 
-// const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component}/index.vue`))
+const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component}/index.vue`))
 </script>
 
 <template>
@@ -67,22 +67,7 @@ function handleClick() {
         <div bg-white :class="[type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold']" />
       </button>
     </template>
-
-    <!-- <component :is="AsyncComp" :style="widgetWH" overflow-hidden :type="type" :widget="widget" /> -->
-    <!-- <div absolute bottom-0 class="translate-y-3/4" left-0 right-0 flex justify-center will-change-auto duration-150>
-      <div
-        flex items-center border border-gray-300 dark:border-gray-600 px-2 py-0.5 gap-1 sm:text-sm font-medium
-        bg-white text-slate-700 dark:text-slate-50 rounded-lg shadow-lg
-      >
-        <button button p1 button-icon-only flex items-center p-0.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded>
-          <div i-solar-trash-bin-minimalistic-linear />
-        </button>
-        <button button p1 button-icon-only flex items-center p-0.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded>
-          <div i-solar-pen-2-linear />
-        </button>
-        <div class="w-px h-[16px] bg-slate-300" />
-      </div>
-    </div> -->
+    <component :is="AsyncComp" :style="widgetWH" overflow-hidden :type="type" :widget="widget" />
   </div>
 </template>
 

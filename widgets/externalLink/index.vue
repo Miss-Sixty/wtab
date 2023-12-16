@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import DialogSetting from './dialog/setting.vue'
+
 defineProps({
   widget: {
     type: Object,
@@ -9,10 +11,16 @@ defineProps({
     default: '',
   },
 })
+
+const dialogSettingVisible = ref(false)
 </script>
 
 <template>
   <div>
     11
+    <button @click="dialogSettingVisible = true">
+      click
+    </button>
+    <DialogSetting v-model="dialogSettingVisible" />
   </div>
 </template>

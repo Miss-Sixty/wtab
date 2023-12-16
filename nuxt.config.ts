@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxtjs/device',
     '@nuxtjs/color-mode',
-    'nuxt-headlessui',
     'nuxt-swiper',
     '@pinia/nuxt',
     'dayjs-nuxt',
@@ -14,6 +13,11 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
+  components: [
+    // { path: '~/widgets/**/components', global: true },
+    { path: '~/widgets', global: true, prefix: 'Widgets' },
+    '~/components',
+  ],
   devServer: {
     host: '0', // 监听所有地址
   },

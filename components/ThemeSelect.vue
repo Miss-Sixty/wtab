@@ -1,10 +1,4 @@
 <script setup>
-import {
-  RadioGroup,
-  RadioGroupLabel,
-  RadioGroupOption,
-} from '@headlessui/vue'
-
 const list = [{
   type: 'light',
   icon: 'i-solar-sun-bold',
@@ -18,7 +12,8 @@ const list = [{
 </script>
 
 <template>
-  <RadioGroup v-model="$colorMode.preference">
+  <div>11</div>
+  <!-- <RadioGroup v-model="$colorMode.preference">
     <RadioGroupLabel class="sr-only">
       外观颜色
     </RadioGroupLabel>
@@ -33,5 +28,5 @@ const list = [{
         </button>
       </RadioGroupOption>
     </div>
-  </RadioGroup>
+  </RadioGroup> -->
 </template>

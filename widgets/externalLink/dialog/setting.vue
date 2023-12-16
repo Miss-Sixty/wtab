@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <DialogPage>
+  <WtabDialog>
     <div>setting</div>
-  </DialogPage>
+  </WtabDialog>
 </template>
