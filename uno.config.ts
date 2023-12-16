@@ -2,8 +2,8 @@ import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
   shortcuts: {
-    'bg-base': 'bg-gray-200  dark:bg-gray-800 ',
-    'icon': 'p1.5 rounded-lg cursor-pointer hover:bg-base ',
+    'bg-base': 'bg-green-100 dark:bg-gray-800 color-green-500',
+    'icon': 'p1 rounded-lg cursor-pointer hover:bg-base ',
   },
   theme: {
     extend: {
