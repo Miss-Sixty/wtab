@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computePosition, flip, shift } from '@floating-ui/dom'
 
-const emit = defineEmits(['settingsBase', 'addWidgets', 'editMode', 'about', 'delWidgets', 'closed'])
+const emit = defineEmits(['settingsBase', 'addWidgets', 'editMode', 'about', 'delWidgets', 'closed', 'roadmap'])
 
 function originMiddlewareFn(type: string) {
   const placementMap: any = {
@@ -72,7 +72,7 @@ const menuList = [
     { label: '编辑桌面', type: 'editMode' },
     { label: '删除此小组件', type: 'delWidgets', visibles: ['widget'] },
   ],
-  [{ label: '关于', type: 'about', visibles: ['settingsBase'], active: () => emit('about') }],
+  [{ label: '路线图', type: 'roadmap', visibles: ['settingsBase'], active: () => emit('roadmap') }, { label: '关于', type: 'about', visibles: ['settingsBase'], active: () => emit('about') }],
 ]
 const showMenuList = computed(() => {
   return menuList.map((item) => {

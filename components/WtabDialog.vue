@@ -47,7 +47,7 @@ const _modelValue = computed({
                 <div text-xl i-material-symbols-close-rounded />
               </button>
             </div>
-            <div overflow-y-auto px6 py1>
+            <div overflow-y-auto flex-1 px6 py1>
               <slot />
             </div>
           </div>

@@ -25,23 +25,10 @@ const settingIconRef = ref()
       <div :class="item.icon" text-lg />
     </NuxtLink>
     <div flex-auto />
-    <div v-show="layoutStore.editMode" flex gap-2>
-      <button
-        border py2 px4 rounded-md text-black text-sm leading-none
-        class="hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-        @click="layoutStore.editMode = false"
-      >
-        取消
-      </button>
-      <button
-        bg-violet-500 py2 px4 rounded-md text-white text-sm leading-none
-        class="hover:bg-violet/100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-      >
-        保存
-      </button>
+    <div v-show="layoutStore.editMode" gap-1>
+      <WtButton size="sm" round plain text="取消" @click="layoutStore.editMode = false" />
+      <WtButton size="sm" round plain text="保存" @click="layoutStore.editMode = false" />
     </div>
-    <button ref="settingIconRef" icon @click="$emit('handleSettingIcon', settingIconRef)">
-      <div text-lg i-solar-settings-bold />
-    </button>
+    <WtIcon ref="settingIconRef" size="sm" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
   </nav>
 </template>

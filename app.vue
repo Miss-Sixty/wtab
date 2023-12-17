@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import './styles/base.css'
-import '@unocss/reset/tailwind.css'
 import useLayoutStore from '@/stores/layout'
 
 const layoutStore = useLayoutStore()
@@ -12,6 +11,7 @@ function handleSettingIcon(ref: any) {
 const settingsBaseVisible = ref(false)
 const aboutVisible = ref(false)
 const addWidgetsVisible = ref(false)
+const roadmapVisible = ref(false)
 
 function getBoundingClientRect({ clientX, clientY }: any) {
   return {
@@ -53,16 +53,13 @@ function widgetContextmenu({ e, widget }: any) {
     <NuxtPage @widget-contextmenu="widgetContextmenu" />
   </NuxtLayout>
   <ContextMenu
-    ref="contextMunuRef"
-    @settings-base="settingsBaseVisible = true"
-    @add-widgets="addWidgetsVisible = true"
-    @edit-mode="layoutStore.editMode = true"
-    @about="aboutVisible = true"
-    @del-widgets="layoutStore.delWidget(widgetData)"
-    @closed="widgetData = null"
+    ref="contextMunuRef" @settings-base="settingsBaseVisible = true" @add-widgets="addWidgetsVisible = true"
+    @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true" @del-widgets="layoutStore.delWidget(widgetData)"
+    @closed="widgetData = null" @roadmap="roadmapVisible = true"
   />
 
   <SettingsBase v-model="settingsBaseVisible" />
   <AddWidgets v-model="addWidgetsVisible" />
   <SettingsAbout v-model="aboutVisible" />
+  <Roadmap v-model="roadmapVisible" />
 </template>
