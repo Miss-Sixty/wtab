@@ -15,7 +15,6 @@ const addPageVisible = ref(false)
     <NuxtLink v-for="(item, i) in layoutStore.pageMenu" :key="i" :to="item.to" exact-active-class="text-indigo-500">
       <WtIcon
         :icon="item.icon"
-        @click="$emit('handleSettingIcon', settingIconRef)"
       />
     </NuxtLink>
 
