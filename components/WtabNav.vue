@@ -2,20 +2,15 @@
 import useLayoutStore from '@/stores/layout'
 
 defineEmits(['handleSettingIcon'])
-
 const layoutStore = useLayoutStore()
-
 const settingIconRef = ref()
-
 const addPageVisible = ref(false)
 </script>
 
 <template>
   <nav px2 py-1 flex items-center gap-1>
     <NuxtLink v-for="(item, i) in layoutStore.pageMenu" :key="i" :to="item.to" exact-active-class="text-indigo-500">
-      <WtIcon
-        :icon="item.icon"
-      />
+      <WtIcon :icon="item.icon" />
     </NuxtLink>
 
     <Transition
