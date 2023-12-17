@@ -111,6 +111,7 @@ defineExpose({ open })
         <div v-for="(items, i) in showMenuList" :key="i" p1>
           <template v-for="(item, j) in items" :key="j">
             <button
+              bg-inherit
               flex w-full rounded-md px-2 py-2 text-sm hover:text-white
               :class="item.type === 'delWidgets' ? 'text-red-500  hover:bg-red-400' : 'hover:bg-violet-500 text-gray-900'"
               @click="onClick(item)"

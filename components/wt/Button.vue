@@ -31,11 +31,11 @@ interface Status {
 const btnClass = computed(() => {
   const status: Status = {
     sm: {
-      btn: 'px-3 h-7 text-sm',
+      btn: 'px-3 h-6 text-sm',
       icon: 'text-base',
     },
     base: {
-      btn: 'px-3 h-8 text-sm',
+      btn: 'px-3 h-7 text-sm',
       icon: 'text-lg',
     },
     lg: {

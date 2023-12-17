@@ -36,6 +36,9 @@ export default defineStore('storeLayout', () => {
   const breakpointsData = useBreakpoints(breakpoints.value)
   const current: ComputedRef<string[]> = breakpointsData.current() // 当前布局断点
   const editMode = ref(false) // 编辑模式
+  const pageMenu = ref([
+    { text: '首页', to: '/', icon: 'i-solar-home-bold' },
+  ])
 
   // 一共多少列
   const colsNum: ComputedRef<number> = computed(() => {
@@ -67,6 +70,10 @@ export default defineStore('storeLayout', () => {
     layouts.value.splice(index, 1)
   }
 
+  const addPage = (data: any) => {
+    pageMenu.value.push(data)
+  }
+
   return {
     baseSize,
     baseMargin,
@@ -76,5 +83,7 @@ export default defineStore('storeLayout', () => {
     breakpoints,
     colsNum,
     layouts,
+    pageMenu,
+    addPage,
   }
 })
