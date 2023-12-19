@@ -9,7 +9,7 @@ const addPageVisible = ref(false)
 </script>
 
 <template>
-  <nav z-1 px2 py-1 flex items-center gap-1>
+  <nav z-1 px2 py-1 flex items-center gap-1 hover="opacity-100" opacity-10 transition :class="{ 'opacity-100': layoutStore.editMode }">
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-indigo-500">
       <WtIcon :icon="item.icon">
         {{ item.text }}
@@ -35,10 +35,8 @@ const addPageVisible = ref(false)
       </div>
     </Transition>
 
-    <div hover="opacity-100" opacity-10 flex transition>
-      <WtIcon ref="settingIconRef" icon="i-solar-confetti-bold" @click="$emit('confetti')" />
-      <WtIcon ref="settingIconRef" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
-    </div>
+    <WtIcon ref="settingIconRef" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
+    <WtIcon ref="settingIconRef" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
 
     <AddPage v-model="addPageVisible" title="添加页面" />
   </nav>
