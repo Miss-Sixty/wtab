@@ -32,6 +32,7 @@ const btnClass = computed(() => {
     focus-visible="outline outline-2 outline-offset-2 outline-indigo-600"
     :class="btnClass"
     dark="hover:text-indigo-400 focus-visible:outline-indigo-500"
+    transition
   >
     <div :class="icon" aria-hidden="true" />
   </button>

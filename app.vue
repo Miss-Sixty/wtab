@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import './styles/base.css'
+import { vConfetti } from '@neoconfetti/vue'
 import useLayoutStore from '@/stores/layout'
 
 const layoutStore = useLayoutStore()
@@ -45,10 +46,18 @@ function widgetContextmenu({ e, widget }: any) {
   contextMunuRef.value?.open({ ref: virtualEl, type: 'widget' })
   widgetData.value = widget
 }
+
+const confettiVisible = ref(false)
+async function onConfetti() {
+  confettiVisible.value = false
+  await nextTick()
+  confettiVisible.value = true
+}
 </script>
 
 <template>
-  <WtabNav @handle-setting-icon="handleSettingIcon" />
+  <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
+  <WtabNav @handle-setting-icon="handleSettingIcon" @confetti="onConfetti" />
   <NuxtLayout>
     <NuxtPage @widget-contextmenu="widgetContextmenu" />
   </NuxtLayout>
