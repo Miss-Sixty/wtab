@@ -8,6 +8,9 @@ dependencies:
   '@floating-ui/dom':
     specifier: ^1.5.3
     version: 1.5.3
+  '@neoconfetti/vue':
+    specifier: ^2.1.0
+    version: 2.1.0
   '@pinia/nuxt':
     specifier: ^0.5.1
     version: 0.5.1(typescript@5.3.3)(vue@3.3.12)
@@ -25,6 +28,9 @@ devDependencies:
   '@antfu/eslint-config':
     specifier: ^2.4.6
     version: 2.4.6(@vue/compiler-sfc@3.3.12)(eslint@8.56.0)(typescript@5.3.3)
+  '@iconify-json/solar':
+    specifier: ^1.1.9
+    version: 1.1.9
   '@iconify/json':
     specifier: ^2.2.158
     version: 2.2.158
@@ -1011,6 +1017,12 @@ packages:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
 
+  /@iconify-json/solar@1.1.9:
+    resolution: {integrity: sha512-BcWzZqA02BiQduYizqU/J4v4RNs0MkjZUGpMbejpozH8YQSt3+S/LfV6zfVRonx/2DhXTVSqiLa1abDRAZtojQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
   /@iconify/json@2.2.158:
     resolution: {integrity: sha512-6foGYcG97nmYpJ7N0MAbtfH7SKf7RvoOCYYSBi8gs+8qopXzplIP2F4lQiLrjpbPQihAoTercmGYWi4ABxLX1A==}
     dependencies:
@@ -1112,6 +1124,10 @@ packages:
       - encoding
       - supports-color
     dev: true
+
+  /@neoconfetti/vue@2.1.0:
+    resolution: {integrity: sha512-IN1KHTNpGI4uxFRqtomKrstfP7cmbc38equtcbFsAkX6lz/7iCG8xZNeMQlM2gXysjMneMtx+XrdopcM0PC/dQ==}
+    dev: false
 
   /@netlify/functions@2.4.1:
     resolution: {integrity: sha512-sRFYBaz6dJP1MdUtk/5QNmshhg5UDmB+DUssmH6v9WUG85MrwyExEfGfJA5eClXATjXm0coTvO5nLAlyCpK7QQ==}
@@ -1568,6 +1584,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -5651,6 +5668,10 @@ packages:
     engines: {node: ^18 || >=20}
     hasBin: true
     dev: false
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+    dev: true
 
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}

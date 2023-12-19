@@ -58,15 +58,17 @@ const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component
 </script>
 
 <template>
-  <div relative select-none :class="scale" :style="widgetWH" bg-red rounded-lg>
+  <div relative select-none :class="scale" :style="widgetWH" bg-yellow rounded-lg>
     <template v-if="type">
       <button
         :class="iconScale" absolute left-0 top-0 class="-translate-x-1/4 -translate-y-1/4" text-2xl cursor-pointer
-        @click="handleClick"
+        bg-transparent
+        hover:text-indigo-600 @click="handleClick"
       >
-        <div bg-white :class="[type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold']" />
+        <div bg-red hover:bg-red-300 :class="type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold'" />
       </button>
     </template>
+
     <component :is="AsyncComp" :style="widgetWH" overflow-hidden :type="type" :widget="widget" />
   </div>
 </template>

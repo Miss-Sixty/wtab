@@ -9,7 +9,7 @@ defineEmits(['widgetContextmenu'])
 </script>
 
 <template>
-  <main flex flex-1 h-screen w-screen overflow-hidden justify-center overflow-y-auto>
+  <main flex flex-1 h-screen w-screen justify-center>
     <slot />
   </main>
 </template>

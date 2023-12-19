@@ -17,6 +17,8 @@ const btnClass = computed(() => {
   const status: Status = {
     sm: 'p-1.5 text-base',
     base: 'p-1.5 text-base',
+    lg: 'p-2 text-lg',
+    xl: 'p-2.5 text-xl',
   }
   return status[props.size]
 })
@@ -31,6 +33,6 @@ const btnClass = computed(() => {
     :class="btnClass"
     dark="hover:text-indigo-400 focus-visible:outline-indigo-500"
   >
-    <div :class="[icon]" aria-hidden="true" />
+    <div :class="icon" aria-hidden="true" />
   </button>
 </template>
