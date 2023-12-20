@@ -15,8 +15,8 @@ interface Status {
 }
 const btnClass = computed(() => {
   const status: Status = {
-    sm: 'p-1.5 text-base',
-    base: 'p-1.5 text-base',
+    sm: 'p-1 text-base',
+    base: 'p-1 text-base',
     lg: 'p-2 text-lg',
     xl: 'p-2.5 text-xl',
   }
@@ -27,7 +27,7 @@ const btnClass = computed(() => {
 <template>
   <button
     type="button"
-    rounded-full bg-inherit hover:text-indigo-600
+    rounded-full bg-transparent hover:text-indigo-600
     flex="~ items-center"
     focus-visible="outline outline-2 outline-offset-2 outline-indigo-600"
     :class="btnClass"
