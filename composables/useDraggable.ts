@@ -51,8 +51,6 @@ export default function useDraggable(
 
     const { x = 0, y = 0 } = relative?.getBoundingClientRect?.() || {}
     const targetRect = dom?.getBoundingClientRect()
-    console.log(22, targetRect)
-    console.log(33, e.clientX, e.clientY)
 
     pressedDelta.value = { x: targetRect.x - x, y: targetRect.y - y }
     const pos = {
@@ -61,9 +59,6 @@ export default function useDraggable(
       // x: e.clientX - (relative ? targetRect.left - containerRect!.left : targetRect.left),
       // y: e.clientY - (relative ? targetRect.top - containerRect!.top : targetRect.top),
     }
-
-    console.log(55, pressedDelta.value)
-    console.log(44, pos)
 
     position.value = pos
     onStart?.(pos, e)
@@ -79,7 +74,6 @@ export default function useDraggable(
     // const targetRect = e.target!.getBoundingClientRect()
     const { x: positionX, y: positionY } = position.value
     pressedDelta.value = { x: e.clientX - positionX - x, y: e.clientY - positionY - y }
-    // console.log(55, pressedDelta.value)
 
     onMove?.(pressedDelta.value, e)
   }

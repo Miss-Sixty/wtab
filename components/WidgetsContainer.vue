@@ -69,7 +69,7 @@ const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component
       </button>
     </template>
 
-    <component :is="AsyncComp" :style="widgetWH" overflow-hidden :type="type" :widget="widget" />
+    <component :is="AsyncComp" :style="widgetWH" overflow-hidden :type="type" :widget="widget" :size="size" />
   </div>
 </template>
 
