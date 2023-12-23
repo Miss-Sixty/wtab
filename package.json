@@ -16,7 +16,9 @@
     "@neoconfetti/vue": "^2.1.0",
     "@pinia/nuxt": "^0.5.1",
     "@vercel/speed-insights": "^1.0.2",
+    "jsdom": "^23.0.1",
     "nanoid": "^5.0.4",
+    "node-get-favicons": "^1.2.0",
     "nuxt-swiper": "^1.2.2"
   },
   "devDependencies": {

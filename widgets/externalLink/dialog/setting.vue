@@ -39,7 +39,17 @@ function onChange(e: any) {
 }
 
 async function getWebInfo() {
-//   let domain: Array<string> | string = formData.value.src.split('/') // 以“/”进行分割
+  try {
+    const { data } = await $fetch('/api/favicon', {
+      method: 'get',
+      params: { host: 'https://github.com/' },
+    })
+    console.log(22, data)
+  }
+  catch (err) {
+    console.log(11, err)
+  }
+  //   let domain: Array<string> | string = formData.value.src.split('/') // 以“/”进行分割
 
   //   if (domain[2]) {
   //     domain = domain[2]
