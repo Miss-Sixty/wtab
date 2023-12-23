@@ -19,8 +19,8 @@ const props = defineProps({
 const dialogSettingVisible = ref(false)
 
 function toUrl() {
-  const host = props.widget.widgetData?.host
-  host && window.open(host)
+  const url = props.widget.widgetData?.url
+  url && window.open(url)
 }
 </script>
 
