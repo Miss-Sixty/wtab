@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
   return {
     data: {
       host,
-      icons,
+      icons: [...new Set(icons)],
       name: document.title,
     },
   }

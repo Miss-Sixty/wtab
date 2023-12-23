@@ -26,7 +26,7 @@ function toUrl() {
 
 <template>
   <div flex items-center justify-between flex-col rounded-lg>
-    <div overflow-hidden border rounded-lg cursor-pointer w-58px h-58px @click="toUrl">
+    <div overflow-hidden border rounded-lg cursor-pointer w-58px h-58px p1 @click="toUrl">
       <button v-if="!widget.widgetData?.iconUrl" w-full h-full bg-white @click="dialogSettingVisible = true">
         <div m-auto class="h-2/5 w-2/5" i-solar-add-square-linear />
       </button>

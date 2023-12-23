@@ -45,7 +45,9 @@ function onChange(e: any) {
 //   logo: string
 // }
 const icons: any = ref()
+const loading = ref(false)
 async function getWebInfo() {
+  loading.value = true
   try {
     let host: Array<string> | string = formData.value.host.split('/') // 以“/”进行分割
 
@@ -75,6 +77,9 @@ async function getWebInfo() {
   catch (err) {
     console.log(11, err)
   }
+  finally {
+    loading.value = false
+  }
 }
 
 function onSubmit() {
@@ -97,7 +102,7 @@ function onSubmit() {
               type="text" name="url" block w-full rounded-md py-1.5 px-3 border mr-2 outline-indigo caret-indigo
               placeholder="请输入网站地址" placeholder:text-gray-400 leading-6 text-sm required @change="onChange"
             >
-            <WtButton text="获取信息" size="lg" @click="getWebInfo" />
+            <WtButton text="获取信息" size="lg" :loading="loading" @click="getWebInfo" />
           </div>
         </div>
 
@@ -116,7 +121,7 @@ function onSubmit() {
               v-for="(item, i) in icons" :key="i"
               cursor-pointer
               :class="{ 'border-purple': formData.iconUrl === item }"
-              bg-gray-100 border rounded-md overflow-hidden h-24 w-24 @click="formData.iconUrl = item"
+              bg-gray-100 border rounded-md overflow-hidden h-24 w-24 p1 @click="formData.iconUrl = item"
             >
               <img h-full w-full :src="item">
             </li>
