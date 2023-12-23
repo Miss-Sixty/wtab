@@ -17,11 +17,6 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
-  components: [
-    // { path: '~/widgets/**/components', global: true },
-    { path: '~/widgets', global: true, prefix: 'Widgets' },
-    '~/components',
-  ],
   devServer: {
     host: '0', // 监听所有地址
   },
