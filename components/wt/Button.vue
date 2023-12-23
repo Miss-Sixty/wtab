@@ -39,7 +39,7 @@ const btnClass = computed(() => {
       icon: 'text-base',
     },
     base: {
-      btn: 'px-3 h-7 text-sm',
+      btn: 'px-3 h-6 text-sm',
       icon: 'text-lg',
     },
     lg: {

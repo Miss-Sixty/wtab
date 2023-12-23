@@ -9,7 +9,7 @@ const time = computed(() => dayjs(layoutStore.date).format(layoutStore.formatClo
 
 <template>
   <ClientOnly>
-    <button text-xs bg-transparent @click="clockVisible = true">
+    <button tabular-nums text-xs bg-transparent @click="clockVisible = true">
       {{ time }}
     </button>
     <HeaderSettingDialog v-model="clockVisible" />

@@ -25,8 +25,8 @@ function toUrl() {
 </script>
 
 <template>
-  <div flex items-center justify-between flex-col rounded-lg>
-    <div overflow-hidden border rounded-lg cursor-pointer w-58px h-58px p1 @click="toUrl">
+  <div flex items-center justify-between flex-col rounded-lg :class="[type === 'add' ? 'bg-white' : '']">
+    <div overflow-hidden rounded-lg cursor-pointer p1 :class="[type === 'add' ? 'w-full h-full' : 'w-58px h-58px border']" @click="toUrl">
       <button v-if="!widget.widgetData?.iconUrl" w-full h-full bg-white @click="dialogSettingVisible = true">
         <div m-auto class="h-2/5 w-2/5" i-solar-add-square-linear />
       </button>
