@@ -15,7 +15,7 @@ init()
 <template>
   <WtabDialog title="添加小组件" :width="1024">
     <div v-for="(list, i) in widgetList" :key="i" flex h-96 flex-col overflow-hidden rounded-lg class="bg-black/10">
-      <Swiper w-full flex-1 navigation css-mode loop pagination :modules="modules">
+      <Swiper w-full flex-1 navigation loop pagination :modules="modules">
         <SwiperSlide v-for="(data, size, j) in list.sizes" :key="j">
           <div flex items-center justify-center h-full>
             <WidgetsContainer

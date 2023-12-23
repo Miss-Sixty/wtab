@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     '@pinia/nuxt',
     'dayjs-nuxt',
+    "@pinia-plugin-persistedstate/nuxt"
   ],
   colorMode: {
     classSuffix: '',

@@ -51,14 +51,14 @@ const iconScale = computed(() => {
 
 function handleClick() {
   props.type === 'add' && layoutStore.addWidget(props.widget, props.component, props.size)
-  props.type === 'edit' && layoutStore.delWidget(props.widget)
+  props.type === 'del' && layoutStore.delWidget(props.widget)
 }
 
 const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component}/index.vue`))
 </script>
 
 <template>
-  <div relative select-none :class="scale" :style="widgetWH" bg-yellow rounded-lg>
+  <div relative select-none :class="scale" :style="widgetWH" rounded-lg>
     <template v-if="type">
       <button
         :class="iconScale" absolute left-0 top-0 class="-translate-x-1/4 -translate-y-1/4" text-2xl cursor-pointer

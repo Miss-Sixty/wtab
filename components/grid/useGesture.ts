@@ -104,14 +104,22 @@ export default (config: any) => {
       cancelEventListener = useEventListener(window, 'pointercancel', end)
     }
     else {
-      startEventListener()
-      moveEventListener()
-      endEventListener()
-      cancelEventListener()
-      startEventListener = undefined
-      moveEventListener = undefined
-      endEventListener = undefined
-      cancelEventListener = undefined
+      if (startEventListener) {
+        startEventListener()
+        startEventListener = undefined
+      }
+      if (moveEventListener) {
+        moveEventListener()
+        moveEventListener = undefined
+      }
+      if (endEventListener) {
+        endEventListener()
+        endEventListener = undefined
+      }
+      if (cancelEventListener) {
+        cancelEventListener()
+        cancelEventListener = undefined
+      }
     }
   })
 

@@ -20,5 +20,5 @@ export default {
 
   baseSize: 74, // 卡片大小
   baseMargin: 18, // 卡片间距
-  defaultLayout: [{ id: 'externalLink-oCPQENpIuKs8OoeOpVvPC', widgetData: { widgetName: '外链1', protocol: '', src: '', bgColor: '', iconType: 'online', onlineIcon: '', pureIcon: '', localIcon: '' }, widgetSize: '1:1', position: { 4: [0, 0], 6: [0, 0], 8: [0, 0], 12: [0, 0], 14: [0, 0], 16: [0, 0], 18: [0, 0], 20: [0, 0] }, update: 1702190986982, component: 'externalLink' }, { id: 'externalLink-tOazS-GvkJXslVEdiF51N', widgetData: { widgetName: '外链3', protocol: '', src: '', bgColor: '', iconType: 'online', onlineIcon: '', pureIcon: '', localIcon: '' }, widgetSize: '2:1', position: { 4: [1, 0], 6: [1, 0], 8: [1, 0], 12: [1, 0], 14: [1, 0], 16: [1, 0], 18: [1, 0], 20: [1, 0] }, update: 1702191006326, component: 'externalLink' }, { id: 'externalLink-arFk_IQKg9V-hWLIgSL07', widgetData: { widgetName: '外链4', protocol: '', src: '', bgColor: '', iconType: 'online', onlineIcon: '', pureIcon: '', localIcon: '' }, widgetSize: '3:2', position: { 4: [0, 1], 6: [3, 0], 8: [3, 0], 12: [3, 0], 14: [3, 0], 16: [3, 0], 18: [3, 0], 20: [3, 0] }, update: 1702191009654, component: 'externalLink' }],
+  defaultLayout: [],
 }

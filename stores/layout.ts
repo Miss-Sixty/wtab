@@ -62,7 +62,7 @@ export default defineStore('storeLayout', () => {
       position[colsNum] = [x, y]
     }
     const id = `${component}-${nanoid()}`
-    layouts.value.push({ id, widgetData: widget, widgetSize: size, position, update: dayjs().valueOf(), component })
+    layouts.value.push(JSON.parse(JSON.stringify({ id, widgetData: widget, widgetSize: size, position, update: dayjs().valueOf(), component })))
   }
 
   const delWidget = (widget: any) => {
@@ -86,4 +86,4 @@ export default defineStore('storeLayout', () => {
     pageMenu,
     addPage,
   }
-})
+}, { persist: true })
