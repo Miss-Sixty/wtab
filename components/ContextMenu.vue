@@ -108,7 +108,7 @@ defineExpose({ open })
         w40 right-0 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg z-1 transition-width
         transition-height
       >
-        <div v-for="(items, i) in showMenuList" :key="i" p1>
+        <li v-for="(items, i) in showMenuList" :key="i" p1>
           <template v-for="(item, j) in items" :key="j">
             <button
               bg-inherit
@@ -119,7 +119,7 @@ defineExpose({ open })
               {{ item.label }}
             </button>
           </template>
-        </div>
+        </li>
       </ul>
     </Transition>
   </Teleport>

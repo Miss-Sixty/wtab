@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div>
-    <slot />
-  </div>
+  <DialogPage title="常规设置">
+    222
+  </DialogPage>
 </template>

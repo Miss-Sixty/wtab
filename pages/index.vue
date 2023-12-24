@@ -1,23 +1,71 @@
 <script setup lang="ts">
+import { vConfetti } from '@neoconfetti/vue'
 import useLayoutStore from '@/stores/layout'
 
-defineEmits(['widgetContextmenu'])
 const layoutStore = useLayoutStore()
-const { layouts, baseMargin, baseSize, editMode, colsNum } = storeToRefs(layoutStore)
+const contextMunuRef = ref()
+function handleSettingIcon(ref: any) {
+  contextMunuRef.value?.open({ type: 'settingsBase', ref })
+}
+
+const settingsBaseVisible = ref(false)
+const aboutVisible = ref(false)
+const addWidgetsVisible = ref(false)
+const roadmapVisible = ref(false)
+
+function getBoundingClientRect({ clientX, clientY }: any) {
+  return {
+    getBoundingClientRect() {
+      return {
+        width: 0,
+        height: 0,
+        x: clientX,
+        y: clientY,
+        top: clientY,
+        left: clientX,
+        right: clientX,
+        bottom: clientY,
+      }
+    },
+  }
+}
+
+onMounted(() => {
+  useEventListener(document, 'contextmenu', (e) => {
+    e.preventDefault()
+    const virtualEl = getBoundingClientRect(e)
+    contextMunuRef.value?.open({ ref: virtualEl })
+  })
+})
+
+// 存储右键点击的 widget 数据
+const widgetData = ref()
+function widgetContextmenu({ e, widget }: any) {
+  const virtualEl = getBoundingClientRect(e)
+  contextMunuRef.value?.open({ ref: virtualEl, type: 'widget' })
+  widgetData.value = widget
+}
+
+const confettiVisible = ref(false)
+async function onConfetti() {
+  confettiVisible.value = false
+  await nextTick()
+  confettiVisible.value = true
+}
 </script>
 
 <template>
-  <ClientOnly>
-    <Grid v-model="layouts" :cols-num="colsNum" :base-size="baseSize" :base-margin="baseMargin" :edit-mode="editMode">
-      <GridItem
-        v-for="item in layouts" :id="item.id" :key="item.id"
-        @contextmenu.prevent.stop="$emit('widgetContextmenu', { e: $event, widget: item })"
-      >
-        <WidgetsContainer
-          :type="editMode ? 'del' : ''" :size="item.widgetSize" :widget="item"
-          :component="item.component"
-        />
-      </GridItem>
-    </Grid>
-  </ClientOnly>
+  <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
+  <WtabNav @handle-setting-icon="handleSettingIcon" @confetti="onConfetti" />
+  <LayoutMain />
+  <ContextMenu
+    ref="contextMunuRef" @settings-base="settingsBaseVisible = true" @add-widgets="addWidgetsVisible = true"
+    @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true" @del-widgets="layoutStore.delWidget(widgetData)"
+    @closed="widgetData = null" @roadmap="roadmapVisible = true"
+  />
+
+  <SettingsBase v-model="settingsBaseVisible" />
+  <AddWidgets v-model="addWidgetsVisible" />
+  <SettingsAbout v-model="aboutVisible" />
+  <Roadmap v-model="roadmapVisible" />
 </template>

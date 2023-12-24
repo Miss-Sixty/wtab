@@ -15,7 +15,6 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
-    '@nuxtjs/device',
     '@nuxtjs/color-mode',
     'nuxt-swiper',
     '@pinia/nuxt',
