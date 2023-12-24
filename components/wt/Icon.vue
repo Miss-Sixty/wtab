@@ -27,11 +27,11 @@ const btnClass = computed(() => {
 <template>
   <button
     type="button"
-    rounded-full bg-transparent hover:text-indigo-600
+    rounded-full bg-transparent hover:text-violet-600
     flex="~ items-center"
-    focus-visible="outline outline-2 outline-offset-2 outline-indigo-600"
+    focus-visible="outline outline-2 outline-offset-2 outline-violet-600"
     :class="btnClass"
-    dark="hover:text-indigo-400 focus-visible:outline-indigo-500"
+    dark="hover:text-violet-400 focus-visible:outline-violet-500"
     transition
   >
     <div :class="icon" aria-hidden="true" />

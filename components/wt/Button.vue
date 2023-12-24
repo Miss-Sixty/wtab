@@ -52,8 +52,8 @@ const btnClass = computed(() => {
 
 const plainClass = computed(() => {
   const status = {
-    plain: 'bg-gray-200 text-black hover:bg-indigo-100 dark:bg-gray-500 dark:hover:bg-gray-400 dark:focus-visible:outline-gray-500',
-    default: `bg-indigo-600 text-white hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500`,
+    plain: 'bg-gray-200 text-black hover:bg-violet-100 dark:bg-gray-500 dark:hover:bg-gray-400 dark:focus-visible:outline-gray-500',
+    default: `bg-violet-600 text-white hover:bg-violet-500 dark:bg-violet-500 dark:hover:bg-violet-400 dark:focus-visible:outline-violet-500`,
   }
   return status[props.plain ? 'plain' : 'default']
 })
@@ -68,12 +68,12 @@ const iconOrLoading = computed(() => {
     type="button"
     shadow-sm
     flex="~ items-center"
-    focus-visible="outline outline-2 outline-offset-2 outline-indigo-600"
+    focus-visible="outline outline-2 outline-offset-2 outline-violet-600"
     :class="[
       btnClass.btn,
       round ? 'rounded-full' : 'rounded-md',
       plainClass,
-      loading ? 'cursor-not-allowed outline-indigo-300' : '',
+      loading ? 'cursor-not-allowed outline-violet-300' : '',
     ]"
   >
     <svg v-if="loading" class="animate-spin mr-1 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

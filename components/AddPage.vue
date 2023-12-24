@@ -25,8 +25,8 @@ function onSubmit() {
             block w-full rounded-md
             py-1.5 px-3
             border
-            outline-indigo
-            caret-indigo
+            outline-violet
+            caret-violet
             placeholder="请输入页面名称"
             placeholder:text-gray-400 leading-6 text-sm
             required
@@ -41,8 +41,8 @@ function onSubmit() {
             block w-full rounded-md
             py-1.5 px-3
             border
-            outline-indigo
-            caret-indigo
+            outline-violet
+            caret-violet
             placeholder="请输入页面地址"
             placeholder:text-gray-400 leading-6 text-sm
           >
@@ -56,8 +56,8 @@ function onSubmit() {
             block w-full rounded-md
             py-1.5 px-3
             border
-            outline-indigo
-            caret-indigo
+            outline-violet
+            caret-violet
             placeholder="请输入页面图标"
             placeholder:text-gray-400 leading-6 text-sm
           >

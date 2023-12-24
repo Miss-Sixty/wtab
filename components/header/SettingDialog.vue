@@ -27,7 +27,7 @@ function onSubmit() {
           </label>
           <input
             id="name" v-model="formatClock" type="text" name="name" mt-2 block w-full rounded-md py-1.5 px-3 border
-            outline-indigo caret-indigo placeholder="请输入页面名称" placeholder:text-gray-400 leading-6 text-sm required
+            outline-violet caret-violet placeholder="请输入页面名称" placeholder:text-gray-400 leading-6 text-sm required
           >
         </div>
       </div>

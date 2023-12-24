@@ -63,12 +63,12 @@ const widgetW = computed(() => {
 </script>
 
 <template>
-  <div relative select-none :style="widgetWH" rounded-lg :class="[type && !widgetW ? 'border' : '', scale]">
+  <div relative select-none :style="widgetWH" rounded-lg border border-color-transparent :class="[type && !widgetW ? 'border-color-violet' : '', scale]">
     <template v-if="type">
       <button
         :class="iconScale" absolute left-0 top-0 class="-translate-x-1/4 -translate-y-1/4" text-2xl cursor-pointer
         bg-transparent
-        hover:text-indigo-600 @click="handleClick"
+        hover:text-violet-600 @click="handleClick"
       >
         <div bg-red hover:bg-red-300 :class="type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold'" />
       </button>
@@ -76,7 +76,7 @@ const widgetW = computed(() => {
       <div
         v-if="!widgetW"
         absolute right-0 top-0 text-xs cursor-pointer
-        bg-indigo text-white px-2 py-0.5 rounded-bl-lg rounded-tr-lg
+        bg-violet text-white px-2 py-0.5 rounded-bl-lg rounded-tr-lg
       >
         独占一行
       </div>

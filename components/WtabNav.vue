@@ -14,7 +14,7 @@ const addPageVisible = ref(false)
     :class="{ 'opacity-100': layoutStore.editMode }"
     class="transition-opacity transition-background-color"
   >
-    <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-indigo-500">
+    <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
       <WtIcon :icon="item.icon">
         {{ item.text }}
       </WtIcon>
@@ -35,7 +35,7 @@ const addPageVisible = ref(false)
     <div flex-auto />
     <Transition type="animation" enter-active-class="animate-fade-in" leave-active-class="animate-fade-out">
       <div v-show="layoutStore.editMode" flex gap-1 animate-duration-150ms>
-        <WtButton round plain text="完成" @click="layoutStore.editMode = false" />
+        <WtButton round text="完成" @click="layoutStore.editMode = false" />
       </div>
     </Transition>
 

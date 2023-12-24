@@ -99,7 +99,7 @@ function onSubmit() {
             <input
               v-model="formData.url"
               flex-1
-              type="text" name="url" block w-full rounded-md py-1.5 px-3 border mr-2 outline-indigo caret-indigo
+              type="text" name="url" block w-full rounded-md py-1.5 px-3 border mr-2 outline-violet caret-violet
               placeholder="请输入网站地址" placeholder:text-gray-400 leading-6 text-sm required @change="onChange"
             >
             <WtButton text="获取信息" size="lg" :loading="loading" @click="getWebInfo" />
@@ -110,7 +110,7 @@ function onSubmit() {
           <label for="name" block text-sm font-medium leading-6> 网站名称 </label>
           <input
             v-model="formData.name" type="text" name="name" mt-2 block w-full rounded-md py-1.5 px-3 border
-            outline-indigo caret-indigo placeholder="请输入网站名称" placeholder:text-gray-400 leading-6 text-sm required
+            outline-violet caret-violet placeholder="请输入网站名称" placeholder:text-gray-400 leading-6 text-sm required
           >
         </div>
 
