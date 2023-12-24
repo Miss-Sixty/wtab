@@ -5,14 +5,17 @@ import { nanoid } from 'nanoid/non-secure'
 import settings from '@/config/settings'
 
 function findPosition([widgetW, widgetH]: [any, number], layouts: any, colsNum: number) {
+  if (!widgetW)
+    widgetW = colsNum
   for (let y = 0; ; y++) {
     for (let x = 0; x <= colsNum - widgetW; x++) {
       let canPlace = true
       for (let i = 0; i < layouts.length; i++) {
         const rect = layouts[i]
         const [rectX, rectY] = rect.position[colsNum]
-        const [rectW, rectH] = rect.widgetSize.split(':').map(Number)
-
+        let [rectW, rectH] = rect.widgetSize.split(':').map(Number)
+        if (!rectW)
+          rectW = colsNum
         if (
           x <= rectX + (rectW || widgetW) - 1
           && x + widgetW - 1 >= rectX
@@ -59,7 +62,7 @@ export default defineStore('storeLayout', () => {
         continue
       }
 
-      const [x, y] = findPosition([w || colsNum, h], layouts.value, +colsNum)
+      const [x, y] = findPosition([w, h], layouts.value, +colsNum)
       position[colsNum] = [x, y]
     }
     const id = `${component}-${nanoid()}`

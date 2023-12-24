@@ -63,7 +63,7 @@ const widgetW = computed(() => {
 </script>
 
 <template>
-  <div relative select-none :style="widgetWH" rounded-lg :class="[widgetW ? '' : 'border', scale]">
+  <div relative select-none :style="widgetWH" rounded-lg :class="[type && !widgetW ? 'border' : '', scale]">
     <template v-if="type">
       <button
         :class="iconScale" absolute left-0 top-0 class="-translate-x-1/4 -translate-y-1/4" text-2xl cursor-pointer
