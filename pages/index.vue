@@ -55,17 +55,20 @@ async function onConfetti() {
 </script>
 
 <template>
-  <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
-  <WtabNav @handle-setting-icon="handleSettingIcon" @confetti="onConfetti" />
-  <LayoutMain />
-  <ContextMenu
-    ref="contextMunuRef" @settings-base="settingsBaseVisible = true" @add-widgets="addWidgetsVisible = true"
-    @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true" @del-widgets="layoutStore.delWidget(widgetData)"
-    @closed="widgetData = null" @roadmap="roadmapVisible = true"
-  />
+  <div>
+    <NuxtPage />
+    <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
+    <WtabNav @handle-setting-icon="handleSettingIcon" @confetti="onConfetti" />
+    <LayoutMain @widget-contextmenu="widgetContextmenu" />
+    <ContextMenu
+      ref="contextMunuRef" @settings-base="settingsBaseVisible = true" @add-widgets="addWidgetsVisible = true"
+      @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true" @del-widgets="layoutStore.delWidget(widgetData)"
+      @closed="widgetData = null" @roadmap="roadmapVisible = true"
+    />
 
-  <SettingsBase v-model="settingsBaseVisible" />
-  <AddWidgets v-model="addWidgetsVisible" />
-  <SettingsAbout v-model="aboutVisible" />
-  <Roadmap v-model="roadmapVisible" />
+    <SettingsBase v-model="settingsBaseVisible" />
+    <AddWidgets v-model="addWidgetsVisible" />
+    <SettingsAbout v-model="aboutVisible" />
+    <Roadmap v-model="roadmapVisible" />
+  </div>
 </template>
