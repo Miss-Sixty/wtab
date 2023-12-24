@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DialogSetting from './dialog/setting.vue'
+import SettingDialog from './components/SettingDialog.vue'
 
 const props = defineProps({
   widget: {
@@ -36,6 +36,6 @@ function toUrl() {
       {{ widget.widgetData?.name }}
     </p>
 
-    <DialogSetting v-model="dialogSettingVisible" :size="size" :widget="widget" />
+    <SettingDialog v-model="dialogSettingVisible" :size="size" :widget="widget" />
   </div>
 </template>

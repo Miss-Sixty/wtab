@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import useLayoutStore from '@/stores/app'
+import useAppStore from '@/stores/app'
 
-const layoutStore = useLayoutStore()
+const appStore = useAppStore()
 const clockVisible = ref(false)
-const time = computed(() => dayjs(layoutStore.date).format(layoutStore.formatClock))
+const time = computed(() => dayjs(appStore.date).format(appStore.formatClock))
 </script>
 
 <template>

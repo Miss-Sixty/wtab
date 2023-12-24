@@ -28,13 +28,17 @@ const xywh = computed(() => {
   if (!props.id)
     return
   if (props.id === 'placeholder') {
-    const { x, y, w, h } = props.placeholder
+    let { x, y, w, h } = props.placeholder
+    if (!w)
+      w = colsNum.value
     return { x, y, w, h }
   }
 
   const { position, widgetSize } = dragingData.value
   const [x, y] = position[colsNum.value]
-  const [w, h] = widgetSize.split(':').map(Number)
+  let [w, h] = widgetSize.split(':').map(Number)
+  if (!w)
+    w = colsNum.value
   return { x, y, w, h }
 })
 

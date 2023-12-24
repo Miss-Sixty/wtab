@@ -55,10 +55,15 @@ function handleClick() {
 }
 
 const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component}/index.vue`))
+
+const widgetW = computed(() => {
+  const [w] = props.size.split(':').map(Number)
+  return w
+})
 </script>
 
 <template>
-  <div relative select-none :class="scale" :style="widgetWH" rounded-lg>
+  <div relative select-none :style="widgetWH" rounded-lg :class="[widgetW ? '' : 'border', scale]">
     <template v-if="type">
       <button
         :class="iconScale" absolute left-0 top-0 class="-translate-x-1/4 -translate-y-1/4" text-2xl cursor-pointer
@@ -67,6 +72,14 @@ const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component
       >
         <div bg-red hover:bg-red-300 :class="type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold'" />
       </button>
+
+      <div
+        v-if="!widgetW"
+        absolute right-0 top-0 text-xs cursor-pointer
+        bg-indigo text-white px-2 py-0.5 rounded-bl-lg rounded-tr-lg
+      >
+        独占一行
+      </div>
     </template>
 
     <component :is="AsyncComp" :style="widgetWH" overflow-hidden :type="type" :widget="widget" :size="size" />

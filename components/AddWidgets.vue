@@ -14,24 +14,26 @@ init()
 
 <template>
   <WtabDialog title="添加小组件" :width="1024">
-    <div v-for="(list, i) in widgetList" :key="i" flex h-96 flex-col overflow-hidden rounded-lg class="bg-black/10">
-      <Swiper w-full flex-1 navigation loop pagination :modules="modules">
-        <SwiperSlide v-for="(data, size, j) in list.sizes" :key="j">
-          <div flex items-center justify-center h-full>
-            <WidgetsContainer
-              id="widgets-container" type="add" :size="size" :widget="{ ...list.data, ...data }"
-              :component="list.key"
-            />
-          </div>
-        </SwiperSlide>
-      </Swiper>
-      <div h-24 p-4 leading-none>
-        <p text-base font-bold>
-          {{ list.name }}
-        </p>
-        <p line-clamp-2 text-sm text-gray-500>
-          {{ list.text }}
-        </p>
+    <div class="grid grid-cols-1 gap-3 lg:grid-cols-2">
+      <div v-for="(list, i) in widgetList" :key="i" flex h-96 flex-col overflow-hidden rounded-lg class="bg-black/10">
+        <Swiper w-full flex-1 navigation loop pagination :modules="modules">
+          <SwiperSlide v-for="(data, size, j) in list.sizes" :key="j">
+            <div flex items-center justify-center h-full>
+              <WidgetsContainer
+                id="widgets-container" type="add" :size="size" :widget="{ ...list.data, ...data }"
+                :component="list.key"
+              />
+            </div>
+          </SwiperSlide>
+        </Swiper>
+        <div h-24 p-4 leading-none>
+          <p text-base font-bold>
+            {{ list.name }}
+          </p>
+          <p line-clamp-2 text-sm text-gray-500>
+            {{ list.text }}
+          </p>
+        </div>
       </div>
     </div>
   </WtabDialog>

@@ -71,7 +71,7 @@ provide('gridContextKey', {
       }"
     >
       <GridItem
-        v-show="dragging" :id="placeholderData?.id" :key="placeholderData?.id" bg-gray-200
+        v-show="dragging" :id="placeholderData?.id" :key="placeholderData?.id" bg-indigo-50
         :placeholder="placeholderData"
       />
       <slot />
