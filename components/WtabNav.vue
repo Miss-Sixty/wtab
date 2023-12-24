@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import useLayoutStore from '@/stores/layout'
+import useAppStore from '@/stores/app'
 
 defineEmits(['handleSettingIcon', 'confetti'])
+const appStore = useAppStore()
 const layoutStore = useLayoutStore()
 const settingIconRef = ref()
 const addPageVisible = ref(false)
@@ -11,7 +13,7 @@ const addPageVisible = ref(false)
 <template>
   <nav
     m1 rounded-lg z-1 px2 py-1 flex items-center gap-1 hover="opacity-100 backdrop-blur" opacity-10
-    :class="{ 'opacity-100': layoutStore.editMode }"
+    :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode } "
     class="transition-opacity transition-background-color"
   >
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
@@ -39,7 +41,7 @@ const addPageVisible = ref(false)
       </div>
     </Transition>
 
-    <HeaderClock />
+    <HeaderClock v-if="appStore.headerDate" />
     <WtIcon ref="settingIconRef" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
     <WtIcon ref="settingIconRef" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
 

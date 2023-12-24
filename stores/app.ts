@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
-import dayjs from 'dayjs'
 
 export default defineStore('appLayout', () => {
   const formatClock = ref('YYYY-MM-DD HH:mm:ss')
-  const date = ref(dayjs().valueOf())
+  const date = ref(+new Date())
+  const headerDate = ref(false)
+  const headerConstant = ref(false)
 
   let timer: ReturnType<typeof rAF> | undefined
   const stopTimer = () => {
@@ -15,7 +16,7 @@ export default defineStore('appLayout', () => {
 
   const startTimer = () => {
     const frameFunc = () => {
-      date.value = dayjs().valueOf()
+      date.value = +new Date()
 
       timer = rAF(frameFunc)
     }
@@ -29,5 +30,9 @@ export default defineStore('appLayout', () => {
   return {
     formatClock,
     date,
+    headerDate,
+    headerConstant,
   }
-})
+}, { persist: {
+  paths: ['formatClock', 'headerDate', 'headerConstant'],
+} })
