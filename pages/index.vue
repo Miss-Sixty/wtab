@@ -52,6 +52,11 @@ async function onConfetti() {
   await nextTick()
   confettiVisible.value = true
 }
+
+const router = useRouter()
+function onSettingsBase() {
+  router.push('/settings/base')
+}
 </script>
 
 <template>
@@ -61,7 +66,7 @@ async function onConfetti() {
     <WtabNav @handle-setting-icon="handleSettingIcon" @confetti="onConfetti" />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu
-      ref="contextMunuRef" @settings-base="settingsBaseVisible = true" @add-widgets="addWidgetsVisible = true"
+      ref="contextMunuRef" @settings-base="onSettingsBase" @add-widgets="addWidgetsVisible = true"
       @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true" @del-widgets="layoutStore.delWidget(widgetData)"
       @closed="widgetData = null" @roadmap="roadmapVisible = true"
     />

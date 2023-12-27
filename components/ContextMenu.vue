@@ -72,7 +72,7 @@ const menuList = [
     { label: '编辑桌面', type: 'editMode' },
     { label: '删除此小组件', type: 'delWidgets', visibles: ['widget'] },
   ],
-  [{ label: '路线图', type: 'roadmap', visibles: ['settingsBase'], active: () => emit('roadmap') }, { label: '关于', type: 'about', visibles: ['settingsBase'], active: () => emit('about') }],
+  [{ label: '路线图', type: 'roadmap', visibles: ['settingsBase'] }, { label: '关于', type: 'about', visibles: ['settingsBase'], active: () => emit('about') }],
 ]
 const showMenuList = computed(() => {
   return menuList.map((item) => {
@@ -111,8 +111,7 @@ defineExpose({ open })
         <li v-for="(items, i) in showMenuList" :key="i" p1>
           <template v-for="(item, j) in items" :key="j">
             <button
-              bg-inherit
-              flex w-full rounded-md px-2 py-2 text-sm hover:text-white
+              bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white
               :class="item.type === 'delWidgets' ? 'text-red-500  hover:bg-red-400' : 'hover:bg-violet-500 text-gray-900'"
               @click="onClick(item)"
             >
