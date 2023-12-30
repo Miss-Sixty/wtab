@@ -20,21 +20,21 @@
     "nanoid": "^5.0.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.4.6",
+    "@antfu/eslint-config": "^2.6.1",
     "@iconify-json/solar": "^1.1.9",
-    "@iconify/json": "^2.2.161",
+    "@iconify/json": "^2.2.163",
     "@nuxt/devtools": "latest",
     "@nuxtjs/color-mode": "^3.3.2",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@types/jsdom": "^21.1.6",
-    "@unocss/nuxt": "^0.58.0",
-    "@unocss/preset-icons": "^0.58.0",
+    "@unocss/nuxt": "^0.58.2",
+    "@unocss/preset-icons": "^0.58.2",
     "@vercel/analytics": "^1.1.1",
-    "@vueuse/nuxt": "^10.7.0",
+    "@vueuse/nuxt": "^10.7.1",
     "dayjs-nuxt": "^2.1.9",
-    "nuxt": "^3.8.2",
+    "nuxt": "^3.9.0",
     "nuxt-swiper": "^1.2.2",
-    "vue": "^3.3.13",
+    "vue": "^3.4.1",
     "vue-router": "^4.2.5"
   }
 }

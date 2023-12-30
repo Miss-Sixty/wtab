@@ -45,7 +45,7 @@ function closed() {
           :style="{ width: `${width}px` }" flex flex-col sm:h600px h-full transform overflow-hidden sm:rounded-xl
           bg-white shadow-xl transition-all sm:mx-40px
         >
-          <div flex justify-between items-center pl-6 pr-2 h52px shrink-0>
+          <div flex justify-between items-center sm:pl-6 px-1 sm:pr-2 sm:h-14 h-10 shrink-0>
             <div flex justify-between items-center>
               <NuxtLink v-if="backRouter" v-slot="{ navigate }" :to="backRouter" custom>
                 <button bg-transparent mr-2 @click="navigate">
