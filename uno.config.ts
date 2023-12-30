@@ -24,7 +24,8 @@ export default defineConfig({
       },
     },
     breakpoints: {
-      md: `${40 * 16}px`,
+      sm: `${40 * 16}px`,
+      md: `${52 * 16}px`,
       lg: `${62 * 16}px`,
     },
   },

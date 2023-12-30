@@ -55,7 +55,7 @@ async function onConfetti() {
 
 const router = useRouter()
 function onSettingsBase() {
-  router.push('/settings/base')
+  router.push('/settings')
 }
 </script>
 

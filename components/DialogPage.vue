@@ -26,7 +26,7 @@ onMounted(() => {
 
 function closed() {
   modelValue.value = false
-  setTimeout(() => router.push(history.state.back || '/'), 150)
+  setTimeout(() => router.push('/'), 150)
 }
 </script>
 
@@ -38,8 +38,8 @@ function closed() {
     <Transition enter-active-class="animate-zoom-in" leave-active-class="animate-zoom-out">
       <div v-show="modelValue" fixed inset-0 flex items-center justify-center animate-duration-150ms>
         <div
-          :style="{ width: `${width}px` }" flex flex-col md:h600px h-full transform overflow-hidden md:rounded-xl
-          bg-white shadow-xl transition-all md:mx-40px
+          :style="{ width: `${width}px` }" flex flex-col sm:h600px h-full transform overflow-hidden sm:rounded-xl
+          bg-white shadow-xl transition-all sm:mx-40px
         >
           <div flex justify-between items-center pl-6 pr-2 h52px shrink-0>
             <h3 text-lg font-medium leading-6 text-gray-900>
