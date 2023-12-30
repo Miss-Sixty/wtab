@@ -16,12 +16,13 @@ const list = [
     type="button" hover:bg-violet-50 bg-transparent flex justify-between
     items-center
     w-full rounded-md
-    p="x1 y0"
-    sm:p="x5 y2"
+    p3
+    sm:p="x5"
     text-sm
+    @click="appStore[item.switchModel] = !appStore[item.switchModel]"
   >
     <div flex items-center>
-      <div sm:mr-5 mr-2 text-2xl :class="item.icon" />
+      <div sm:mr-5 mr-4 text-2xl :class="item.icon" />
       <div text-left>
         <p>
           {{ item.title }}
@@ -31,6 +32,6 @@ const list = [
         </p>
       </div>
     </div>
-    <WtSwitch v-if="item.type === 'switch'" v-model="appStore[item.switchModel]" />
+    <WtSwitch v-if="item.type === 'switch'" v-model="appStore[item.switchModel]" @click.stop />
   </button>
 </template>

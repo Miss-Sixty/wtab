@@ -45,7 +45,7 @@ function closed() {
           :style="{ width: `${width}px` }" flex flex-col sm:h600px h-full transform overflow-hidden sm:rounded-xl
           bg-white shadow-xl transition-all sm:mx-40px
         >
-          <div flex justify-between items-center sm:pl-6 px-1 sm:pr-2 sm:h-14 h-10 shrink-0>
+          <div flex justify-between items-center sm:pl-6 px-3 sm:pr-2 sm:h-14 h-10 shrink-0>
             <div flex justify-between items-center>
               <NuxtLink v-if="backRouter" v-slot="{ navigate }" :to="backRouter" custom>
                 <button bg-transparent mr-2 @click="navigate">
@@ -66,7 +66,7 @@ function closed() {
               <div text-xl i-material-symbols-close-rounded />
             </button>
           </div>
-          <div overflow-y-auto flex-1 px1 py1 sm:px6>
+          <div overflow-y-auto flex-1 px3 py1 sm:px6>
             <slot />
           </div>
         </div>
