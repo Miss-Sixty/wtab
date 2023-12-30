@@ -17,7 +17,7 @@ defineProps({
     default: '',
   },
 })
-const emit = defineEmits(['update:modelValue', 'closed'])
+defineEmits(['update:modelValue', 'closed'])
 const router = useRouter()
 const modelValue = ref(false)
 onMounted(() => {
@@ -54,7 +54,7 @@ function closed() {
               <div text-xl i-material-symbols-close-rounded />
             </button>
           </div>
-          <div overflow-y-auto flex-1 px6 py1>
+          <div overflow-y-auto flex-1 px1 py1 sm:px6>
             <slot />
           </div>
         </div>

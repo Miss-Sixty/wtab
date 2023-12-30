@@ -34,7 +34,7 @@ const showRightSection = computed(() => md.value && route.path === '/settings')
         </div>
       </section>
 
-      <section v-if="!showRightSection" w-full space-y-1 :class="md ? 'pl-0' : 'pl-3'">
+      <section v-if="!showRightSection" w-full space-y-1 pl-0 md:pl-3>
         <NuxtLayout name="base">
           <NuxtPage />
         </NuxtLayout>
