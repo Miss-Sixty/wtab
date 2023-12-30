@@ -1,27 +1,10 @@
-/* @import '@unocss/reset/tailwind-compat.css'; */
-
-
 html,
-body {
-  height: 100vh;
-  overflow: hidden;
-  /* background-color: #FACC15; */
-}
-
+body,
 #__nuxt {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
 }
 
 .dark {
   color-scheme: dark;
 }
-
-/* Webkit浏览器 */
-/* ::-webkit-scrollbar {
-  display: none;
-} */
-/* Firefox浏览器 */
-/* scrollbar-width: none;
--ms-overflow-style: none; */

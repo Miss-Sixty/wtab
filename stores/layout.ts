@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import { nanoid } from 'nanoid/non-secure'
 import settings from '@/config/settings'
 
+const { layout } = settings
 function findPosition([widgetW, widgetH]: [any, number], layouts: any, colsNum: number) {
   if (!widgetW)
     widgetW = colsNum
@@ -33,10 +34,10 @@ function findPosition([widgetW, widgetH]: [any, number], layouts: any, colsNum: 
 }
 
 export default defineStore('storeLayout', () => {
-  const baseSize = ref(settings.baseSize) // 图标大小
-  const baseMargin = ref(settings.baseMargin) // 图标间距
-  const layouts: any = ref(settings.defaultLayout) // 布局组件数据
-  const breakpoints = ref(settings.breakpoints)// 布局宽度数据
+  const baseSize = ref(layout.baseSize) // 图标大小
+  const baseMargin = ref(layout.baseMargin) // 图标间距
+  const layouts: any = ref(layout.defaultLayout) // 布局组件数据
+  const breakpoints = ref(layout.breakpoints)// 布局宽度数据
   const breakpointsData = useBreakpoints(breakpoints.value)
   const current: ComputedRef<string[]> = breakpointsData.current() // 当前布局断点
   const editMode = ref(false) // 编辑模式

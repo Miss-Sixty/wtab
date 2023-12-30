@@ -98,28 +98,30 @@ defineExpose({ open })
 </script>
 
 <template>
-  <Teleport to="body">
-    <Transition
-      type="animation" enter-active-class="animate-zoom-in transition-none"
-      leave-active-class="animate-zoom-out "
-    >
-      <ul
-        v-show="popperVisible" ref="floatingRef" animate-duration-150ms :style="styles" ring-black:5 mt1 ring-1 absolute
-        w40 right-0 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg z-1 transition-width
-        transition-height
+  <ClientOnly>
+    <Teleport to="body">
+      <Transition
+        type="animation" enter-active-class="animate-zoom-in transition-none"
+        leave-active-class="animate-zoom-out "
       >
-        <li v-for="(items, i) in showMenuList" :key="i" p1>
-          <template v-for="(item, j) in items" :key="j">
-            <button
-              bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white
-              :class="item.type === 'delWidgets' ? 'text-red-500  hover:bg-red-400' : 'hover:bg-violet-500 text-gray-900'"
-              @click="onClick(item)"
-            >
-              {{ item.label }}
-            </button>
-          </template>
-        </li>
-      </ul>
-    </Transition>
-  </Teleport>
+        <ul
+          v-show="popperVisible" ref="floatingRef" animate-duration-150ms :style="styles" ring-black:5 mt1 ring-1 absolute
+          w40 right-0 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg z-1 transition-width
+          transition-height
+        >
+          <li v-for="(items, i) in showMenuList" :key="i" p1>
+            <template v-for="(item, j) in items" :key="j">
+              <button
+                bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white
+                :class="item.type === 'delWidgets' ? 'text-red-500  hover:bg-red-400' : 'hover:bg-violet-500 text-gray-900'"
+                @click="onClick(item)"
+              >
+                {{ item.label }}
+              </button>
+            </template>
+          </li>
+        </ul>
+      </Transition>
+    </Teleport>
+  </ClientOnly>
 </template>
