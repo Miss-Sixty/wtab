@@ -1,26 +1,11 @@
 <script setup lang="ts">
-const breakpoints = useBreakpoints({
-  sm: 640,
-  md: 832,
-  lg: 992,
-})
-const md = breakpoints.smaller('md')
-const route = useRoute()
-const router = useRouter()
 
-watchEffect(() => {
-  if (!md.value && route.path === '/settings')
-    router.push('/settings/base')
-})
-
-const showLeftSection = computed(() => md.value && route.path === '/settings/base')
-const showRightSection = computed(() => md.value && route.path === '/settings')
 </script>
 
 <template>
   <DialogPage title="基础设置" :width="1024">
     <div flex h-full>
-      <section v-if="!showLeftSection" w-full border-r pr-0 h-full md:pr-3>
+      <section max-w-70 w-full border-r pr-3 h-full hidden md:block>
         <div space-y-1>
           <NuxtLink v-slot="{ navigate }" to="/settings/base" custom>
             <button
@@ -34,7 +19,7 @@ const showRightSection = computed(() => md.value && route.path === '/settings')
         </div>
       </section>
 
-      <section v-if="!showRightSection" w-full space-y-1 pl-0 md:pl-3>
+      <section pl-3 w-full space-y-1>
         <NuxtLayout name="base">
           <NuxtPage />
         </NuxtLayout>
