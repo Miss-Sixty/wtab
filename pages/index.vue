@@ -8,7 +8,6 @@ function handleSettingIcon(ref: any) {
   contextMunuRef.value?.open({ type: 'settingsBase', ref })
 }
 
-const settingsBaseVisible = ref(false)
 const aboutVisible = ref(false)
 const addWidgetsVisible = ref(false)
 const roadmapVisible = ref(false)
@@ -71,7 +70,6 @@ function onSettingsBase() {
       @closed="widgetData = null" @roadmap="roadmapVisible = true"
     />
 
-    <SettingsBase v-model="settingsBaseVisible" />
     <AddWidgets v-model="addWidgetsVisible" />
     <SettingsAbout v-model="aboutVisible" />
     <Roadmap v-model="roadmapVisible" />

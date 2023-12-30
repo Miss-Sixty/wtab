@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import useAppStore from '@/stores/app'
+
+const appStore: any = useAppStore()
+
 const list = [
-  { title: '时间展示', desc: '是否在头部右侧展示时间', icon: 'i-solar-history-2-bold' },
-  { title: '透明设置', desc: '头部是否默认透明，开启后鼠标移上会显示', icon: 'i-solar-sidebar-minimalistic-broken' },
+  { title: '时间展示', type: 'switch', switchModel: 'headerDate', desc: '是否在头部右侧展示时间', icon: 'i-solar-history-2-bold' },
+  { title: '透明设置', type: 'switch', switchModel: 'headerConstant', desc: '头部是否默认透明，开启后鼠标移上会显示', icon: 'i-solar-sidebar-minimalistic-broken' },
 ]
 </script>
 
@@ -27,6 +31,6 @@ const list = [
         </p>
       </div>
     </div>
-    时间开关
+    <WtSwitch v-if="item.type === 'switch'" v-model="appStore[item.switchModel]" />
   </button>
 </template>

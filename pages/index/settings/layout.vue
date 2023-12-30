@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import useLayoutStore from '@/stores/layout'
+
+const layoutStore: any = useLayoutStore()
+
 const list = [
-  { title: '卡片大小', desc: '卡片一个最小方块的大小', icon: 'i-solar-history-2-bold' },
-  { title: '卡片间距', desc: '桌面两个卡片之间的间距', icon: 'i-solar-sidebar-minimalistic-broken' },
+  { title: '卡片大小', type: 'input', switchModel: 'baseSize', desc: '卡片一个最小方块的大小', icon: 'i-solar-history-2-bold' },
+  { title: '卡片间距', type: 'input', switchModel: 'baseMargin', desc: '桌面两个卡片之间的间距', icon: 'i-solar-sidebar-minimalistic-broken' },
 ]
 </script>
 
@@ -27,6 +31,10 @@ const list = [
         </p>
       </div>
     </div>
-    时间开关
+
+    <input
+      v-model.number="layoutStore[item.switchModel]" type="text" mt-2 block w-30 rounded-md py-1.5 px-3 border
+      outline-violet caret-violet placeholder="请输入" placeholder:text-gray-400 leading-6 text-sm required
+    >
   </button>
 </template>
