@@ -6,12 +6,6 @@ const list = [
 </script>
 
 <template>
-  <NuxtLink v-slot="{ navigate }" to="/settings" custom>
-    <button bg-red @click="navigate">
-      back
-    </button>
-  </NuxtLink>
-
   <button
     v-for="(item, i) in list"
     :key="i"

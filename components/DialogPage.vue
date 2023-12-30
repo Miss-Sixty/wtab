@@ -16,6 +16,10 @@ defineProps({
     type: String,
     default: '',
   },
+  backRouter: {
+    type: String,
+    default: '',
+  },
 })
 defineEmits(['update:modelValue', 'closed'])
 const router = useRouter()
@@ -42,9 +46,17 @@ function closed() {
           bg-white shadow-xl transition-all sm:mx-40px
         >
           <div flex justify-between items-center pl-6 pr-2 h52px shrink-0>
-            <h3 text-lg font-medium leading-6 text-gray-900>
-              {{ title }}
-            </h3>
+            <div flex justify-between items-center>
+              <NuxtLink v-if="backRouter" v-slot="{ navigate }" :to="backRouter" custom>
+                <button bg-transparent mr-2 @click="navigate">
+                  <div text-2xl i-solar-arrow-left-linear />
+                </button>
+              </NuxtLink>
+
+              <h3 text-lg font-medium leading-6 text-gray-900>
+                {{ title }}
+              </h3>
+            </div>
             <button
               flex h-9 w-11 items-center justify-center rounded-lg hover:bg-gray-200
               bg-transparent

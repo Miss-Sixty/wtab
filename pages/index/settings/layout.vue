@@ -1,17 +1,11 @@
 <script setup lang="ts">
 const list = [
-  { title: '时间展示', desc: '是否在头部右侧展示时间', icon: 'i-solar-history-2-bold' },
-  { title: '透明设置', desc: '头部是否默认透明，开启后鼠标移上会显示', icon: 'i-solar-sidebar-minimalistic-broken' },
+  { title: '卡片大小', desc: '卡片一个最小方块的大小', icon: 'i-solar-history-2-bold' },
+  { title: '卡片间距', desc: '桌面两个卡片之间的间距', icon: 'i-solar-sidebar-minimalistic-broken' },
 ]
 </script>
 
 <template>
-  <NuxtLink v-slot="{ navigate }" to="/settings" custom>
-    <button bg-red @click="navigate">
-      back
-    </button>
-  </NuxtLink>
-
   <button
     v-for="(item, i) in list"
     :key="i"
