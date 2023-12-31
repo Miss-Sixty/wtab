@@ -62,7 +62,7 @@ function onSettingsBase() {
   <div>
     <NuxtPage />
     <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
-    <WtabNav @handle-setting-icon="handleSettingIcon" @confetti="onConfetti" />
+    <Header @handle-setting-icon="handleSettingIcon" @confetti="onConfetti" />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu
       ref="contextMunuRef" @settings-base="onSettingsBase" @add-widgets="addWidgetsVisible = true"

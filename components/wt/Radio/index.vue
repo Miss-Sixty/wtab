@@ -22,7 +22,7 @@ const list = [{
     <RadioGroupLabel class="sr-only">
       外观颜色
     </RadioGroupLabel>
-    <div flex justify-evenly>
+    <div flex justify-around p1.5>
       <RadioGroupOption v-for="item in list" v-slot="{ checked }" :key="item.type" :value="item.type">
         <button
           p1.5 rounded-lg hover:bg-violet-500 hover:text-white :class="[

@@ -109,6 +109,9 @@ defineExpose({ open })
           w40 right-0 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg z-1 transition-width
           transition-height
         >
+          <li py2>
+            <ThemeSelect />
+          </li>
           <li v-for="(items, i) in showMenuList" :key="i" p1>
             <template v-for="(item, j) in items" :key="j">
               <button

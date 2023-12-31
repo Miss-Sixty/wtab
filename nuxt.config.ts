@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   features: {
     inlineStyles: false,
   },
+  colorMode: {
+    classSuffix: '',
+  },
   app: {
     head: {
       title: 'WTab',
@@ -12,9 +15,6 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: false },
-  vue: {
-    defineModel: true,
-  },
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',

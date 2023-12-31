@@ -34,6 +34,6 @@ const btnClass = computed(() => {
     dark="hover:text-violet-400 focus-visible:outline-violet-500"
     transition
   >
-    <div :class="icon" aria-hidden="true" />
+    <div :class="icon" />
   </button>
 </template>

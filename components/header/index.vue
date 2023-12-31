@@ -42,6 +42,7 @@ const addPageVisible = ref(false)
     </Transition>
 
     <HeaderClock v-if="appStore.headerDate" />
+    <ColorPicker />
     <WtIcon ref="settingIconRef" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
     <WtIcon ref="settingIconRef" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
 
