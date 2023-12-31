@@ -56,6 +56,17 @@ const router = useRouter()
 function onSettingsBase() {
   router.push('/settings')
 }
+
+const themeColorPickerVisible = ref(false)
+function handleColorPicker(ref: Ref) {
+  themeColorPickerVisible.value = true
+  handleHeaderIcon(ref)
+}
+
+function contextMenuClosed() {
+  widgetData.value = null
+  themeColorPickerVisible.value = false
+}
 </script>
 
 <template>
@@ -64,15 +75,15 @@ function onSettingsBase() {
     <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
     <Header
       @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti"
-      @handle-color-picker="handleHeaderIcon"
+      @handle-color-picker="handleColorPicker "
     />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu
       ref="contextMunuRef" @settings-base="onSettingsBase" @add-widgets="addWidgetsVisible = true"
       @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true" @del-widgets="layoutStore.delWidget(widgetData)"
-      @closed="widgetData = null" @roadmap="roadmapVisible = true"
+      @closed="contextMenuClosed" @roadmap="roadmapVisible = true"
     >
-      <ColorPicker />
+      <ColorPicker v-if="themeColorPickerVisible" />
     </ContextMenu>
 
     <AddWidgets v-model="addWidgetsVisible" />

@@ -6,7 +6,7 @@ type Shade = keyof ColorPalette
 
 const primaryColors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose']
 const grayColors = ['slate', 'gray', 'zinc', 'neutral', 'stone']
-const colorPalette = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950', 'DEFAULT']
+const colorPalette = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950']
 const filteredPrimaryColors = filteredColors(primaryColors, colorPalette)
 const filteredGrayColors = filteredColors(grayColors, colorPalette)
 // 将 colors 中的颜色值过滤出 colorPalette 中的颜色值

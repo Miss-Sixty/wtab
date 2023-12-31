@@ -13,7 +13,7 @@ const addPageVisible = ref(false)
 
 <template>
   <nav
-    m1 rounded-lg z-1 px2 py-1 flex items-center gap-1 hover="opacity-100 backdrop-blur" opacity-10
+    m1 rounded-lg z-1 px2 flex items-center gap-1 hover="opacity-100 backdrop-blur" opacity-10
     :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode } "
     class="transition-opacity transition-background-color"
   >
@@ -43,7 +43,7 @@ const addPageVisible = ref(false)
     </Transition>
 
     <HeaderClock v-if="appStore.headerDate" />
-    <WtIcon ref="colorPickerRef" icon="i-solar-palette-bold" @click="$emit('handleColorPicker', colorPickerRef)" />
+    <WtIcon ref="colorPickerRef" color-primary icon="i-solar-palette-bold" @click="$emit('handleColorPicker', colorPickerRef)" />
     <WtIcon icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
     <WtIcon ref="settingIconRef" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
 
