@@ -1,44 +1,80 @@
 <script setup lang="ts">
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { useToggle } from '@vueuse/core'
 import { computed } from 'vue'
 import { useUnaThemes } from '@/composables/useUnaThemes'
 import { useUnaSettings } from '@/composables/useUnaSettings'
 
 const { primaryThemes, grayThemes } = useUnaThemes()
+
+const { settings, reset } = useUnaSettings()
+
+const currentPrimaryThemeHex = computed(() => settings.value.primaryColors?.['--wt-primary-hex'])
+
+const currentPrimaryThemeName = computed(() => {
+  const theme = primaryThemes.find(([, theme]) => theme['--wt-primary-hex'] === currentPrimaryThemeHex.value)
+  return theme ? theme[0] : ''
+})
+
+const currentGrayThemeHex = computed(() => settings.value.grayColors?.['--wt-gray-hex'])
+
+const currentGrayThemeName = computed(() => {
+  const theme = grayThemes.find(([, theme]) => theme['--wt-gray-hex'] === currentGrayThemeHex.value)
+  return theme ? theme[0] : ''
+})
+
+// update theme in storage
+function updatePrimaryTheme(theme: string) {
+  settings.value.primary = theme
+}
+
+function updateGrayTheme(theme: string) {
+  settings.value.gray = theme
+}
+
+const [value, toggle] = useToggle()
+function shuffleTheme() {
+  const randomPrimaryTheme = primaryThemes[Math.floor(Math.random() * primaryThemes.length)][0]
+  const randomGrayTheme = grayThemes[Math.floor(Math.random() * grayThemes.length)][0]
+  updatePrimaryTheme(randomPrimaryTheme)
+  updateGrayTheme(randomGrayTheme)
+  toggle()
+}
 </script>
 
 <template>
-  <ClientOnly>
-    <Popover class="relative inline-block">
-      <PopoverButton
-        rounded-full bg-transparent hover:text-violet-600
-        flex="~ items-center"
-        focus-visible="outline outline-2 outline-offset-2 outline-violet-600"
-        dark="hover:text-violet-400 focus-visible:outline-violet-500"
-        transition
-        p-1 text-base
+  <div class="flex flex-col space-y-4 p3">
+    <div class="grid grid-cols-5 gap-3 border-b pb-4">
+      <button
+        v-for="[key, theme] in primaryThemes" :key="key" :style="{ background: theme['--wt-primary-hex'] }"
+        h-5 w-5 rounded-full ring="primary offset-1"
+        :class="[currentPrimaryThemeName === key ? 'ring-2' : '']"
+        @click="updatePrimaryTheme(key)"
+      />
+    </div>
+
+    <div class="grid grid-cols-5 gap-3 border-b pb-4">
+      <button
+        v-for="[key, theme] in grayThemes" :key="key" :style="{ background: theme['--wt-gray-hex'] }"
+        h-5 w-5 rounded-full ring="gray offset-1"
+        :class="[currentGrayThemeName === key ? 'ring-2' : '']"
+        @click="updateGrayTheme(key)"
+      />
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <button
+        btn="~ solid block"
+        :wt="{
+          btnLeading: value ? 'rotate-180 transform' : 'rotate-0',
+        }"
+        @click="shuffleTheme"
       >
-        <div i-solar-palette-bold />
-      </PopoverButton>
+        <div i-heroicons-adjustments-horizontal-solid />
+      </button>
 
-      <PopoverPanel class="absolute right-0 z-100 mt-2 w-54 border-1 border-base rounded-xl bg-muted px-4 py-5 shadow-lg">
-        <div class="flex flex-col space-y-5">
-          <div class="grid grid-cols-5 gap-3">
-            <button
-              v-for="[key, theme] in primaryThemes" :key="key"
-              h-5 w-5 rounded-full bg-red
-            />
-          </div>
-
-          <div class="grid grid-cols-5 gap-3">
-            <button
-              v-for="[key, theme] in grayThemes" :key="key"
-              h-5 w-5 rounded-full bg-red
-            />
-          </div>
-        </div>
-      </PopoverPanel>
-    </Popover>
-  </ClientOnly>
+      <button btn="~ solid-gray" @click="reset">
+        <div i-heroicons-arrow-uturn-left />
+      </button>
+    </div>
+  </div>
 </template>

@@ -4,7 +4,7 @@ import useLayoutStore from '@/stores/layout'
 
 const layoutStore = useLayoutStore()
 const contextMunuRef = ref()
-function handleSettingIcon(ref: any) {
+function handleHeaderIcon(ref: any) {
   contextMunuRef.value?.open({ type: 'settingsBase', ref })
 }
 
@@ -59,16 +59,21 @@ function onSettingsBase() {
 </script>
 
 <template>
-  <div>
+  <div overflow-hidden>
     <NuxtPage />
     <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
-    <Header @handle-setting-icon="handleSettingIcon" @confetti="onConfetti" />
+    <Header
+      @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti"
+      @handle-color-picker="handleHeaderIcon"
+    />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu
       ref="contextMunuRef" @settings-base="onSettingsBase" @add-widgets="addWidgetsVisible = true"
       @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true" @del-widgets="layoutStore.delWidget(widgetData)"
       @closed="widgetData = null" @roadmap="roadmapVisible = true"
-    />
+    >
+      <ColorPicker />
+    </ContextMenu>
 
     <AddWidgets v-model="addWidgetsVisible" />
     <SettingsAbout v-model="aboutVisible" />

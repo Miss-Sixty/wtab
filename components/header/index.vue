@@ -2,10 +2,11 @@
 import useLayoutStore from '@/stores/layout'
 import useAppStore from '@/stores/app'
 
-defineEmits(['handleSettingIcon', 'confetti'])
+defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker'])
 const appStore = useAppStore()
 const layoutStore = useLayoutStore()
 const settingIconRef = ref()
+const colorPickerRef = ref()
 const addPageVisible = ref(false)
 // const { pageMenu } = storeToRefs(layoutStore)
 </script>
@@ -42,8 +43,8 @@ const addPageVisible = ref(false)
     </Transition>
 
     <HeaderClock v-if="appStore.headerDate" />
-    <ColorPicker />
-    <WtIcon ref="settingIconRef" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
+    <WtIcon ref="colorPickerRef" icon="i-solar-palette-bold" @click="$emit('handleColorPicker', colorPickerRef)" />
+    <WtIcon icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
     <WtIcon ref="settingIconRef" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
 
     <AddPage v-model="addPageVisible" title="添加页面" />

@@ -6,27 +6,27 @@ export default defineStore('appLayout', () => {
   const headerDate = ref(false)
   const headerConstant = ref(false)
 
-  let timer: ReturnType<typeof rAF> | undefined
-  const stopTimer = () => {
-    if (!timer)
-      return
-    cAF(timer)
-    timer = undefined
-  }
+  // let timer: ReturnType<typeof rAF> | undefined
+  // const stopTimer = () => {
+  //   if (!timer)
+  //     return
+  //   cAF(timer)
+  //   timer = undefined
+  // }
 
-  const startTimer = () => {
-    const frameFunc = () => {
-      date.value = +new Date()
+  // const startTimer = () => {
+  //   const frameFunc = () => {
+  //     date.value = +new Date()
 
-      timer = rAF(frameFunc)
-    }
-    timer = rAF(frameFunc)
-  }
+  //     timer = rAF(frameFunc)
+  //   }
+  //   timer = rAF(frameFunc)
+  // }
 
-  const visibility = useDocumentVisibility()
-  watchEffect(() => {
-    visibility.value === 'hidden' ? stopTimer() : startTimer()
-  })
+  // const visibility = useDocumentVisibility()
+  // watchEffect(() => {
+  //   visibility.value === 'hidden' ? stopTimer() : startTimer()
+  // })
   return {
     formatClock,
     date,

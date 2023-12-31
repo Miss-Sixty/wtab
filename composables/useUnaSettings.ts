@@ -17,7 +17,7 @@ export function useUnaSettings() {
     fontSize: 16,
   } as const
 
-  const settings = useStorage('una-settings', defaultSettings)
+  const settings = useStorage('wtab-settings', defaultSettings)
 
   watchEffect(() => {
     settings.value.primaryColors = getPrimaryColors(settings.value.primary)
