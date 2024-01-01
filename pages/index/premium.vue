@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const list = [
-  '使用多个 URL 和文件作为聊天上下文',
+  '移除广告',
   '云端同步',
-  '无限免费的文字转语音',
-  '永久有效，无重复收费',
+  '系统通知提醒',
+  '所有功能都可使用',
   '支持我们的长期开发',
 ]
 
@@ -35,7 +35,7 @@ const tiers = [
       </li>
     </ul>
     <p text-center mt-12 mb-6 text-gray-900>
-      成为 PRO 并通过支持其开发人员积极为此扩展的开发做出贡献。
+      通过购买高级版来支持项目健康发展。
     </p>
 
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
