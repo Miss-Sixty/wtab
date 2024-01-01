@@ -14,7 +14,6 @@ export function useUnaSettings() {
     grayColors: getGrayColors(ui.gray),
     primary: ui.primary,
     gray: ui.gray,
-    fontSize: 16,
   } as const
 
   const settings = useStorage('wtab-settings', defaultSettings)
@@ -24,15 +23,8 @@ export function useUnaSettings() {
     settings.value.grayColors = getGrayColors(settings.value.gray)
   })
 
-  function reset() {
-    settings.value.primary = defaultSettings.primary
-    settings.value.gray = defaultSettings.gray
-    settings.value.fontSize = defaultSettings.fontSize
-  }
-
   return {
     defaultSettings,
     settings,
-    reset,
   }
 }

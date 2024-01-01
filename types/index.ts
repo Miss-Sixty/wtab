@@ -21,5 +21,4 @@ export interface UnaSettings {
   grayColors: Colors
   primary: string
   gray: string
-  fontSize: number
 }
