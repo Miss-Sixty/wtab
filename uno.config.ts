@@ -7,7 +7,6 @@ export default defineConfig({
   },
   theme: {
     colors: {
-      veryCool: '#0000ff', // class="text-very-cool"
       primary: {
         50: `rgba(var(--wt-primary-50))`,
         100: `rgba(var(--wt-primary-100))`,

@@ -43,9 +43,9 @@ const addPageVisible = ref(false)
         <WtButton round text="完成" @click="layoutStore.editMode = false" />
       </div>
     </Transition>
-
+    <HeaderPremium />
     <HeaderClock v-if="appStore.headerDate" />
-    <WtIcon ref="colorPickerRef" color-primary icon="i-solar-palette-bold" @click="$emit('handleColorPicker', colorPickerRef)" />
+    <WtIcon ref="colorPickerRef" color-primary icon="i-solar-palette-round-bold" @click="$emit('handleColorPicker', colorPickerRef)" />
     <WtIcon icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
     <WtIcon ref="settingIconRef" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
 

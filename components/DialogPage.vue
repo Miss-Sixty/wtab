@@ -58,7 +58,7 @@ function closed() {
               </h3>
             </div>
             <button
-              flex h-9 w-11 items-center justify-center rounded-lg hover:bg-gray-200
+              flex h-9 w-11 items-center justify-center rounded-lg hover:bg-primary-100
               bg-transparent
               transition
               @click="closed"
