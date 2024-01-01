@@ -16,7 +16,7 @@ interface Status {
 const btnClass = computed(() => {
   const status: Status = {
     sm: 'p-1 text-base',
-    base: 'p-1 text-base',
+    base: 'p-1.5 text-xl',
     lg: 'p-2 text-lg',
     xl: 'p-2.5 text-xl',
   }

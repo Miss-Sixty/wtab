@@ -13,7 +13,9 @@ const addPageVisible = ref(false)
 
 <template>
   <nav
-    m1 rounded-lg z-1 px2 flex items-center gap-1 hover="opacity-100 backdrop-blur" opacity-10
+    rounded-lg z-1
+    p="x2 y1.5" flex items-center gap-1.5
+    hover="opacity-100 backdrop-blur" opacity-10
     :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode } "
     class="transition-opacity transition-background-color"
   >
