@@ -15,8 +15,7 @@ const addPageVisible = ref(false)
   <nav
     rounded-lg z-1
     p="x2 y1.5" flex items-center gap-1.5
-    hover="opacity-100 backdrop-blur" opacity-10
-    :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode } "
+    hover=" backdrop-blur"
     class="transition-opacity transition-background-color"
   >
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
@@ -44,10 +43,10 @@ const addPageVisible = ref(false)
       </div>
     </Transition>
     <HeaderPremium />
-    <HeaderClock v-if="appStore.headerDate" />
-    <WtIcon ref="colorPickerRef" color-primary icon="i-solar-palette-round-bold" @click="$emit('handleColorPicker', colorPickerRef)" />
-    <WtIcon icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
-    <WtIcon ref="settingIconRef" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
+    <HeaderClock v-if="appStore.headerDate" hover:opacity-100 opacity-10 :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode }" />
+    <WtIcon ref="colorPickerRef" hover:opacity-100 opacity-10 :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode }" color-primary icon="i-solar-palette-round-bold" @click="$emit('handleColorPicker', colorPickerRef)" />
+    <WtIcon hover:opacity-100 opacity-10 :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode }" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
+    <WtIcon ref="settingIconRef" hover:opacity-100 opacity-10 :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode }" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
 
     <AddPage v-model="addPageVisible" title="添加页面" />
   </nav>
