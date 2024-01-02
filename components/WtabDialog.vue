@@ -34,7 +34,6 @@ defineEmits(['update:modelValue'])
               </h3>
               <button
                 flex h-9 w-11 items-center justify-center rounded-lg hover:bg-primary-100
-                bg-transparent
                 transition
                 @click="$emit('update:modelValue', false)"
               >

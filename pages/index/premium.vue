@@ -31,10 +31,10 @@ const tiers = [
     >
       <li v-for="(item, i) in list" :key="i" flex items-center>
         <div text-primary mr-2 text-xl i-solar-verified-check-bold />
-        <span text-gray font-normal>{{ item }}</span>
+        <span text-gray font-normal class="dark:text-gray-300">{{ item }}</span>
       </li>
     </ul>
-    <p text-center mt-12 mb-6 text-gray-900>
+    <p text-center mt-12 mb-6 text-gray-900 class="dark:text-gray-300">
       通过购买高级版来支持项目健康发展。
     </p>
 
@@ -44,8 +44,8 @@ const tiers = [
           {{ tier.name }}
         </h3>
         <div class="mt-4 flex items-baseline gap-x-2">
-          <span class="text-5xl font-bold tracking-tight text-gray-900">{{ tier.priceMonthly }}</span>
-          <span class="font-semibold leading-7 text-gray-600">/每{{ tier.date }}</span>
+          <span class="text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-300">{{ tier.priceMonthly }}</span>
+          <span class="font-semibold leading-7 text-gray-600 dark:text-gray-400">/每{{ tier.date }}</span>
         </div>
         <a
           :href="tier.href"

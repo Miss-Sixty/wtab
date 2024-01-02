@@ -67,7 +67,6 @@ const widgetW = computed(() => {
     <template v-if="type">
       <button
         :class="iconScale" absolute left-0 top-0 class="-translate-x-1/4 -translate-y-1/4" text-2xl cursor-pointer
-        bg-transparent
         hover:text-violet-600 @click="handleClick"
       >
         <div bg-red hover:bg-red-300 :class="type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold'" />

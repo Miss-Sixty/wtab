@@ -13,7 +13,7 @@ const list = [
   <button
     v-for="(item, i) in list"
     :key="i"
-    type="button" hover:bg-violet-50 bg-transparent flex justify-between
+    type="button" hover:bg-violet-50 flex justify-between
     items-center
     w-full rounded-md
     p3

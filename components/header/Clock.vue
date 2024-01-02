@@ -9,7 +9,7 @@ const time = computed(() => dayjs(appStore.date).format(appStore.formatClock))
 
 <template>
   <ClientOnly>
-    <button tabular-nums text-xs bg-transparent @click="clockVisible = true">
+    <button tabular-nums text-xs @click="clockVisible = true">
       {{ time }}
     </button>
     <HeaderSettingDialog v-model="clockVisible" />

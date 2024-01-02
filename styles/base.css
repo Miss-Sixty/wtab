@@ -8,3 +8,6 @@ body,
 .dark {
   color-scheme: dark;
 }
+button{
+  background-color: transparent;
+}

@@ -27,7 +27,7 @@ const btnClass = computed(() => {
 <template>
   <button
     type="button"
-    rounded-full bg-transparent hover:text-primary-400
+    rounded-full hover:text-primary-400
     flex="~ items-center"
     focus-visible="outline outline-2 outline-offset-2 outline-primary"
     :class="btnClass"

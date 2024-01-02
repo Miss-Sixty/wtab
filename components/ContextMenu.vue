@@ -106,8 +106,9 @@ defineExpose({ open })
       >
         <div
           v-show="popperVisible" ref="floatingRef" animate-duration-150ms :style="styles" ring-black:5 mt1 ring-1 absolute
-          w40 right-0 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg z-1 transition-width
-          transition-height
+          w40 right-0 origin-top-right divide-y rounded-md shadow-lg z-1 transition-width
+          transition-height divide-gray-300
+          class="bg-white dark:bg-#18181B dark:divide-gray-800"
         >
           <slot>
             <div v-if="contextMenuType === 'settingsBase'" py2>
@@ -117,6 +118,7 @@ defineExpose({ open })
               <template v-for="(item, j) in items" :key="j">
                 <button
                   bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white
+                  dark:text-gray-300 dark:hover:text-gray-300
                   :class="item.type === 'delWidgets' ? 'text-red-500  hover:bg-red-400' : 'hover:bg-primary text-gray-900'"
                   @click="onClick(item)"
                 >

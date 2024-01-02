@@ -25,8 +25,9 @@ const list = [{
     <div flex justify-evenly>
       <RadioGroupOption v-for="item in list" v-slot="{ checked }" :key="item.type" :value="item.type">
         <button
-          p1.5 rounded-lg hover:bg-primary hover:text-white :class="[
-            checked ? 'bg-primary text-white' : 'text-gray-900',
+          border
+          p1.5 rounded-lg hover:bg-primary hover:text-white class="dark:text-gray-300" :class="[
+            checked ? 'bg-primary text-white border-color-primary' : 'text-gray-900 border-color-gray-300',
           ]" @click="$colorMode.value = item"
         >
           <div :class="item.icon" text-lg />

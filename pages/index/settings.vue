@@ -48,9 +48,10 @@ const list = [
             <button
               type="button"
               hover:bg-violet-50
-              :class="isActive ? 'bg-violet-50' : 'bg-transparent'"
+              :class="isActive ? 'bg-violet-50' : ''"
               flex justify-between items-center w-full rounded-md
               p3 text-sm
+
               @click="navigate"
             >
               <p>{{ item.title }}</p>
