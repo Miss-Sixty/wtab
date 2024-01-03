@@ -75,6 +75,9 @@ function contextMenuClosed() {
 
 <template>
   <div overflow-hidden class="dark:bg-#121212">
+    <ClientOnly>
+      <LayoutHomeTetris />
+    </ClientOnly>
     <NuxtPage />
     <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
     <Header
