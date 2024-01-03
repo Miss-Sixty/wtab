@@ -13,7 +13,7 @@ init()
 </script>
 
 <template>
-  <WtabDialog title="添加小组件" :width="1024">
+  <DialogPage title="添加小组件" :width="1024">
     <div class="grid grid-cols-1 gap-3 lg:grid-cols-2">
       <div v-for="(list, i) in widgetList" :key="i" flex h-96 flex-col overflow-hidden rounded-lg class="bg-black/10">
         <Swiper w-full flex-1 navigation loop pagination :modules="modules">
@@ -36,7 +36,7 @@ init()
         </div>
       </div>
     </div>
-  </WtabDialog>
+  </DialogPage>
 </template>
 
 <style>

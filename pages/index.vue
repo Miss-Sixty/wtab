@@ -8,9 +8,6 @@ function handleHeaderIcon(ref: any) {
   contextMunuRef.value?.open({ type: 'settingsBase', ref })
 }
 
-const aboutVisible = ref(false)
-const addWidgetsVisible = ref(false)
-
 function getBoundingClientRect({ clientX, clientY }: any) {
   return {
     getBoundingClientRect() {
@@ -73,7 +70,7 @@ function contextMenuClosed() {
 </script>
 
 <template>
-  <div overflow-hidden class="dark:bg-#121212" select-none touch-none>
+  <div overflow-hidden select-none touch-none>
     <ClientOnly>
       <LayoutHomeTetris />
     </ClientOnly>
@@ -85,14 +82,11 @@ function contextMenuClosed() {
     />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu
-      ref="contextMunuRef" @settings-base="onSettingsBase" @add-widgets="addWidgetsVisible = true"
-      @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true" @del-widgets="layoutStore.delWidget(widgetData)"
+      ref="contextMunuRef" @settings-base="onSettingsBase"
+      @edit-mode="layoutStore.editMode = true" @del-widgets="layoutStore.delWidget(widgetData)"
       @closed="contextMenuClosed"
     >
       <ColorPicker v-if="themeColorPickerVisible" />
     </ContextMenu>
-
-    <AddWidgets v-model="addWidgetsVisible" />
-    <SettingsAbout v-model="aboutVisible" />
   </div>
 </template>

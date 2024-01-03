@@ -72,7 +72,10 @@ const menuList = [
     { label: '编辑桌面', type: 'editMode' },
     { label: '删除此小组件', type: 'delWidgets', visibles: ['widget'] },
   ],
-  [{ label: '路线图', type: 'roadmap', visibles: ['settingsBase'] }, { label: '关于', type: 'about', visibles: ['settingsBase'], active: () => emit('about') }],
+  [
+    { label: '路线图', type: 'roadmap', visibles: ['settingsBase'] },
+    { label: '关于', type: 'about', visibles: ['settingsBase'] },
+  ],
 ]
 const showMenuList = computed(() => {
   return menuList.map((item) => {
@@ -91,7 +94,7 @@ onClickOutside(floatingRef, () => {
 })
 async function onClick(item: any) {
   popperVisible.value = false
-  const paths = ['roadmap', 'about']
+  const paths = ['roadmap', 'about', 'addWidgets']
   if (paths.includes(item.type))
     await navigateTo({ path: `/${item.type}` })
 
