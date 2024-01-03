@@ -1,6 +1,7 @@
 {
   "name": "nuxt-app",
   "type": "module",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -25,6 +26,7 @@
     "@iconify-json/solar": "^1.1.9",
     "@iconify/json": "^2.2.163",
     "@nuxt/devtools": "latest",
+    "@nuxt/image": "^1.1.0",
     "@nuxtjs/color-mode": "^3.3.2",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@types/jsdom": "^21.1.6",

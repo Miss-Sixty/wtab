@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'dayjs-nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    "@nuxt/image"
   ],
   devServer: {
     host: '0', // 监听所有地址

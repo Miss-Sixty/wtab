@@ -10,7 +10,6 @@ function handleHeaderIcon(ref: any) {
 
 const aboutVisible = ref(false)
 const addWidgetsVisible = ref(false)
-const roadmapVisible = ref(false)
 
 function getBoundingClientRect({ clientX, clientY }: any) {
   return {
@@ -88,13 +87,12 @@ function contextMenuClosed() {
     <ContextMenu
       ref="contextMunuRef" @settings-base="onSettingsBase" @add-widgets="addWidgetsVisible = true"
       @edit-mode="layoutStore.editMode = true" @about="aboutVisible = true" @del-widgets="layoutStore.delWidget(widgetData)"
-      @closed="contextMenuClosed" @roadmap="roadmapVisible = true"
+      @closed="contextMenuClosed"
     >
       <ColorPicker v-if="themeColorPickerVisible" />
     </ContextMenu>
 
     <AddWidgets v-model="addWidgetsVisible" />
     <SettingsAbout v-model="aboutVisible" />
-    <Roadmap v-model="roadmapVisible" />
   </div>
 </template>

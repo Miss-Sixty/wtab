@@ -89,9 +89,12 @@ onClickOutside(floatingRef, () => {
   popperVisible.value = false
   emit('closed')
 })
-function onClick(item: any) {
+async function onClick(item: any) {
   popperVisible.value = false
-  emit(item.type)
+  if (item.type === 'roadmap')
+    await navigateTo({ path: '/roadmap' })
+
+  else emit(item.type)
 }
 
 defineExpose({ open })
