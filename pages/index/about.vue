@@ -26,7 +26,7 @@ const links = [
         {{ configs.description }}
       </p>
       <div class="mx-1 mt-4 divide-x divide-current text-sm">
-        <a v-for="(item, i) in links" :key="i" class="px-1.5" :href="item.link" target="_blank">
+        <a v-for="(item, i) in links" :key="i" class="px-1.5" hover:text-primary :href="item.link" target="_blank">
           {{ item.text }}
         </a>
       </div>
