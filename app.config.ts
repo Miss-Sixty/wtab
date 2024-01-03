@@ -1,11 +1,12 @@
-// import dayjs from 'dayjs'
-// import utc from 'dayjs/plugin/utc'
-// import timezone from 'dayjs/plugin/timezone'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
 import pkg from './package.json'
 
-// dayjs.extend(utc)
-// dayjs.extend(timezone)
-
+dayjs.extend(utc)
+dayjs.extend(timezone)
+const lastBuildTime = ''
+// dayjs().tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss')
 export default defineAppConfig({
   ui: {
     primary: 'purple',
@@ -13,6 +14,6 @@ export default defineAppConfig({
   },
   appInfo: {
     version: pkg.version,
-    // lastBuildTime: dayjs().tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
+    lastBuildTime,
   },
 })
