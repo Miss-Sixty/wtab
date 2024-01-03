@@ -46,12 +46,12 @@ async function handleCalendarIcon() {
     </Transition> -->
 
     <div flex-auto />
+    <HeaderPremium />
     <Transition type="animation" enter-active-class="animate-fade-in" leave-active-class="animate-fade-out">
       <div v-show="layoutStore.editMode" flex gap-1 animate-duration-150ms>
         <WtButton round text="完成" @click="layoutStore.editMode = false" />
       </div>
     </Transition>
-    <HeaderPremium />
     <HeaderClock v-if="appStore.headerDate" :class="opacityClass" />
     <WtIcon icon="i-solar-calendar-bold-duotone" :class="opacityClass" @click="handleCalendarIcon">
       节日
