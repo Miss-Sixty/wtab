@@ -2,13 +2,22 @@
 import useLayoutStore from '@/stores/layout'
 import useAppStore from '@/stores/app'
 
-defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker'])
+defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker', 'handleCalendarIcon'])
 const appStore = useAppStore()
 const layoutStore = useLayoutStore()
 const settingIconRef = ref()
 const colorPickerRef = ref()
 const addPageVisible = ref(false)
 // const { pageMenu } = storeToRefs(layoutStore)
+const opacityClass = computed(() => ({
+  'opacity-100': appStore.headerConstant || layoutStore.editMode,
+  'opacity-10': true,
+  'hover:opacity-100': true,
+}))
+
+async function handleCalendarIcon() {
+  await navigateTo({ path: '/calendar' })
+}
 </script>
 
 <template>
@@ -43,11 +52,13 @@ const addPageVisible = ref(false)
       </div>
     </Transition>
     <HeaderPremium />
-    <HeaderClock v-if="appStore.headerDate" hover:opacity-100 opacity-10 :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode }" />
-    <WtIcon ref="colorPickerRef" hover:opacity-100 opacity-10 :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode }" color-primary icon="i-solar-palette-round-bold" @click="$emit('handleColorPicker', colorPickerRef)" />
-    <WtIcon hover:opacity-100 opacity-10 :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode }" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
-    <WtIcon ref="settingIconRef" hover:opacity-100 opacity-10 :class="{ 'opacity-100': appStore.headerConstant || layoutStore.editMode }" icon="i-solar-settings-bold" @click="$emit('handleSettingIcon', settingIconRef)" />
-
+    <HeaderClock v-if="appStore.headerDate" :class="opacityClass" />
+    <WtIcon icon="i-solar-calendar-bold-duotone" :class="opacityClass" @click="handleCalendarIcon">
+      节日
+    </WtIcon>
+    <WtIcon ref="colorPickerRef" :class="opacityClass" color-primary icon="i-solar-palette-round-bold-duotone" @click="$emit('handleColorPicker', colorPickerRef)" />
+    <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
+    <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold-duotone" @click="$emit('handleSettingIcon', settingIconRef)" />
     <AddPage v-model="addPageVisible" title="添加页面" />
   </nav>
 </template>

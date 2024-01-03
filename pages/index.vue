@@ -81,7 +81,7 @@ function contextMenuClosed() {
     <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
     <Header
       @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti"
-      @handle-color-picker="handleColorPicker "
+      @handle-color-picker="handleColorPicker"
     />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu
