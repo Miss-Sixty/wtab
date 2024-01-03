@@ -4,7 +4,7 @@ export default defineStore('appLayout', () => {
   const formatClock = ref('YYYY-MM-DD HH:mm:ss')
   const date = ref(+new Date())
   const headerDate = ref(false)
-  const headerConstant = ref(false)
+  const headerConstant = ref(true)
 
   // let timer: ReturnType<typeof rAF> | undefined
   // const stopTimer = () => {

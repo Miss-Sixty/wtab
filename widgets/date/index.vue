@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import SettingDialog from './components/SettingDialog.vue'
-import useAppStore from '@/stores/app'
 import calendar from '@/utils/lunar/index'
+import { cAF, rAF } from '@/utils/raf'
 
-const props = defineProps({
+defineProps({
   widget: {
     type: Object,
     default: () => ({}),
@@ -18,8 +18,28 @@ const props = defineProps({
     required: true,
   },
 })
+const dateTime = ref(+new Date())
+let timer: ReturnType<typeof rAF> | undefined
+function stopTimer() {
+  if (!timer)
+    return
+  cAF(timer)
+  timer = undefined
+}
 
-const appStore = useAppStore()
+function startTimer() {
+  const frameFunc = () => {
+    dateTime.value = +new Date()
+
+    timer = rAF(frameFunc)
+  }
+  timer = rAF(frameFunc)
+}
+
+const visibility = useDocumentVisibility()
+watchEffect(() => {
+  visibility.value === 'hidden' ? stopTimer() : startTimer()
+})
 
 const lunar: any = calendar.solar2lunar(
   dayjs().get('year'),
@@ -27,8 +47,8 @@ const lunar: any = calendar.solar2lunar(
   dayjs().get('date'),
 )
 
-const date = computed(() => dayjs(appStore.date).format('YYYY年MM月DD日'))
-const time = computed(() => dayjs(appStore.date).format('HH:mm:ss'))
+const date = computed(() => dayjs(dateTime.value).format('YYYY年MM月DD日'))
+const time = computed(() => dayjs(dateTime.value).format('HH:mm:ss'))
 const YMD = computed(() => ` ${lunar.IMonthCn}${lunar.IDayCn} ${lunar.ncWeek}`)
 const dialogSettingVisible = ref(false)
 </script>
