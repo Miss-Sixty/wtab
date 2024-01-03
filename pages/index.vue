@@ -73,7 +73,7 @@ function contextMenuClosed() {
 </script>
 
 <template>
-  <div overflow-hidden class="dark:bg-#121212">
+  <div overflow-hidden class="dark:bg-#121212" select-none touch-none>
     <ClientOnly>
       <LayoutHomeTetris />
     </ClientOnly>

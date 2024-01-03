@@ -36,7 +36,7 @@ const widgetWH = computed(() => {
 const scale = computed(() => {
   const [w, h] = wh.value
   let scale = 'scale-100'
-  if (props.type === 'add' && (h > 2 || w > 4))
+  if (props.type === 'add' && (h > 2 || w >= 4 || !w))
     scale = 'scale-65'
   return scale
 })
