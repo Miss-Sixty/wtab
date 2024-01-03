@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computePosition, flip, shift } from '@floating-ui/dom'
 
-const emit = defineEmits(['settingsBase', 'addWidgets', 'editMode', 'about', 'delWidgets', 'closed', 'roadmap'])
+const emit = defineEmits(['settingsBase', 'addWidgets', 'editMode', 'delWidgets', 'closed'])
 
 function originMiddlewareFn(type: string) {
   const placementMap: any = {
@@ -91,8 +91,9 @@ onClickOutside(floatingRef, () => {
 })
 async function onClick(item: any) {
   popperVisible.value = false
-  if (item.type === 'roadmap')
-    await navigateTo({ path: '/roadmap' })
+  const paths = ['roadmap', 'about']
+  if (paths.includes(item.type))
+    await navigateTo({ path: `/${item.type}` })
 
   else emit(item.type)
 }
