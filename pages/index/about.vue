@@ -16,7 +16,7 @@ const links = [
 </script>
 
 <template>
-  <DialogPage title="高级版">
+  <DialogPage title="关于">
     <div class="relative flex h-full flex-col items-center antialiased">
       <NuxtPicture class="mb-3 mt-14 w-28" src="/miaomiao.svg" />
       <p class="text-xl font-bold">
