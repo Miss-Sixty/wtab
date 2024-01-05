@@ -1,3 +1,5 @@
+import { pwa } from './config/pwa'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   features: {
@@ -10,8 +12,11 @@ export default defineNuxtConfig({
     head: {
       title: 'WTab',
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover',
+      viewport: 'width=device-width,initial-scale=1',
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/miaomiao.svg' }],
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
     },
   },
   devtools: { enabled: false },
@@ -24,6 +29,7 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxt/image',
+    '@vite-pwa/nuxt',
   ],
   devServer: {
     host: '0', // 监听所有地址
@@ -33,4 +39,10 @@ export default defineNuxtConfig({
     defaultLocale: 'zh-cn',
     defaultTimezone: 'Asia/Shanghai',
   },
+  nitro: {
+    prerender: {
+      routes: ['/', '/about', '/settings', '/premium', '/calendar'],
+    },
+  },
+  pwa,
 })
