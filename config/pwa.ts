@@ -19,6 +19,11 @@ export const pwa: ModuleOptions = {
     icons: [
       {
         src: 'miaomiao.svg',
+        sizes: '48x48',
+        type: 'image/svg+xml',
+      },
+      {
+        src: 'miaomiao.svg',
         sizes: 'any',
         type: 'image/svg+xml',
       },
