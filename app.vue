@@ -4,5 +4,6 @@ import './styles/base.css'
 </script>
 
 <template>
+  <NuxtPwaManifest />
   <NuxtPage />
 </template>
