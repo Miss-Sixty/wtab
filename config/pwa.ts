@@ -16,18 +16,6 @@ export const pwa: ModuleOptions = {
     short_name: title,
     description,
     theme_color: '#ffffff',
-    icons: [
-      {
-        src: 'miaomiao.svg',
-        sizes: '48x48',
-        type: 'image/svg+xml',
-      },
-      {
-        src: 'miaomiao.svg',
-        sizes: 'any',
-        type: 'image/svg+xml',
-      },
-    ],
   },
   workbox: {
     globPatterns: ['**/*.{js,css,html,txt,png,ico,svg}'],
