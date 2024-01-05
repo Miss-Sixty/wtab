@@ -23,6 +23,7 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/miaomiao.svg' }],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
       ],
     },
   },
