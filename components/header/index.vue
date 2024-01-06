@@ -47,12 +47,12 @@ const opacityClass = computed(() => ({
       </div>
     </Transition>
     <HeaderClock v-if="appStore.headerDate" :class="opacityClass" />
+    <WtIcon ref="colorPickerRef" :class="opacityClass" color-primary icon="i-solar-palette-round-bold-duotone" @click="$emit('handleColorPicker', colorPickerRef)" />
     <NuxtLink v-slot="{ navigate }" to="/calendar" custom>
       <WtIcon icon="i-solar-calendar-bold-duotone" :class="opacityClass" @click="navigate">
         节日
       </WtIcon>
     </NuxtLink>
-    <WtIcon ref="colorPickerRef" :class="opacityClass" color-primary icon="i-solar-palette-round-bold-duotone" @click="$emit('handleColorPicker', colorPickerRef)" />
     <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
     <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold-duotone" @click="$emit('handleSettingIcon', settingIconRef)" />
     <!-- <AddPage v-model="addPageVisible" title="添加页面" /> -->
