@@ -66,15 +66,15 @@ async function open(config = {}) {
 }
 
 const menuList = [
-  [{ label: '常规设置', type: 'settingsBase' }],
+  [{ label: '常规设置', type: 'settingsBase', to: '/settings' }],
   [
-    { label: '添加小组件', type: 'addWidgets' },
+    { label: '添加小组件', type: 'addWidgets', to: '/addWidgets' },
     { label: '编辑桌面', type: 'editMode' },
     { label: '删除此小组件', type: 'delWidgets', visibles: ['widget'] },
   ],
   [
-    { label: '路线图', type: 'roadmap', visibles: ['settingsBase'] },
-    { label: '关于', type: 'about', visibles: ['settingsBase'] },
+    { label: '路线图', type: 'roadmap', to: '/roadmap', visibles: ['settingsBase'] },
+    { label: '关于', type: 'about', to: '/about', visibles: ['settingsBase'] },
   ],
 ]
 const showMenuList = computed(() => {
@@ -123,7 +123,19 @@ defineExpose({ open })
             </div>
             <div v-for="(items, i) in showMenuList" :key="i" p1>
               <template v-for="(item, j) in items" :key="j">
+                <NuxtLink v-if="item.to" v-slot="{ navigate }" :to="item.to" custom>
+                  <button
+                    bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white
+                    dark:text-gray-300 dark:hover:text-gray-300
+                    :class="item.type === 'delWidgets' ? 'text-red-500  hover:bg-red-400' : 'hover:bg-primary text-gray-900'"
+                    @click="navigate"
+                  >
+                    {{ item.label }}
+                  </button>
+                </NuxtLink>
+
                 <button
+                  v-else
                   bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white
                   dark:text-gray-300 dark:hover:text-gray-300
                   :class="item.type === 'delWidgets' ? 'text-red-500  hover:bg-red-400' : 'hover:bg-primary text-gray-900'"

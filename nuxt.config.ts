@@ -47,10 +47,5 @@ export default defineNuxtConfig({
     defaultLocale: 'zh-cn',
     defaultTimezone: 'Asia/Shanghai',
   },
-  nitro: {
-    prerender: {
-      routes: ['/', '/about', '/settings', '/premium', '/calendar'],
-    },
-  },
   pwa,
 })
