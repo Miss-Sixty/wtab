@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 
-// const data = ref()
-// const loading = ref(true)
-// async function init() {
-//   loading.value = true
-//   try {
-// 请求节假日数据
-const { days }: any = await $fetch(`https://cdn.jsdelivr.net/gh/NateScarlet/holiday-cn@master/${2024}.json`)
-//     data.value = days
-//   }
-//   finally {
-//     loading.value = false
-//   }
-// }
-// init()
+const data = ref()
+const loading = ref(true)
+async function init() {
+  loading.value = true
+  try {
+    // 请求节假日数据
+    const { days }: any = await $fetch(`https://cdn.jsdelivr.net/gh/NateScarlet/holiday-cn@master/${2024}.json`)
+    data.value = days
+  }
+  finally {
+    loading.value = false
+  }
+}
+init()
 </script>
 
 <template>
@@ -40,7 +40,7 @@ const { days }: any = await $fetch(`https://cdn.jsdelivr.net/gh/NateScarlet/holi
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
-        <tr v-for="(day, i) in days" :key="i">
+        <tr v-for="(day, i) in data" :key="i">
           <td
             class="whitespace-nowrap py-2.5 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
             :class="dayjs(day.date).isBefore(dayjs()) ? 'line-through' : ''"
