@@ -7,13 +7,11 @@ const appStore = useAppStore()
 const layoutStore = useLayoutStore()
 const settingIconRef = ref()
 const colorPickerRef = ref()
-const addPageVisible = ref(false)
-// const { pageMenu } = storeToRefs(layoutStore)
-const opacityClass = computed(() => ({
-  'opacity-100': appStore.headerConstant || layoutStore.editMode,
-  'opacity-10': true,
-  'hover:opacity-100': true,
-}))
+const opacityClass = computed(() => ([
+  appStore.headerConstant || layoutStore.editMode ? 'opacity-100' : '',
+  'opacity-10',
+  'hover:opacity-100',
+]))
 </script>
 
 <template>
