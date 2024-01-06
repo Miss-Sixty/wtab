@@ -70,7 +70,7 @@ function contextMenuClosed() {
 </script>
 
 <template>
-  <div overflow-hidden select-none touch-none>
+  <div overflow-hidden select-none touch-none class="pb-[var(safe-area-inset-left)]">
     <ClientOnly>
       <LayoutHomeTetris />
     </ClientOnly>
