@@ -8,7 +8,7 @@ function btnClick() {
 <template>
   <DialogPage title="关于">
     <div grid gap-2>
-      <div flex gap-2>
+      <!-- <div flex gap-2>
         <WtButton type="danger" @click="btnClick">
           按钮
         </WtButton>
@@ -59,7 +59,6 @@ function btnClick() {
           按钮
         </WtButton>
       </div>
-
       <div flex gap-2>
         <WtButton size="sm" type="danger" @click="btnClick">
           按钮
@@ -79,13 +78,13 @@ function btnClick() {
         <WtButton size="lg" @click="btnClick">
           按钮
         </WtButton>
-      </div>
+      </div> -->
 
-      <!-- <div>
+      <div>
         <WtSwitch v-model="confettiVisible" />
       </div>
 
-      <div>
+      <!--   <div>
         <WtInput v-model="confettiVisible" />
       </div> -->
     </div>
