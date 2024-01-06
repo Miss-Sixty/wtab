@@ -17,14 +17,9 @@ const showLeftSection = computed(() => md.value && route.path !== '/settings')
 const showRightSection = computed(() => md.value && route.path === '/settings')
 
 const list = [
-  {
-    title: '头部设置',
-    path: '/settings/base',
-  },
-  {
-    title: '布局设置',
-    path: '/settings/layout',
-  },
+  { title: '头部设置', path: '/settings/base' },
+  { title: '布局设置', path: '/settings/layout' },
+  { title: '数据设置', path: '/settings/data' },
 ]
 </script>
 

@@ -47,7 +47,7 @@ const opacityClass = computed(() => ([
     <HeaderClock v-if="appStore.headerDate" :class="opacityClass" />
     <WtIcon ref="colorPickerRef" :class="opacityClass" color-primary icon="i-solar-palette-round-bold-duotone" @click="$emit('handleColorPicker', colorPickerRef)" />
     <NuxtLink v-slot="{ navigate }" to="/calendar" custom>
-      <WtIcon icon="i-solar-calendar-bold-duotone" :class="opacityClass" @click="navigate">
+      <WtIcon icon="i-solar-calendar-mark-bold-duotone" :class="opacityClass" @click="navigate">
         节日
       </WtIcon>
     </NuxtLink>

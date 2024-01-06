@@ -8,6 +8,10 @@ const props = defineProps({
     type: String,
     default: 'base',
   },
+  type: {
+    type: String,
+    default: 'default',
+  },
   icon: {
     type: String,
     default: '',
@@ -16,72 +20,93 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  plain: {
-    type: Boolean,
-    default: false,
-  },
   loading: {
     type: Boolean,
     default: false,
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 
-interface Status {
-  [key: string]: {
-    btn: string
-    icon: string
-  }
+interface SizeStatus {
+  [key: string]: string
 }
-const btnClass = computed(() => {
-  const status: Status = {
-    sm: {
-      btn: 'px-3 h-6 text-sm',
-      icon: 'text-base',
-    },
-    base: {
-      btn: 'px-3 h-6 text-sm',
-      icon: 'text-lg',
-    },
-    lg: {
-      btn: 'px-3.5 h-9 text-sm',
-      icon: 'text-xl',
-    },
+const sizeClass = computed(() => {
+  const status: SizeStatus = {
+    sm: 'h-6 px-2',
+    base: 'h-8 px-4 py-1',
+    lg: 'h-10 px-4 py-1.5',
   }
   return status[props.size]
 })
 
-const plainClass = computed(() => {
-  const status = {
-    plain: 'bg-gray-200 text-black hover:bg-violet-100 dark:bg-gray-500 dark:hover:bg-gray-400 dark:focus-visible:outline-gray-500',
-    default: `bg-violet-600 text-white hover:bg-violet-500 dark:bg-violet-500 dark:hover:bg-violet-400 dark:focus-visible:outline-violet-500`,
+const typeClass = computed(() => {
+  const status: any = {
+    danger: `
+    text-#fff
+    bg-red-500
+    hover:bg-red
+    active:bg-red-500
+    disabled:hover:bg-red-500
+    dark:bg-red-600
+    dark:hover:bg-red-700
+    dark:active:bg-red-600
+    dark:disabled:hover:bg-red-600
+   `,
+    primary: `
+    text-#fff
+    bg-primary
+    hover:bg-primary-400
+    active:bg-primary
+    disabled:hover:bg-primary
+    dark:bg-primary-600
+    dark:hover:bg-primary-700
+    dark:active:bg-primary-600
+    dark:disabled:hover:bg-primary-600
+    `,
+    default: `
+    text-black
+    bg-gray-200
+    hover:bg-gray-100
+    active:bg-gray-200
+    disabled:hover:bg-gray-200
+    dark:bg-gray-300
+    dark:hover:bg-gray-400
+    dark:active:bg-gray-300
+    dark:disabled:hover:bg-gray-300
+   `,
   }
-  return status[props.plain ? 'plain' : 'default']
-})
-
-const iconOrLoading = computed(() => {
-  return props.loading ? '' : props.icon
+  return status[props.type]
 })
 </script>
 
 <template>
   <button
     type="button"
-    shadow-sm
     flex="~ items-center"
-    focus-visible="outline outline-2 outline-offset-2 outline-violet-600"
+    shadow-sm
+    text-sm
+    leading-none
+    select-none
+    touch-manipulation
+    focus-visible="outline outline-2 outline-offset-1 outline-primary"
+    disabled:opacity-50
+    dark:disabled:opacity-40
+    disabled:cursor-not-allowed
     :class="[
-      btnClass.btn,
+      sizeClass,
+      typeClass,
       round ? 'rounded-full' : 'rounded-md',
-      plainClass,
-      loading ? 'cursor-not-allowed outline-violet-300' : '',
     ]"
+    :disabled="disabled || loading"
   >
-    <svg v-if="loading" class="animate-spin mr-1 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+    <svg v-if="loading" animate-spin mr-1 w-1em h-1em fill="none" viewBox="0 0 24 24">
+      <circle opacity-25 cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+      <path opacity-75 fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
     </svg>
-    <div v-else-if="icon" :class="[btnClass.icon, iconOrLoading, { 'mr-1': $slots.default }]" aria-hidden="true" />
-
+    <div v-else-if="icon" mr-1 :class="[icon]" aria-hidden="true" />
     <slot>{{ text }}</slot>
   </button>
 </template>

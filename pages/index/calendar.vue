@@ -19,12 +19,6 @@ init()
 
 <template>
   <DialogPage title="节假日">
-    <!-- <ul role="list" class="divide-y divide-gray-200">
-        <li v-for="item in days" :key="item.id" class="px-4 py-2.5 sm:px-6" flex items-center>
-          <div>{{ item.name }}</div><div>{{ item.date }}</div><div>{{ item.isOffDay }}</div>
-        </li>
-      </ul> -->
-
     <table class="min-w-full divide-y divide-gray-300">
       <thead>
         <tr>
