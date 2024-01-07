@@ -3,6 +3,8 @@ const confettiVisible = ref(false)
 function btnClick() {
   console.log('btnClick')
 }
+
+const inputValue = ref('inputValue')
 </script>
 
 <template>
@@ -80,13 +82,19 @@ function btnClick() {
         </WtButton>
       </div> -->
 
-      <div>
+      <!-- <div>
         <WtSwitch v-model="confettiVisible" />
-      </div>
-
-      <!--   <div>
-        <WtInput v-model="confettiVisible" />
       </div> -->
+
+      <!-- <div>
+        <WtRange />
+      </div> -->
+
+      <div>
+        {{ inputValue }}
+        <WtInput v-model="inputValue" placeholder="placeholder" />
+        <WtInput v-model="inputValue" :model-modifiers="{ number: true }" />
+      </div>
     </div>
   </DialogPage>
 </template>

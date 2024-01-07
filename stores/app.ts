@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export default defineStore('appLayout', () => {
+export default defineStore('appStore', () => {
   const formatClock = ref('YYYY-MM-DD HH:mm:ss')
   const date = ref(+new Date())
   const headerDate = ref(false)
@@ -27,12 +27,22 @@ export default defineStore('appLayout', () => {
   // watchEffect(() => {
   //   visibility.value === 'hidden' ? stopTimer() : startTimer()
   // })
+
+  function $reset() {
+    formatClock.value = 'YYYY-MM-DD HH:mm:ss'
+    date.value = +new Date()
+    headerDate.value = false
+    headerConstant.value = true
+  }
+
   return {
     formatClock,
     date,
     headerDate,
     headerConstant,
+    $reset,
   }
 }, { persist: {
   paths: ['formatClock', 'headerDate', 'headerConstant'],
+  storage: persistedState.localStorage,
 } })

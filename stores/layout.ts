@@ -33,7 +33,7 @@ function findPosition([widgetW, widgetH]: [any, number], layouts: any, colsNum: 
   }
 }
 
-export default defineStore('storeLayout', () => {
+export default defineStore('layoutStore', () => {
   const baseSize = ref(layout.baseSize) // 图标大小
   const baseMargin = ref(layout.baseMargin) // 图标间距
   const layouts: any = ref(layout.defaultLayout) // 布局组件数据
@@ -79,6 +79,17 @@ export default defineStore('storeLayout', () => {
     pageMenu.value.push(data)
   }
 
+  function $reset() {
+    baseSize.value = layout.baseSize
+    baseMargin.value = layout.baseMargin
+    layouts.value = layout.defaultLayout
+    breakpoints.value = layout.breakpoints
+    editMode.value = false
+    pageMenu.value = [
+      { text: '首页', to: '/', icon: 'i-solar-home-bold' },
+    ]
+  }
+
   return {
     baseSize,
     baseMargin,
@@ -90,5 +101,6 @@ export default defineStore('storeLayout', () => {
     layouts,
     pageMenu,
     addPage,
+    $reset,
   }
-}, { persist: true })
+}, { persist: { storage: persistedState.localStorage } })
