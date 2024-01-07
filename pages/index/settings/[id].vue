@@ -37,8 +37,6 @@ async function exportFile() {
   const _nuxtColorMode = localStorage.getItem('nuxt-color-mode')
   const _layoutStore = localStorage.getItem('layoutStore')
   const _appStore = localStorage.getItem('appStore')
-  console.log(11, appStore)
-
   downloadConfig({ _wtabSettings, _nuxtColorMode, _layoutStore, _appStore })
 }
 

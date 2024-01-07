@@ -18,7 +18,7 @@ defineEmits(['update:modelValue'])
 
 <template>
   <Teleport to="body">
-    <div fixed left-0 top-0 z-999 @contextmenu.prevent.stop>
+    <div fixed left-0 top-0 z-5 @contextmenu.prevent.stop>
       <Transition enter-active-class="animate-fade-in" leave-active-class="animate-fade-out">
         <div v-show="modelValue" animate-duration-150ms fixed inset-0 h-full w-full backdrop-blur bg-black:25 />
       </Transition>
@@ -37,7 +37,7 @@ defineEmits(['update:modelValue'])
                 transition
                 @click="$emit('update:modelValue', false)"
               >
-                <div text-xl i-material-symbols-close-rounded />
+                <div text-xl i-material-symbols-close-rounded text-gray-400 />
               </button>
             </div>
             <div overflow-y-auto flex-1 px6 py1>

@@ -5,6 +5,7 @@ function btnClick() {
 }
 
 const inputValue = ref('inputValue')
+const messageBoxVisible = ref(false)
 </script>
 
 <template>
@@ -90,11 +91,21 @@ const inputValue = ref('inputValue')
         <WtRange />
       </div> -->
 
-      <div>
+      <!-- <div>
         {{ inputValue }}
         <WtInput v-model="inputValue" placeholder="placeholder" />
         <WtInput v-model="inputValue" :model-modifiers="{ number: true }" />
+      </div> -->
+
+      <div>
+        <WtButton type="primary" @click="messageBoxVisible = true">
+          按钮
+        </WtButton>
+        <WtMessageBox v-model="messageBoxVisible" title="重置数据" message="您确定要重置您的数据吗？您的所有数据都将被清空，包括组件的设置。" />
       </div>
+      <!-- <div>
+        <WtNotification />
+      </div> -->
     </div>
   </DialogPage>
 </template>

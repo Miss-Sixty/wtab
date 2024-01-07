@@ -35,7 +35,7 @@ function closed() {
 </script>
 
 <template>
-  <div fixed left-0 top-0 z-999 right-0 bottom-0 @contextmenu.prevent.stop>
+  <div fixed left-0 top-0 z-5 right-0 bottom-0 @contextmenu.prevent.stop>
     <Transition enter-active-class="animate-fade-in" leave-active-class="animate-fade-out">
       <div v-show="modelValue" animate-duration-150ms fixed inset-0 h-full w-full backdrop-blur bg-black:25 />
     </Transition>
@@ -63,7 +63,7 @@ function closed() {
               dark:hover:bg-primary-800
               @click="closed"
             >
-              <div text-xl i-material-symbols-close-rounded />
+              <div text-xl i-material-symbols-close-rounded text-gray-400 />
             </button>
           </div>
           <div overflow-y-auto flex-1 px3 py1 sm:px6>
