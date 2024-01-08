@@ -2,7 +2,7 @@
 import dayjs from 'dayjs'
 import useLayoutStore from '@/stores/app'
 
-const modelValue = defineModel()
+const modelValue = defineModel({ default: false })
 const layoutStore = useLayoutStore()
 const formatClock = ref(layoutStore.formatClock)
 const time = computed(() => dayjs(layoutStore.date).format(formatClock.value))
@@ -20,8 +20,8 @@ function onSubmit() {
         <div>
           <label for="name" flex justify-between block text-sm font-medium leading-6>
             <span>时间格式：{{ time }}</span>
-            <a text-gray hover:text-gray-300 flex text-xs items-center href="https://dayjs.fenxianglu.cn/category/display.html#%E6%A0%BC%E5%BC%8F%E5%8C%96" target="_black">
-              <span>格式参考链接</span> <div i-solar-arrow-right-up-linear />
+            <a text-gray hover:text-gray-300 flex text-xs items-center class="after:content-['_↗']" href="https://dayjs.fenxianglu.cn/category/display.html#%E6%A0%BC%E5%BC%8F%E5%8C%96" target="_black">
+              <span>格式参考链接</span>
             </a>
 
           </label>
