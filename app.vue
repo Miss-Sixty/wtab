@@ -2,10 +2,11 @@
 import '@unocss/reset/tailwind-compat.css'
 import './styles/base.css'
 import { SpeedInsights } from '@vercel/speed-insights/nuxt'
+
+SpeedInsights()
 </script>
 
 <template>
-  <SpeedInsights />
   <NuxtPwaManifest />
   <NuxtPage />
 </template>
