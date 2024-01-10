@@ -14,7 +14,6 @@ export default defineNuxtPlugin(() => {
           }
 
           const html = document.documentElement
-          ${'console.log({ settings })'}
 
           if (settings.primaryColors) {
             Object.entries(settings.primaryColors).map(i => html.style.setProperty(i[0], i[1]))

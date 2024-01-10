@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import configs from '@/config/settings'
 
-const { buildTime, version }: any = process.env
+const { BUILD_TIME, VERSION }: any = process.env
+console.log(11, process)
+
 const links = [
   {
     link: 'https://web.wtab.cn',
@@ -30,12 +32,14 @@ const links = [
         </a>
       </div>
       <div class="absolute bottom-3 flex w-full justify-between">
-        <p class="text-xs text-gray">
-          最后更新：{{ buildTime }}
-        </p>
-        <p class="text-xs text-gray">
-          V{{ version }}
-        </p>
+        <ClientOnly>
+          <p class="text-xs text-gray">
+            最后更新：{{ BUILD_TIME }}
+          </p>
+          <p class="text-xs text-gray">
+            V{{ VERSION }}
+          </p>
+        </ClientOnly>
       </div>
     </div>
   </DialogPage>

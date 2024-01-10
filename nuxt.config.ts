@@ -44,8 +44,8 @@ export default defineNuxtConfig({
   pwa,
   vite: {
     define: {
-      'process.env.buildTime': JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-      'process.env.version': JSON.stringify(pkg.version),
+      'process.env.BUILD_TIME': JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+      'process.env.VERSION': JSON.stringify(pkg.version),
     },
   },
 })
