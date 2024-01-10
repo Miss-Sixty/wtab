@@ -29,14 +29,15 @@ const links = [
           {{ item.text }}
         </a>
       </div>
-
-      <div class="absolute bottom-2 flex w-full justify-between">
-        <p class="text-xs text-gray">
-          最后更新：{{ buildTime }}
-        </p>
-        <p class="text-xs text-gray">
-          V{{ version }}
-        </p>
+      <div class="absolute bottom-3 flex w-full justify-between">
+        <ClientOnly>
+          <p class="text-xs text-gray">
+            最后更新：{{ buildTime }}
+          </p>
+          <p class="text-xs text-gray">
+            V{{ version }}
+          </p>
+        </ClientOnly>
       </div>
     </div>
   </DialogPage>
