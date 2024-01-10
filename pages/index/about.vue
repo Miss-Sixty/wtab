@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import configs from '@/config/settings'
 
-const appConfig = useAppConfig()
-
+const { buildTime, version }: any = process.env
 const links = [
   {
     link: 'https://web.wtab.cn',
@@ -33,10 +32,10 @@ const links = [
 
       <div class="absolute bottom-2 flex w-full justify-between">
         <p class="text-xs text-gray">
-          最后更新：{{ appConfig.appInfo.lastBuildTime }}
+          最后更新：{{ buildTime }}
         </p>
         <p class="text-xs text-gray">
-          V{{ appConfig.appInfo.version }}
+          V{{ version }}
         </p>
       </div>
     </div>

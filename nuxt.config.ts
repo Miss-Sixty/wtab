@@ -1,4 +1,6 @@
+import dayjs from 'dayjs'
 import { pwa } from './config/pwa'
+import pkg from './package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -8,13 +10,6 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
-  // experimental: {
-  //   // when using generate, payload js assets included in sw precache manifest
-  //   // but missing on offline, disabling extraction it until fixed
-  //   payloadExtraction: false,
-  //   renderJsonPayloads: true,
-  //   typedPages: true,
-  // },
   app: {
     head: {
       title: 'WTab',
@@ -47,4 +42,10 @@ export default defineNuxtConfig({
     defaultTimezone: 'Asia/Shanghai',
   },
   pwa,
+  vite: {
+    define: {
+      buildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      version: pkg.version,
+    },
+  },
 })
