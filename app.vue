@@ -26,18 +26,45 @@ const {
 } = useWebNotification(options)
 
 async function ensurePermissionsa() {
-  const res = await ensurePermissions()
-  alert(res)
+  ensurePermissions()
+}
+
+const { $pwa } = useNuxtApp()
+
+const appBadge = ref(1)
+function addAppBadge() {
+  navigator.setAppBadge(appBadge.value)
+  appBadge.value = appBadge.value + 1
+}
+function clearAppBadge() {
+  navigator.clearAppBadge()
+  appBadge.value = 1
 }
 </script>
 
 <template>
-  <div>
+  <div pt-20>
     <p>
-      是否支持: {{ isSupported }}
+      <button bg-red mr-6 @click="addAppBadge">
+        添加角标
+      </button>
+      <button bg-red @click="clearAppBadge">
+        清空角标
+      </button>
+    </p>
+    <p>是否安装PWA：{{ $pwa?.isPWAInstalled ? '已安装' : '未安装' }}</p>
+    <p>
+      是否有更新：{{ $pwa?.needRefresh }}
+      <button bg-red @click="$pwa?.updateServiceWorker()">
+        更新
+      </button>
     </p>
     <p>
-      有无权限: {{ permissionGranted }}     <button bg-red @click="ensurePermissionsa">
+      是否支持通知: {{ isSupported }}
+    </p>
+    <p>
+      有无通知权限: {{ permissionGranted }}
+      <button bg-red @click="ensurePermissionsa">
         获取权限
       </button>
     </p>

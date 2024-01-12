@@ -6,7 +6,7 @@ const { description, title } = settings
 const scope = '/'
 
 export const pwa: ModuleOptions = {
-  registerType: 'autoUpdate',
+  registerType: 'prompt',
   scope,
   base: scope,
   manifest: {
@@ -17,7 +17,11 @@ export const pwa: ModuleOptions = {
     description,
     theme_color: '#ffffff',
     icons: [
-      { src: 'pwa-64x64.png', sizes: '64x64', type: 'image/png' },
+      {
+        src: 'pwa-64x64.png',
+        sizes: '64x64',
+        type: 'image/png',
+      },
       {
         src: 'pwa-192x192.png',
         sizes: '192x192',
@@ -27,6 +31,12 @@ export const pwa: ModuleOptions = {
         src: 'pwa-512x512.png',
         sizes: '512x512',
         type: 'image/png',
+      },
+      {
+        src: 'maskable-icon-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
       },
     ],
   },
@@ -66,10 +76,11 @@ export const pwa: ModuleOptions = {
       },
     ],
   },
-  // registerWebManifestInRouteRules: true,
-  // writePlugin: true,
-  // devOptions: {
-  //   enabled: process.env.VITE_PLUGIN_PWA === 'true',
-  //   navigateFallback: scope,
-  // },
+  registerWebManifestInRouteRules: true,
+  writePlugin: true,
+  devOptions: {
+    enabled: true,
+    // enabled: process.env.VITE_PLUGIN_PWA === 'true',
+    navigateFallback: scope,
+  },
 }

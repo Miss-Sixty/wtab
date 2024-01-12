@@ -10,7 +10,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "format": "eslint . --fix"
+    "format": "eslint . --fix",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/miaomiao.svg"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.5.3",
