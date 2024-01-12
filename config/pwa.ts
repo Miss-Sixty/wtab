@@ -17,22 +17,16 @@ export const pwa: ModuleOptions = {
     description,
     theme_color: '#ffffff',
     icons: [
-      { src: 'miaomiao.svg', sizes: '48x48', type: 'image/svg+xml' },
+      { src: 'pwa-64x64.png', sizes: '64x64', type: 'image/png' },
       {
-        src: 'miaomiao.svg',
+        src: 'pwa-192x192.png',
         sizes: '192x192',
-        type: 'image/svg+xml',
+        type: 'image/png',
       },
       {
-        src: 'miaomiao.svg',
+        src: 'pwa-512x512.png',
         sizes: '512x512',
-        type: 'image/svg+xml',
-      },
-      {
-        src: 'miaomiao.svg',
-        sizes: '512x512',
-        type: 'image/svg+xml',
-        purpose: 'any maskable',
+        type: 'image/png',
       },
     ],
   },
@@ -72,10 +66,10 @@ export const pwa: ModuleOptions = {
       },
     ],
   },
-  registerWebManifestInRouteRules: true,
-  writePlugin: true,
-  devOptions: {
-    enabled: process.env.VITE_PLUGIN_PWA === 'true',
-    navigateFallback: scope,
-  },
+  // registerWebManifestInRouteRules: true,
+  // writePlugin: true,
+  // devOptions: {
+  //   enabled: process.env.VITE_PLUGIN_PWA === 'true',
+  //   navigateFallback: scope,
+  // },
 }
