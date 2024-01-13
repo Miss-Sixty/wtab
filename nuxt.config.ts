@@ -52,12 +52,15 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-startup-image', media: 'screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)', href: '/splash_screens/10.2__iPad_portrait.png' },
         { rel: 'apple-touch-startup-image', media: 'screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)', href: '/splash_screens/9.7__iPad_Pro__7.9__iPad_mini__9.7__iPad_Air__9.7__iPad_portrait.png' },
         { rel: 'apple-touch-startup-image', media: 'screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)', href: '/splash_screens/8.3__iPad_Mini_portrait.png' },
-
+        { rel: 'manifest', href: 'https://progressier.app/ej9vMKDPjDqR8tpEQmJO/progressier.json' },
       ],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+      ],
+      script: [
+        { defer: true, src: 'https://progressier.app/ej9vMKDPjDqR8tpEQmJO/script.js' },
       ],
     },
   },
