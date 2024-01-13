@@ -1,40 +1,30 @@
 <script setup lang="ts">
-let pwaEvent: any
-const isShow = ref(false)
+const beforeInstallEvent = ref()
 async function addpwa() {
   // if (!$pwa)
   //   return
   // console.log(11, $pwa)
   // await $pwa.install()
-  pwaEvent.prompt()
+  beforeInstallEvent.value.prompt()
 }
 
-// useEventListener(document, 'beforeinstallprompt', (evt) => {
-//   console.log(evt)
-//   pwaEvent = evt
-//   isShow.value = true
-// })
-
-// window.addEventListener('beforeinstallprompt', (e) => {
-//   e.preventDefault()
-//   pwaEvent = e
-//   isShow.value = true
-// })
-
 onMounted(() => {
-  console.log(22)
-  window.addEventListener('beforeinstallprompt', (e) => {
-    console.log(11, e)
+  useEventListener(window, 'beforeinstallprompt', (evt) => {
+    evt.preventDefault()
+    beforeInstallEvent.value = evt
   })
 
-  useEventListener(window, 'beforeinstallprompt', (evt) => {
-    console.log(33, evt)
+  // 监听appinstalled事件，指示Squoosh已安装。
+  useEventListener(window, 'appinstalled', (evt) => {
+    console.log(11, evt)
+
+    beforeInstallEvent.value = undefined
   })
 })
 </script>
 
 <template>
-  <div>
+  <div v-if="beforeInstallEvent">
     <WtIcon icon="i-solar-monitor-smartphone-bold-duotone" @click="addpwa" />
   </div>
 </template>
