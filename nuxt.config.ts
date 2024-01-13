@@ -84,7 +84,7 @@ export default defineNuxtConfig({
     defaultLocale: 'zh-cn',
     defaultTimezone: 'Asia/Shanghai',
   },
-  pwa,
+  // pwa,
   vite: {
     define: {
       'process.env.buildTime': JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss')),
