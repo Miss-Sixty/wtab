@@ -1,48 +1,49 @@
 <script setup lang="ts">
 import '@unocss/reset/tailwind-compat.css'
 import './styles/base.css'
-import type { UseWebNotificationOptions } from '@vueuse/core'
 
-const options: UseWebNotificationOptions = {
-  title: 'Hello, world from VueUse!',
-  dir: 'auto',
-  renotify: true,
-  tag: 'test',
-  requestPermissions: false,
-}
+// import type { UseWebNotificationOptions } from '@vueuse/core'
 
-const {
-  isSupported,
-  notification,
-  show,
-  close,
-  onClick,
-  onShow,
-  onError,
-  onClose,
-  ensurePermissions,
-  permissionGranted,
-} = useWebNotification(options)
+// const options: UseWebNotificationOptions = {
+//   title: 'Hello, world from VueUse!',
+//   dir: 'auto',
+//   renotify: true,
+//   tag: 'test',
+//   requestPermissions: false,
+// }
 
-async function ensurePermissionsa() {
-  ensurePermissions()
-}
+// const {
+//   isSupported,
+//   notification,
+//   show,
+//   close,
+//   onClick,
+//   onShow,
+//   onError,
+//   onClose,
+//   ensurePermissions,
+//   permissionGranted,
+// } = useWebNotification(options)
 
-const { $pwa } = useNuxtApp()
+// async function ensurePermissionsa() {
+//   ensurePermissions()
+// }
 
-const appBadge = ref(1)
-function addAppBadge() {
-  navigator.setAppBadge(appBadge.value)
-  appBadge.value = appBadge.value + 1
-}
-function clearAppBadge() {
-  navigator.clearAppBadge()
-  appBadge.value = 1
-}
+// const { $pwa } = useNuxtApp()
+
+// const appBadge = ref(1)
+// function addAppBadge() {
+//   navigator.setAppBadge(appBadge.value)
+//   appBadge.value = appBadge.value + 1
+// }
+// function clearAppBadge() {
+//   navigator.clearAppBadge()
+//   appBadge.value = 1
+// }
 </script>
 
 <template>
-  <div pt-20>
+  <!-- <div pt-20>
     <p>
       <button bg-red mr-6 @click="addAppBadge">
         添加角标
@@ -78,7 +79,7 @@ function clearAppBadge() {
         关闭通知
       </button>
     </p>
-  </div>
+  </div> -->
   <NuxtPwaManifest />
   <NuxtPage />
 </template>
