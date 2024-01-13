@@ -49,6 +49,7 @@ export const pwa: ModuleOptions = {
     ],
   },
   workbox: {
+    importScripts: ['https://progressier.app/ej9vMKDPjDqR8tpEQmJO/sw.js'],
     globPatterns: ['**/*.{js,css,html,txt,png,ico,svg}'],
     navigateFallbackDenylist: [/^\/api\//],
     navigateFallback: '/',
