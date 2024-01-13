@@ -27,7 +27,7 @@ onMounted(() => {
     console.log(11, e)
   })
 
-  useEventListener(document, 'beforeinstallprompt', (evt) => {
+  useEventListener(window, 'beforeinstallprompt', (evt) => {
     console.log(33, evt)
   })
 })
