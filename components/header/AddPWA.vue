@@ -1,10 +1,6 @@
 <script setup lang="ts">
 const beforeInstallEvent = ref()
 async function addpwa() {
-  // if (!$pwa)
-  //   return
-  // console.log(11, $pwa)
-  // await $pwa.install()
   beforeInstallEvent.value.prompt()
 }
 
@@ -14,10 +10,7 @@ onMounted(() => {
     beforeInstallEvent.value = evt
   })
 
-  // 监听appinstalled事件，指示Squoosh已安装。
-  useEventListener(window, 'appinstalled', (evt) => {
-    console.log(11, evt)
-
+  useEventListener(window, 'appinstalled', () => {
     beforeInstallEvent.value = undefined
   })
 })

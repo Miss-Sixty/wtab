@@ -2,12 +2,10 @@ import type { ModuleOptions } from '@vite-pwa/nuxt'
 import settings from './settings'
 
 const { description, title } = settings
-const scope = '/'
+// const scope = '/'
 
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate',
-  scope,
-  base: scope,
   // includeAssets: [
   //   'favicon.ico',
   //   'pwa-64x64.png',
@@ -18,10 +16,8 @@ export const pwa: ModuleOptions = {
   //   'apple-touch-icon-precomposed.png',
   // ],
   manifest: {
-    id: scope,
-    scope,
     name: title,
-    display: 'standalone',
+    display: 'fullscreen',
     display_override: ['fullscreen', 'minimal-ui'],
     short_name: title,
     description,
