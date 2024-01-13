@@ -1,4 +1,3 @@
-import process from 'node:process'
 import type { ModuleOptions } from '@vite-pwa/nuxt'
 import settings from './settings'
 
@@ -31,12 +30,13 @@ export const pwa: ModuleOptions = {
         src: 'pwa-512x512.png',
         sizes: '512x512',
         type: 'image/png',
+        purpose: 'any'
       },
       {
         src: 'maskable-icon-512x512.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'maskable',
+        purpose: 'maskable'
       },
     ],
   },
@@ -80,7 +80,6 @@ export const pwa: ModuleOptions = {
   writePlugin: true,
   devOptions: {
     enabled: true,
-    // enabled: process.env.VITE_PLUGIN_PWA === 'true',
     navigateFallback: scope,
   },
 }

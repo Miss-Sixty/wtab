@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import '@unocss/reset/tailwind-compat.css'
 import './styles/base.css'
-import { SpeedInsights } from '@vercel/speed-insights/nuxt'
 import type { UseWebNotificationOptions } from '@vueuse/core'
 
 const options: UseWebNotificationOptions = {
@@ -80,7 +79,6 @@ function clearAppBadge() {
       </button>
     </p>
   </div>
-  <SpeedInsights />
   <NuxtPwaManifest />
   <NuxtPage />
 </template>

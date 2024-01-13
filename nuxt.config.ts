@@ -14,7 +14,11 @@ export default defineNuxtConfig({
     head: {
       title: 'WTab',
       charset: 'utf-8',
-      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/miaomiao.svg' }],
+      link: [
+        { rel: 'icon', sizes: 'any', type: 'image/svg+xml', href: '/miaomiao.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png' },
+        { rel: 'apple-touch-icon-precomposed', href: '/apple-touch-icon-180x180.png' },
+      ],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
