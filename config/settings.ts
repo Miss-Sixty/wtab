@@ -20,6 +20,8 @@ export default {
     },
     baseSize: 74, // 卡片大小
     baseMargin: 18, // 卡片间距
-    defaultLayout: [{ id: 'date-TAx3EA9AbFy-zaGoljBv6', widgetData: {}, widgetSize: ':2', position: { 4: [0, 0], 6: [0, 0], 8: [0, 0], 12: [0, 0], 14: [0, 0], 16: [0, 0], 18: [0, 0], 20: [0, 0] }, update: 1703935954043, component: 'date' }],
+    defaultLayout: [
+      // { id: 'date-TAx3EA9AbFy-zaGoljBv6', widgetData: {}, widgetSize: ':2', position: { 4: [0, 0], 6: [0, 0], 8: [0, 0], 12: [0, 0], 14: [0, 0], 16: [0, 0], 18: [0, 0], 20: [0, 0] }, update: 1703935954043, component: 'date' }
+    ],
   },
 }

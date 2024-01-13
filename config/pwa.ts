@@ -22,9 +22,24 @@ export const pwa: ModuleOptions = {
     scope,
     name: title,
     display: 'standalone',
+    display_override: ['fullscreen', 'minimal-ui'],
     short_name: title,
     description,
     theme_color: '#ffffff',
+    screenshots: [
+      {
+        src: 'iShot_2024-01-13_17.13.52.png',
+        sizes: '866x1512',
+        type: 'image/png',
+        form_factor: 'wide',
+      },
+      {
+        src: 'iShot_2024-01-13_17.13.52.png',
+        sizes: '866x1512',
+        type: 'image/png',
+        form_factor: 'narrow',
+      },
+    ],
     icons: [
       {
         src: 'pwa-192x192.png',

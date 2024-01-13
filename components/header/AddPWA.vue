@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { $pwa } = useNuxtApp()
 let pwaEvent: any
 const isShow = ref(false)
 async function addpwa() {

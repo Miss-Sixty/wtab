@@ -40,6 +40,12 @@ import './styles/base.css'
 //   navigator.clearAppBadge()
 //   appBadge.value = 1
 // }
+onMounted(() => {
+  console.log(22)
+  window.addEventListener('beforeinstallprompt', (e) => {
+    console.log(11, e)
+  })
+})
 </script>
 
 <template>
