@@ -8,6 +8,14 @@ export const pwa: ModuleOptions = {
   registerType: 'prompt',
   scope,
   base: scope,
+  // includeAssets: [
+  //   'favicon.ico',
+  //   'pwa-64x64.png',
+  //   'pwa-192x192.png',
+  //   'pwa-512x512.png',
+  //   'maskable-icon-512x512.png',
+  //   'apple-touch-icon-180x180.png',
+  // ],
   manifest: {
     id: scope,
     scope,
@@ -30,13 +38,13 @@ export const pwa: ModuleOptions = {
         src: 'pwa-512x512.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'any'
+        purpose: 'any',
       },
       {
         src: 'maskable-icon-512x512.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'maskable'
+        purpose: 'maskable',
       },
     ],
   },
