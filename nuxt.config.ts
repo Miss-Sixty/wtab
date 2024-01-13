@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
-import { pwa } from './config/pwa'
+
+// import { pwa } from './config/pwa'
 import pkg from './package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
