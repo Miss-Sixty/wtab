@@ -26,11 +26,15 @@ onMounted(() => {
   window.addEventListener('beforeinstallprompt', (e) => {
     console.log(11, e)
   })
+
+  useEventListener(document, 'beforeinstallprompt', (evt) => {
+    console.log(33, evt)
+  })
 })
 </script>
 
 <template>
   <div>
-    <WtIcon v-if="isShow" icon="i-solar-monitor-smartphone-bold-duotone" @click="addpwa" />
+    <WtIcon icon="i-solar-monitor-smartphone-bold-duotone" @click="addpwa" />
   </div>
 </template>
