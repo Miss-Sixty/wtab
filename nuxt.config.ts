@@ -75,7 +75,7 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxt/image',
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
   ],
   devServer: {
     host: '0', // 监听所有地址
