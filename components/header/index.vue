@@ -2,7 +2,7 @@
 import useLayoutStore from '@/stores/layout'
 import useAppStore from '@/stores/app'
 
-defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker', 'handleCalendarIcon'])
+defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker', 'handleCalendarIcon', 'notice'])
 const appStore = useAppStore()
 const layoutStore = useLayoutStore()
 const settingIconRef = ref()
@@ -46,6 +46,8 @@ const opacityClass = computed(() => ([
     </Transition>
     <HeaderClock v-if="appStore.headerDate" :class="opacityClass" />
     <WtIcon ref="colorPickerRef" :class="opacityClass" color-primary icon="i-solar-palette-round-bold-duotone" @click="$emit('handleColorPicker', colorPickerRef)" />
+    <HeaderAddPWA :class="opacityClass" />
+    <WtIcon :class="opacityClass" icon="i-solar-bell-bing-bold-duotone" @click="$emit('notice')" />
     <NuxtLink v-slot="{ navigate }" to="/calendar" custom>
       <WtIcon icon="i-solar-calendar-mark-bold-duotone" :class="opacityClass" @click="navigate">
         节日
@@ -53,6 +55,5 @@ const opacityClass = computed(() => ([
     </NuxtLink>
     <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
     <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold-duotone" @click="$emit('handleSettingIcon', settingIconRef)" />
-    <!-- <AddPage v-model="addPageVisible" title="添加页面" /> -->
   </nav>
 </template>

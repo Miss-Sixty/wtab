@@ -43,8 +43,16 @@ import './styles/base.css'
 </script>
 
 <template>
-  <!-- <div pt-20>
+  <!-- <div pt-20> -->
+  <!-- <p>是否安装PWA：{{ $pwa?.isPWAInstalled ? '已安装' : '未安装' }}</p>
     <p>
+      是否有更新：{{ $pwa?.needRefresh }}
+      <button bg-red @click="$pwa?.updateServiceWorker()">
+        更新
+      </button>
+    </p> -->
+
+  <!--   <p>
       <button bg-red mr-6 @click="addAppBadge">
         添加角标
       </button>
@@ -52,13 +60,7 @@ import './styles/base.css'
         清空角标
       </button>
     </p>
-    <p>是否安装PWA：{{ $pwa?.isPWAInstalled ? '已安装' : '未安装' }}</p>
-    <p>
-      是否有更新：{{ $pwa?.needRefresh }}
-      <button bg-red @click="$pwa?.updateServiceWorker()">
-        更新
-      </button>
-    </p>
+
     <p>
       是否支持通知: {{ isSupported }}
     </p>
@@ -78,8 +80,8 @@ import './styles/base.css'
       <button @click="close()">
         关闭通知
       </button>
-    </p>
-  </div> -->
+    </p> -->
+  <!-- </div> -->
   <NuxtPwaManifest />
   <NuxtPage />
 </template>

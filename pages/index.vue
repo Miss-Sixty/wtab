@@ -67,6 +67,10 @@ function contextMenuClosed() {
     }, 150)
   }
 }
+
+function onNotice() {
+  console.log(111)
+}
 </script>
 
 <template>
@@ -79,6 +83,7 @@ function contextMenuClosed() {
     <Header
       @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti"
       @handle-color-picker="handleColorPicker"
+      @notice="onNotice"
     />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu
