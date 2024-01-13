@@ -41,9 +41,8 @@ import './styles/base.css'
 //   appBadge.value = 1
 // }
 onMounted(() => {
-  console.log(22)
-  window.addEventListener('beforeinstallprompt', (e) => {
-    console.log(11, e)
+  useEventListener(document, 'beforeinstallprompt', (evt) => {
+    console.log(33, evt)
   })
 })
 </script>
