@@ -78,6 +78,9 @@ export default defineNuxtConfig({
   ],
   devServer: {
     host: '0', // 监听所有地址
+    fs: {
+      strict: false,
+    },
   },
   dayjs: {
     plugins: ['utc', 'timezone'],

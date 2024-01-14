@@ -5,7 +5,8 @@ const { description, title } = settings
 // const scope = '/'
 
 export const pwa: ModuleOptions = {
-  registerType: 'autoUpdate',
+  registerType: 'autoUpdate', // 注册类型
+  minify: true, // 最小化
   // includeAssets: [
   //   'favicon.ico',
   //   'pwa-64x64.png',
@@ -16,12 +17,14 @@ export const pwa: ModuleOptions = {
   //   'apple-touch-icon-precomposed.png',
   // ],
   manifest: {
+    id: title,
     name: title,
-    display: 'fullscreen',
-    display_override: ['fullscreen', 'minimal-ui'],
     short_name: title,
+    start_url: '/',
     description,
+    display: 'fullscreen',
     theme_color: '#ffffff',
+    display_override: ['standalone', 'minimal-ui'],
     screenshots: [
       {
         src: 'iShot_2024-01-13_17.13.52.png',
@@ -62,50 +65,52 @@ export const pwa: ModuleOptions = {
     ],
   },
   client: {
-    installPrompt: true,
+    installPrompt: true, // 安装提示
   },
   workbox: {
-    globPatterns: ['**/*.{js,css,html,txt,png,ico,svg}'],
-    // navigateFallbackDenylist: [/^\/api\//],
-    // navigateFallback: '/',
-    // cleanupOutdatedCaches: true,
-    // runtimeCaching: [
-    //   {
-    //     urlPattern: /^https:\/\/fonts.googleapis.com\/.*/i,
-    //     handler: 'CacheFirst',
-    //     options: {
-    //       cacheName: 'google-fonts-cache',
-    //       expiration: {
-    //         maxEntries: 10,
-    //         maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
-    //       },
-    //       cacheableResponse: {
-    //         statuses: [0, 200],
-    //       },
-    //     },
-    //   },
-    //   {
-    //     urlPattern: /^https:\/\/fonts.gstatic.com\/.*/i,
-    //     handler: 'CacheFirst',
-    //     options: {
-    //       cacheName: 'gstatic-fonts-cache',
-    //       expiration: {
-    //         maxEntries: 10,
-    //         maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
-    //       },
-    //       cacheableResponse: {
-    //         statuses: [0, 200],
-    //       },
-    //     },
-    //   },
-    // ],
+    globPatterns: ['**/*.{js,css,html,txt,png,ico,svg}'], // 全局模式
+    // navigateFallbackDenylist: [/^\/api\//],//导航回退拒绝列表
+    // navigateFallback: '/', // 导航回退
+    skipWaiting: true, // 跳过等待
+    clientsClaim: true, // 客户端声明
+    cleanupOutdatedCaches: true, // 清除旧缓存
+    runtimeCaching: [// 运行时缓存
+      {
+        urlPattern: /^https:\/\/fonts.googleapis.com\/.*/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'google-fonts-cache',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+          },
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
+        },
+      },
+      {
+        urlPattern: /^https:\/\/fonts.gstatic.com\/.*/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'gstatic-fonts-cache',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+          },
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
+        },
+      },
+    ],
   },
-  // registerWebManifestInRouteRules: true,
-  // writePlugin: true,
+  // registerWebManifestInRouteRules: true,//注册webmanifest路由规则
+  writePlugin: true, // 写入插件
   devOptions: {
     enabled: true,
-    suppressWarnings: true,
-    type: 'module',
-    // navigateFallback: scope,
+    suppressWarnings: true, // 抑制警告
+    type: 'module', // 模块类型
+    // navigateFallback: scope,//导航回退
   },
 }
