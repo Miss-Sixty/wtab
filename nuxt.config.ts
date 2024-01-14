@@ -59,9 +59,10 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       ],
-      // script: [
-      //   { defer: true, src: 'https://progressier.app/ej9vMKDPjDqR8tpEQmJO/script.js' },
-      // ],
+      script: [
+        // { defer: true, src: 'https://progressier.app/ej9vMKDPjDqR8tpEQmJO/script.js' },
+        { defer: true, src: 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js' },
+      ],
     },
   },
   devtools: { enabled: false },

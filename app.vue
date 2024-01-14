@@ -2,57 +2,81 @@
 import '@unocss/reset/tailwind-compat.css'
 import './styles/base.css'
 
-// import type { UseWebNotificationOptions } from '@vueuse/core'
+import type { UseWebNotificationOptions } from '@vueuse/core'
 
-// const options: UseWebNotificationOptions = {
-//   title: 'Hello, world from VueUse!',
-//   dir: 'auto',
-//   renotify: true,
-//   tag: 'test',
-//   requestPermissions: false,
-// }
+const options: UseWebNotificationOptions = {
+  title: 'Hello, world from VueUse!',
+  dir: 'auto',
+  renotify: true,
+  tag: 'test',
+  requestPermissions: false,
+}
 
-// const {
-//   isSupported,
-//   notification,
-//   show,
-//   close,
-//   onClick,
-//   onShow,
-//   onError,
-//   onClose,
-//   ensurePermissions,
-//   permissionGranted,
-// } = useWebNotification(options)
+const {
+  isSupported,
+  notification,
+  show,
+  close,
+  onClick,
+  onShow,
+  onError,
+  onClose,
+  ensurePermissions,
+  permissionGranted,
+} = useWebNotification(options)
 
-// async function ensurePermissionsa() {
-//   ensurePermissions()
-// }
+async function ensurePermissionsa() {
+  const res = await ensurePermissions()
+  console.log(11, res)
+}
 
-// const { $pwa } = useNuxtApp()
+const { $pwa } = useNuxtApp()
 
-// const appBadge = ref(1)
-// function addAppBadge() {
-//   navigator.setAppBadge(appBadge.value)
-//   appBadge.value = appBadge.value + 1
-// }
-// function clearAppBadge() {
-//   navigator.clearAppBadge()
-//   appBadge.value = 1
-// }
+const appBadge = ref(1)
+function addAppBadge() {
+  navigator.setAppBadge(appBadge.value)
+  appBadge.value = appBadge.value + 1
+}
+function clearAppBadge() {
+  navigator.clearAppBadge()
+  appBadge.value = 1
+}
+
+async function a() {
+  console.log(22, $pwa)
+  console.log(33, notification)
+  console.log(44, PushManager)
+
+  // const res = await PushManager.getS/ubscription()
+  // console.log(44, res)
+  // console.log(55, $pwa?.showInstallPrompt)
+}
+
+onMounted(() => {
+  window.OneSignalDeferred = window.OneSignalDeferred || []
+  OneSignalDeferred.push((OneSignal) => {
+    OneSignal.init({
+      appId: '9b3d8396-9646-41e9-9724-75a38cecdcc7',
+    })
+  })
+})
 </script>
 
 <template>
-  <!-- <div pt-20> -->
-  <!-- <p>是否安装PWA：{{ $pwa?.isPWAInstalled ? '已安装' : '未安装' }}</p>
+  <div pt-20>
+    <!-- <p>是否安装PWA：{{ $pwa?.isPWAInstalled ? '已安装' : '未安装' }}</p>
     <p>
       是否有更新：{{ $pwa?.needRefresh }}
       <button bg-red @click="$pwa?.updateServiceWorker()">
         更新
       </button>
     </p> -->
-
-  <!--   <p>
+    <p>
+      <button @click="a">
+        click
+      </button>
+    </p>
+    <p>
       <button bg-red mr-6 @click="addAppBadge">
         添加角标
       </button>
@@ -80,8 +104,8 @@ import './styles/base.css'
       <button @click="close()">
         关闭通知
       </button>
-    </p> -->
-  <!-- </div> -->
+    </p>
+  </div>
   <NuxtPwaManifest />
   <NuxtPage />
 </template>
