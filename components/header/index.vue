@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { UseWebNotificationOptions } from '@vueuse/core'
 import useLayoutStore from '@/stores/layout'
 import useAppStore from '@/stores/app'
 
-defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker', 'handleCalendarIcon', 'notice'])
+defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker', 'handleCalendarIcon'])
 const appStore = useAppStore()
 const layoutStore = useLayoutStore()
 const settingIconRef = ref()
@@ -12,6 +13,25 @@ const opacityClass = computed(() => ([
   'opacity-10',
   'hover:opacity-100',
 ]))
+
+const options: UseWebNotificationOptions = {
+  title: '您已开启浏览器通知。',
+  requestPermissions: false,
+}
+const {
+  isSupported,
+  ensurePermissions,
+  permissionGranted,
+  show,
+} = useWebNotification(options)
+
+async function ensurePermissionsa() {
+  const bl = await ensurePermissions()
+  if (bl)
+    show()
+  else
+    alert('您已禁用通知，请在浏览器开启。')
+}
 </script>
 
 <template>
@@ -46,8 +66,10 @@ const opacityClass = computed(() => ([
     </Transition>
     <HeaderClock v-if="appStore.headerDate" :class="opacityClass" />
     <WtIcon ref="colorPickerRef" :class="opacityClass" color-primary icon="i-solar-palette-round-bold-duotone" @click="$emit('handleColorPicker', colorPickerRef)" />
-    <HeaderAddPWA :class="opacityClass" />
-    <WtIcon :class="opacityClass" icon="i-solar-bell-bing-bold-duotone" @click="$emit('notice')" />
+    <ClientOnly>
+      <HeaderAddPWA :class="opacityClass" />
+      <WtIcon v-if="isSupported && !permissionGranted" :class="opacityClass" icon="i-solar-bell-bing-bold-duotone" @click="ensurePermissionsa" />
+    </ClientOnly>
     <NuxtLink v-slot="{ navigate }" to="/calendar" custom>
       <WtIcon icon="i-solar-calendar-mark-bold-duotone" :class="opacityClass" @click="navigate">
         节日
