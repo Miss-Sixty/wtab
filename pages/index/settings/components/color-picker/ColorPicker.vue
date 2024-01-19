@@ -31,8 +31,8 @@ function updateGrayTheme(theme: string) {
 </script>
 
 <template>
-  <div py1.5 flex>
-    <div class="flex-[2]" grid grid-cols-6 grid-rows-3 gap-1.5 border-r>
+  <div py1.5 flex divide-x>
+    <div class="flex-[2]" grid grid-cols-6 grid-rows-3 gap-1.5>
       <div flex="~ items-center justify-center" v-for="[key, theme] in primaryThemes" :key="key">
         <button :style="{ background: theme['--wt-primary-hex'] }" h-4 w-4 rounded-full ring="primary offset-1"
           :class="[currentPrimaryThemeName === key ? 'ring-2' : '']" @click="updatePrimaryTheme(key)" />

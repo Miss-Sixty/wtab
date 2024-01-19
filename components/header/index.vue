@@ -68,11 +68,6 @@ async function ensurePermissionsa() {
       <HeaderAddPWA :class="opacityClass" />
       <WtIcon v-if="isSupported && !permissionGranted" :class="opacityClass" icon="i-solar-bell-bing-bold-duotone" @click="ensurePermissionsa" />
     </ClientOnly>
-    <NuxtLink v-slot="{ navigate }" to="/calendar" custom>
-      <WtIcon icon="i-solar-calendar-mark-bold-duotone" :class="opacityClass" @click="navigate">
-        节日
-      </WtIcon>
-    </NuxtLink>
     <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
     <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold-duotone" @click="$emit('handleSettingIcon', settingIconRef)" />
   </nav>
