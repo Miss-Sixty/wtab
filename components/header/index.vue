@@ -7,7 +7,6 @@ defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker', 'handleCalend
 const appStore = useAppStore()
 const layoutStore = useLayoutStore()
 const settingIconRef = ref()
-const colorPickerRef = ref()
 const opacityClass = computed(() => ([
   appStore.headerConstant || layoutStore.editMode ? 'opacity-100' : '',
   'opacity-10',
@@ -65,7 +64,6 @@ async function ensurePermissionsa() {
       </div>
     </Transition>
     <HeaderClock v-if="appStore.headerDate" :class="opacityClass" />
-    <WtIcon ref="colorPickerRef" :class="opacityClass" color-primary icon="i-solar-palette-round-bold-duotone" @click="$emit('handleColorPicker', colorPickerRef)" />
     <ClientOnly>
       <HeaderAddPWA :class="opacityClass" />
       <WtIcon v-if="isSupported && !permissionGranted" :class="opacityClass" icon="i-solar-bell-bing-bold-duotone" @click="ensurePermissionsa" />

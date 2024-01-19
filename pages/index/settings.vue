@@ -17,6 +17,7 @@ const showLeftSection = computed(() => md.value && route.path !== '/settings')
 const showRightSection = computed(() => md.value && route.path === '/settings')
 
 const list = [
+  { title: '样式设置', path: '/settings/style' },
   { title: '头部设置', path: '/settings/base' },
   { title: '布局设置', path: '/settings/layout' },
   { title: '数据设置', path: '/settings/data' },
@@ -42,8 +43,8 @@ const list = [
           >
             <button
               type="button"
-              hover:bg-violet-50
-              :class="isActive ? 'bg-violet-50' : ''"
+              hover:bg-primary-50
+              :class="isActive ? 'bg-primary-50' : ''"
               flex justify-between items-center w-full rounded-md
               p3 text-sm
 

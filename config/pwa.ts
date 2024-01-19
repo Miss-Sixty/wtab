@@ -115,9 +115,7 @@ export const pwa: ModuleOptions = {
   // // registerWebManifestInRouteRules: true,//注册webmanifest路由规则
   // writePlugin: true, // 写入插件
   devOptions: {
-    enabled: true,
-    // suppressWarnings: true, // 抑制警告
-    type: 'module', // 模块类型
-    // navigateFallback: scope,//导航回退
+    enabled: process.env.VITE_DEV_PWA === 'true',
+    type: 'module',
   },
 }

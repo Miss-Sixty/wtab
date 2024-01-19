@@ -118,9 +118,6 @@ defineExpose({ open })
           class="bg-white dark:bg-#18181B dark:divide-gray-800"
         >
           <slot>
-            <div v-if="contextMenuType === 'settingsBase'" py2>
-              <ThemeSelect />
-            </div>
             <div v-for="(items, i) in showMenuList" :key="i" p1>
               <template v-for="(item, j) in items" :key="j">
                 <NuxtLink v-if="item.to" v-slot="{ navigate }" :to="item.to" custom>

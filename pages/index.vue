@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { vConfetti } from '@neoconfetti/vue'
+import confetti from 'canvas-confetti'
 import useLayoutStore from '@/stores/layout'
 
 const layoutStore = useLayoutStore()
@@ -43,9 +43,29 @@ function widgetContextmenu({ e, widget }: any) {
 
 const confettiVisible = ref(false)
 async function onConfetti() {
-  confettiVisible.value = false
-  await nextTick()
-  confettiVisible.value = true
+  const duration = 2 * 1000
+  const end = Date.now() + duration;
+
+  (function frame() {
+    // launch a few confetti from the left edge
+    confetti({
+      particleCount: 7,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+    })
+    // and launch a few from the right edge
+    confetti({
+      particleCount: 7,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+    })
+
+    // keep going until we are out of time
+    if (Date.now() < end)
+      requestAnimationFrame(frame)
+  }())
 }
 
 const router = useRouter()
@@ -53,20 +73,7 @@ function onSettingsBase() {
   router.push('/settings')
 }
 
-const themeColorPickerVisible = ref(false)
-function handleColorPicker(ref: Ref) {
-  themeColorPickerVisible.value = true
-  handleHeaderIcon(ref)
-}
 
-function contextMenuClosed() {
-  widgetData.value = null
-  if (themeColorPickerVisible.value) {
-    setTimeout(() => {
-      themeColorPickerVisible.value = false
-    }, 150)
-  }
-}
 </script>
 
 <template>
@@ -75,18 +82,10 @@ function contextMenuClosed() {
       <LayoutHomeTetris />
     </ClientOnly>
     <NuxtPage />
-    <div v-if="confettiVisible" v-confetti="{ stageHeight: 1000 }" class="inset-x-1/2" top-0 fixed />
-    <Header
-      @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti"
-      @handle-color-picker="handleColorPicker"
-    />
+    <Header @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti" />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
-    <ContextMenu
-      ref="contextMunuRef" @settings-base="onSettingsBase"
-      @edit-mode="layoutStore.editMode = true" @del-widgets="layoutStore.delWidget(widgetData)"
-      @closed="contextMenuClosed"
-    >
-      <ColorPicker v-if="themeColorPickerVisible" />
+    <ContextMenu ref="contextMunuRef" @settings-base="onSettingsBase" @edit-mode="layoutStore.editMode = true"
+      @del-widgets="layoutStore.delWidget(widgetData)">
     </ContextMenu>
   </div>
 </template>

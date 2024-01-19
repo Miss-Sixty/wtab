@@ -31,23 +31,19 @@ function updateGrayTheme(theme: string) {
 </script>
 
 <template>
-  <div space-y-3 p3>
-    <div grid grid-cols-5 gap-3 border-b pb-3>
-      <button
-        v-for="[key, theme] in primaryThemes" :key="key" :style="{ background: theme['--wt-primary-hex'] }"
-        h-4.5 w-4.5 rounded-full ring="primary offset-1"
-        :class="[currentPrimaryThemeName === key ? 'ring-2' : '']"
-        @click="updatePrimaryTheme(key)"
-      />
+  <div py1.5 flex>
+    <div class="flex-[2]" grid grid-cols-6 grid-rows-3 gap-1.5 border-r>
+      <div flex="~ items-center justify-center" v-for="[key, theme] in primaryThemes" :key="key">
+        <button :style="{ background: theme['--wt-primary-hex'] }" h-4 w-4 rounded-full ring="primary offset-1"
+          :class="[currentPrimaryThemeName === key ? 'ring-2' : '']" @click="updatePrimaryTheme(key)" />
+      </div>
     </div>
 
-    <div grid grid-cols-5 gap-3>
-      <button
-        v-for="[key, theme] in grayThemes" :key="key" :style="{ background: theme['--wt-gray-hex'] }"
-        h-4.5 w-4.5 rounded-full ring="gray offset-1"
-        :class="[currentGrayThemeName === key ? 'ring-2' : '']"
-        @click="updateGrayTheme(key)"
-      />
+    <div flex-1 grid grid-cols-3 grid-rows-3 gap-1.5>
+      <div flex="~ items-center justify-center" v-for="[key, theme] in grayThemes" :key="key">
+        <button :style="{ background: theme['--wt-gray-hex'] }" h-4 w-4 rounded-full ring="gray offset-1"
+          :class="[currentGrayThemeName === key ? 'ring-2' : '']" @click="updateGrayTheme(key)" />
+      </div>
     </div>
   </div>
 </template>

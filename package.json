@@ -6,6 +6,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:pwa": "VITE_DEV_PWA=true nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -19,6 +20,7 @@
     "@neoconfetti/vue": "^2.2.1",
     "@pinia/nuxt": "^0.5.1",
     "@vercel/speed-insights": "^1.0.4",
+    "canvas-confetti": "^1.9.2",
     "crypto-js": "^4.2.0",
     "jsdom": "^23.2.0",
     "nanoid": "^5.0.4",
