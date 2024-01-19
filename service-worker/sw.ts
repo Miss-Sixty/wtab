@@ -13,7 +13,7 @@ import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
 // 用于管理缓存。
 import { ExpirationPlugin } from 'workbox-expiration'
 
-import { onNotificationClick, onPush } from './web-push-notifications'
+// import { onNotificationClick, onPush } from './web-push-notifications'
 
 // import { onShareTarget } from './share-target'
 
