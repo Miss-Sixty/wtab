@@ -114,7 +114,7 @@ defineExpose({ open })
         <div
           v-show="popperVisible" ref="floatingRef" animate-duration-150ms :style="styles" ring-black:5 mt1 ring-1 absolute
           w40 right-0 origin-top-right divide-y rounded-md shadow-lg z-1 transition-width
-          transition-height divide-gray-300
+          transition-height
           class="bg-white dark:bg-#18181B dark:divide-gray-800"
         >
           <slot>
