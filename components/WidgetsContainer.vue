@@ -65,21 +65,20 @@ function handleClick() {
 const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component}/index.vue`))
 
 const className = computed(() => {
-  if (props.type && props.singleRow) return 'border-color-violet'
-  return props.singleRow ? '' : 'shadow-xl'
+  if (props.type && props.singleRow) return 'border-color-primary'
+  return props.singleRow ? 'border-color-transparent' : 'shadow-xl'
 })
 </script>
 
 <template>
-  <div relative select-none :style="widgetWH" rounded-lg border border-color-transparent :class="[className, scale]">
+  <div relative select-none :style="widgetWH" rounded-lg border :class="[className, scale]">
     <template v-if="type">
       <button :class="iconScale" absolute left-0 top-0 z1 class="-translate-x-1/3 -translate-y-1/3" text-2xl
-        cursor-pointer hover:text-violet-600 @click="handleClick">
+        cursor-pointer hover:text-primary @click="handleClick">
         <div bg-red hover:bg-red-300 :class="type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold'" />
       </button>
 
-      <div v-if="singleRow" absolute text-xs cursor-pointer bg-violet text-white px-2 py-0.5 rounded-bl-lg
-        rounded-tr-lg
+      <div v-if="singleRow" absolute text-xs cursor-pointer bg-primary text-white px-2 py-0.5 rounded-bl-lg rounded-tr-lg
         class="-right-[1px] -top-[1px]">
         独占一行
       </div>
