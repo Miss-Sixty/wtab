@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onLongPress } from '@vueuse/core'
-
 defineOptions({
   name: 'GridItem',
 })
@@ -23,22 +21,24 @@ const { colsNum, baseSize, baseMargin, layouts, childXY, draggingId, editMode }:
 const dragingData: any = computed(() => {
   return layouts.value.find((item: any) => item.id === props.id)
 })
+const singleRow = computed(() => {
+  if (!dragingData.value) return
+  return dragingData.value.widgetData.singleRow
+})
 
 const xywh = computed(() => {
   if (!props.id)
     return
-  if (props.id === 'placeholder') {
+    if (props.id === 'placeholder') {
     let { x, y, w, h } = props.placeholder
-    if (!w)
-      w = colsNum.value
+    if (singleRow.value) w = colsNum.value
     return { x, y, w, h }
   }
 
   const { position, widgetSize } = dragingData.value
   const [x, y] = position[colsNum.value]
   let [w, h] = widgetSize.split(':').map(Number)
-  if (!w)
-    w = colsNum.value
+  if (singleRow.value) w = colsNum.value
   return { x, y, w, h }
 })
 
@@ -75,10 +75,8 @@ const itemRef = ref()
 </script>
 
 <template>
-  <div
-    :id="`grid-item-${id}`" ref="itemRef" class="absolute rounded-lg transition-all"
-    :class="editMode ? 'touch-none' : 'touch-auto'" :style="{ ...initStyle, ...dragStyle }"
-  >
+  <div :id="`grid-item-${id}`" ref="itemRef" class="absolute rounded-lg transition-all"
+    :class="editMode ? 'touch-none' : 'touch-auto'" :style="{ ...initStyle, ...dragStyle }">
     <slot />
   </div>
 </template>

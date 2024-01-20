@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import useLayoutStore from '@/stores/layout'
+import useAppStore from '@/stores/app'
+import size1x1 from './size/1x1.vue'
+import size2x1 from './size/2x1.vue'
 const layoutStore = useLayoutStore()
+const appStore = useAppStore()
 const props = defineProps({
   widget: {
     type: Object,
@@ -15,19 +19,23 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  dragging: {
+    type: Boolean,
+    default: false
+  }
 })
 
 
-const data = ref()
+const days = ref()
 const loading = ref(true)
 async function init() {
   loading.value = true
   try {
-    // 请求节假日数据
-    const { days }: any = await $fetch(`https://cdn.jsdelivr.net/gh/NateScarlet/holiday-cn@master/${2024}.json`)
-    data.value = days.filter(item => dayjs(item.date).isAfter(dayjs()) && item.isOffDay)?.[0]
-    console.log(11, data.value);
-
+    if (!appStore.calendar.length) {
+      // 请求节假日数据
+      await appStore.getCalendar()
+    }
+    days.value = appStore.calendar.filter((item: any) => dayjs(item.date).isAfter(dayjs()) && item.isOffDay)?.[0]
   }
   finally {
     loading.value = false
@@ -36,16 +44,30 @@ async function init() {
 init()
 
 const minSize = computed(() => Math.min(...props.size.split(':').map(Number)) * layoutStore.baseSize)
+
+
+const components: any = {
+  size1x1: size1x1,
+  size2x1: size2x1,
+}
+
+const router = useRouter()
+if (!router.hasRoute('index-calendar')) {
+  router.addRoute('index', {
+    name: 'index-calendar',
+    path: '/calendar',
+    component: () => import('./page/calendar.vue'),
+  })
+}
 </script>
 
 <template>
-  <NuxtLink v-slot="{ navigate }" to="/calendar" custom>
-    <div bg-white cursor-pointer w-full h-full flex flex-col rounded-lg @click="navigate" py1 px2
-      relative overflow-hidden>
-      <div absolute opacity-10  i-solar-calendar-mark-bold-duotone class="-rotate-30 -right-2.5"
+  <div bg-white cursor-pointer w-full h-full flex flex-col rounded-lg py1 px2 relative overflow-hidden>
+    <NuxtLink to="/calendar">
+      <div absolute opacity-10 i-solar-calendar-mark-bold-duotone class="-rotate-30 -right-2.5"
+        text-primary
         :style="{ height: minSize + 'px', width: minSize + 'px' }" />
-      <p text-sm>下个节日：{{ data.name }}</p>
-      <p text-sm>{{ data.date }}</p>
-    </div>
-  </NuxtLink>
+      <component :is="components[`size${size.replace(':','x')}`]" :data="days" />
+    </NuxtLink>
+  </div>
 </template>

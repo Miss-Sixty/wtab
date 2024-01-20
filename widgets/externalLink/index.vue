@@ -14,28 +14,30 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  dragging: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const dialogSettingVisible = ref(false)
 
 function toUrl() {
+  if (props.dragging) return
   const url = props.widget.widgetData?.url
   url && window.open(url)
 }
 </script>
 
 <template>
-  <div flex items-center justify-between flex-col rounded-lg :class="[type === 'add' ? 'bg-white' : '']">
-    <div overflow-hidden rounded-lg cursor-pointer p1 :class="[type === 'add' ? 'w-full h-full' : 'w-58px h-58px border']" @click="toUrl">
+  <div :title="widget.widgetData?.name" flex items-center justify-between flex-col rounded-lg
+    :class="[type === 'add' ? 'bg-white' : '']">
+    <div overflow-hidden rounded-lg cursor-pointer w-full h-full @click="toUrl">
       <button v-if="!widget.widgetData?.iconUrl" w-full h-full bg-white @click="dialogSettingVisible = true">
         <div m-auto class="h-2/5 w-2/5" i-solar-add-square-linear />
       </button>
       <img v-else w-full h-full :src="widget.widgetData?.iconUrl" alt="">
     </div>
-    <p text-center text-xs font-medium leading-none mt-1 truncate w-full>
-      {{ widget.widgetData?.name }}
-    </p>
-
     <SettingDialog v-model="dialogSettingVisible" :size="size" :widget="widget" />
   </div>
 </template>

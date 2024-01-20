@@ -74,7 +74,7 @@ provide('gridContextKey', {
         v-show="dragging" :id="placeholderData?.id" :key="placeholderData?.id" bg-violet-50
         :placeholder="placeholderData"
       />
-      <slot />
+      <slot :dragging="dragging"/>
     </div>
   </ClientOnly>
 </template>

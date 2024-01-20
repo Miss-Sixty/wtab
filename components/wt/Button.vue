@@ -1,33 +1,17 @@
 <script setup lang="ts">
-const props = defineProps({
-  text: {
-    type: String,
-    default: '',
-  },
-  size: {
-    type: String,
-    default: 'base',
-  },
-  type: {
-    type: String,
-    default: 'default',
-  },
-  icon: {
-    type: String,
-    default: '',
-  },
-  round: {
-    type: Boolean,
-    default: false,
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
+export interface Props {
+  text?: string
+  size?: 'sm' | 'base' | 'lg'
+  type?: 'danger' | 'primary' | 'default'
+  icon?: string
+  round?: boolean
+  loading?: boolean
+  disabled?: boolean
+}
+
+const { size, type } = withDefaults(defineProps<Props>(), {
+  size: 'base',
+  type: 'default',
 })
 
 interface SizeStatus {
@@ -39,7 +23,7 @@ const sizeClass = computed(() => {
     base: 'h-8 px-4 py-1',
     lg: 'h-10 px-4 py-1.5',
   }
-  return status[props.size]
+  return status[size]
 })
 
 const typeClass = computed(() => {
@@ -78,33 +62,22 @@ const typeClass = computed(() => {
     dark:disabled:hover:bg-gray-300
    `,
   }
-  return status[props.type]
+  return status[type]
 })
 </script>
 
 <template>
-  <button
-    type="button"
-    flex="~ items-center"
-    shadow-sm
-    text-sm
-    leading-none
-    select-none
-    touch-manipulation
-    focus-visible="outline outline-2 outline-offset-1 outline-primary"
-    disabled:opacity-50
-    dark:disabled:opacity-40
-    disabled:cursor-not-allowed
-    :class="[
+  <button type="button" flex="~ items-center" shadow-sm text-sm leading-none select-none touch-manipulation
+    focus-visible="outline outline-2 outline-offset-1 outline-primary" disabled:opacity-50 dark:disabled:opacity-40
+    disabled:cursor-not-allowed whitespace-nowrap :class="[
       sizeClass,
       typeClass,
       round ? 'rounded-full' : 'rounded-md',
-    ]"
-    :disabled="disabled || loading"
-  >
+    ]" :disabled="disabled || loading">
     <svg v-if="loading" animate-spin mr-1 w-1em h-1em fill="none" viewBox="0 0 24 24">
       <circle opacity-25 cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-      <path opacity-75 fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+      <path opacity-75 fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
     </svg>
     <div v-else-if="icon" mr-1 :class="[icon]" aria-hidden="true" />
     <slot>{{ text }}</slot>

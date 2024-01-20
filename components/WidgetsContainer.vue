@@ -18,6 +18,14 @@ const props: any = defineProps({
     type: String,
     default: '',
   },
+  dragging: {
+    type: Boolean,
+    default: false
+  },
+  singleRow: {
+    type: Boolean,
+    default: false
+  }
 })
 const layoutStore = useLayoutStore()
 const { baseMargin, baseSize } = storeToRefs(layoutStore)
@@ -28,7 +36,7 @@ const wh = computed(() => {
 const widgetWH = computed(() => {
   const [w, h] = wh.value
   return {
-    width: `${w * baseSize.value + (w - 1) * baseMargin.value}px`,
+    width: props.singleRow ? '100%' : `${w * baseSize.value + (w - 1) * baseMargin.value}px`,
     height: `${h * baseSize.value + (h - 1) * baseMargin.value}px`,
   }
 })
@@ -44,7 +52,7 @@ const scale = computed(() => {
 const iconScale = computed(() => {
   const [w, h] = wh.value
   let scale = 'scale-100'
-  if (props.type === 'add' && (h > 2 || w > 4))
+  if (props.type === 'add' && (h > 2 || w >= 4 || props.singleRow))
     scale = 'scale-150'
   return scale
 })
@@ -56,54 +64,27 @@ function handleClick() {
 
 const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component}/index.vue`))
 
-const widgetW = computed(() => {
-  const [w] = props.size.split(':').map(Number)
-  return w
+const className = computed(() => {
+  if (props.type && props.singleRow) return 'border-color-violet'
+  return props.singleRow ? '' : 'shadow-xl'
 })
 </script>
 
 <template>
-  <div shadow-xl relative select-none :style="widgetWH" rounded-lg border border-color-transparent :class="[type && !widgetW ? 'border-color-violet' : '', scale]">
+  <div relative select-none :style="widgetWH" rounded-lg border border-color-transparent :class="[className, scale]">
     <template v-if="type">
-      <button
-        :class="iconScale" absolute left-0 top-0 class="-translate-x-1/4 -translate-y-1/4" text-2xl cursor-pointer
-        hover:text-violet-600 @click="handleClick"
-      >
+      <button :class="iconScale" absolute left-0 top-0 z1 class="-translate-x-1/3 -translate-y-1/3" text-2xl
+        cursor-pointer hover:text-violet-600 @click="handleClick">
         <div bg-red hover:bg-red-300 :class="type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold'" />
       </button>
 
-      <div
-        v-if="!widgetW"
-        absolute right-0 top-0 text-xs cursor-pointer
-        bg-violet text-white px-2 py-0.5 rounded-bl-lg rounded-tr-lg
-      >
+      <div v-if="singleRow" absolute text-xs cursor-pointer bg-violet text-white px-2 py-0.5 rounded-bl-lg
+        rounded-tr-lg
+        class="-right-[1px] -top-[1px]">
         独占一行
       </div>
     </template>
-
-    <component :is="AsyncComp" :style="widgetWH" overflow-hidden :type="type" :widget="widget" :size="size" />
+    <component :dragging="dragging" w-full h-full :is="AsyncComp" overflow-hidden :type="type" :widget="widget"
+      :size="size" />
   </div>
 </template>
-
-<style scoped>
-.tooltip {
-  pointer-events: none;
-  z-index: 50;
-  white-space: pre;
-  overflow-wrap: break-word;
-  border-radius: 0.25rem;
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
-  text-align: center;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  color: #fff;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  letter-spacing: normal;
-  background: #1f1f1f;
-}
-</style>

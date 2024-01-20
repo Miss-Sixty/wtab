@@ -4,8 +4,13 @@ export default {
   text: '展示当前时间',
   data: {
   },
-  sizes: {
-    ':2': { },
-    '4:2': { },
-  },
+  sizes: [
+    {
+      size: '4:2',
+      singleRow: true// 独占一行
+    },
+    {
+      size: '4:2',
+    },
+  ]
 }

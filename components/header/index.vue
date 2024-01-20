@@ -34,10 +34,7 @@ async function ensurePermissionsa() {
 </script>
 
 <template>
-  <nav
-    rounded-lg z-1
-    p="x2 y1.5" flex items-center gap-1.5
-  >
+  <nav rounded-lg z-1 p="x2 y1.5" flex items-center gap-1.5>
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
       <WtIcon :icon="item.icon">
         {{ item.text }}
@@ -57,18 +54,15 @@ async function ensurePermissionsa() {
     </Transition> -->
 
     <div flex-auto />
+    <WtButton type="primary" v-show="layoutStore.editMode" size="sm" round text="完成" @click="layoutStore.editMode = false" />
     <HeaderPremium />
-    <Transition type="animation" enter-active-class="animate-fade-in" leave-active-class="animate-fade-out">
-      <div v-show="layoutStore.editMode" flex gap-1 animate-duration-150ms>
-        <WtButton round text="完成" @click="layoutStore.editMode = false" />
-      </div>
-    </Transition>
-    <HeaderClock v-if="appStore.headerDate" :class="opacityClass" />
     <ClientOnly>
       <HeaderAddPWA :class="opacityClass" />
-      <WtIcon v-if="isSupported && !permissionGranted" :class="opacityClass" icon="i-solar-bell-bing-bold-duotone" @click="ensurePermissionsa" />
+      <WtIcon v-if="isSupported && !permissionGranted" :class="opacityClass" icon="i-solar-bell-bing-bold-duotone"
+        @click="ensurePermissionsa" />
     </ClientOnly>
     <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
-    <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold-duotone" @click="$emit('handleSettingIcon', settingIconRef)" />
+    <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold-duotone"
+      @click="$emit('handleSettingIcon', settingIconRef)" />
   </nav>
 </template>

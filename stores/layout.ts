@@ -6,8 +6,6 @@ import settings from '@/config/settings'
 
 const { layout } = settings
 function findPosition([widgetW, widgetH]: [any, number], layouts: any, colsNum: number) {
-  if (!widgetW)
-    widgetW = colsNum
   for (let y = 0; ; y++) {
     for (let x = 0; x <= colsNum - widgetW; x++) {
       let canPlace = true
@@ -15,8 +13,8 @@ function findPosition([widgetW, widgetH]: [any, number], layouts: any, colsNum: 
         const rect = layouts[i]
         const [rectX, rectY] = rect.position[colsNum]
         let [rectW, rectH] = rect.widgetSize.split(':').map(Number)
-        if (!rectW)
-          rectW = colsNum
+        const { singleRow } = rect.widgetData
+        if (singleRow) rectW = colsNum
         if (
           x <= rectX + (rectW || widgetW) - 1
           && x + widgetW - 1 >= rectX
@@ -62,7 +60,6 @@ export default defineStore('layoutStore', () => {
         position[colsNum] = [0, 0]
         continue
       }
-
       const [x, y] = findPosition([w, h], layouts.value, +colsNum)
       position[colsNum] = [x, y]
     }
@@ -103,4 +100,13 @@ export default defineStore('layoutStore', () => {
     addPage,
     $reset,
   }
-}, { persist: { storage: persistedState.localStorage } })
+}, {
+  persist: {
+    paths: [
+      'baseSize',
+      'baseMargin',
+      'layouts'
+    ],
+    storage: persistedState.localStorage
+  }
+})

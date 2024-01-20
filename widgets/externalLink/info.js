@@ -8,7 +8,9 @@ export default {
     iconUrl: '',
     bgColor: '',
   },
-  sizes: {
-    '1:1': { name: '' },
-  },
+  sizes: [
+    {
+      size: '1:1'
+    }
+  ]
 }

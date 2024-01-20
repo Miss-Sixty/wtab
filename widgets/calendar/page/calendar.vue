@@ -1,20 +1,7 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
-
-const data = ref()
-const loading = ref(true)
-async function init() {
-  loading.value = true
-  try {
-    // 请求节假日数据
-    const { days }: any = await $fetch(`https://cdn.jsdelivr.net/gh/NateScarlet/holiday-cn@master/${2024}.json`)
-    data.value = days
-  }
-  finally {
-    loading.value = false
-  }
-}
-init()
+import useAppStore from '@/stores/app'
+const appStore = useAppStore()
 </script>
 
 <template>
@@ -34,7 +21,7 @@ init()
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
-        <tr v-for="(day, i) in data" :key="i">
+        <tr v-for="(day, i) in appStore.calendar" :key="i">
           <td
             class="whitespace-nowrap py-2.5 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
             :class="dayjs(day.date).isBefore(dayjs()) ? 'line-through' : ''"

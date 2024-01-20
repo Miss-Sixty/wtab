@@ -3,8 +3,8 @@ import { defineStore } from 'pinia'
 export default defineStore('appStore', () => {
   const formatClock = ref('YYYY-MM-DD HH:mm:ss')
   const date = ref(+new Date())
-  const headerDate = ref(false)
   const headerConstant = ref(true)
+  const calendar: any = shallowRef([]) //假期数据
 
   // let timer: ReturnType<typeof rAF> | undefined
   // const stopTimer = () => {
@@ -28,21 +28,33 @@ export default defineStore('appStore', () => {
   //   visibility.value === 'hidden' ? stopTimer() : startTimer()
   // })
 
+  // 请求节假日数据
+  async function getCalendar() {
+    if (calendar.value.length) return calendar.value
+    const { days }: any = await $fetch(`https://cdn.jsdelivr.net/gh/NateScarlet/holiday-cn@master/${2024}.json`)
+    calendar.value = days
+    return days
+  }
+
   function $reset() {
     formatClock.value = 'YYYY-MM-DD HH:mm:ss'
     date.value = +new Date()
-    headerDate.value = false
     headerConstant.value = true
+    calendar.value = []
   }
 
   return {
     formatClock,
     date,
-    headerDate,
     headerConstant,
     $reset,
+    calendar,
+    getCalendar
   }
-}, { persist: {
-  paths: ['formatClock', 'headerDate', 'headerConstant'],
-  storage: persistedState.localStorage,
-} })
+}, {
+  persist: {
+    paths: ['formatClock', 'headerConstant', 'calendar'],
+    storage: persistedState.localStorage,
+  }
+})
+

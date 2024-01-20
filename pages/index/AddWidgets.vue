@@ -17,12 +17,10 @@ init()
     <div class="grid grid-cols-1 gap-3 lg:grid-cols-2">
       <div v-for="(list, i) in widgetList" :key="i" flex h-96 flex-col overflow-hidden rounded-lg class="bg-black/10">
         <Swiper w-full flex-1 navigation loop pagination :modules="modules">
-          <SwiperSlide v-for="(data, size, j) in list.sizes" :key="j">
+          <SwiperSlide v-for="(data, j) in list.sizes" :key="j">
             <div flex items-center justify-center h-full>
-              <WidgetsContainer
-                id="widgets-container" type="add" :size="size" :widget="{ ...list.data, ...data }"
-                :component="list.key"
-              />
+              <WidgetsContainer id="widgets-container" type="add" :size="data.size" :singleRow="data.singleRow"
+                :widget="{ ...list.data, ...data }" :component="list.key" />
             </div>
           </SwiperSlide>
         </Swiper>
