@@ -36,7 +36,7 @@ const wh = computed(() => {
 const widgetWH = computed(() => {
   const [w, h] = wh.value
   return {
-    width: props.singleRow ? '100%' : `${w * baseSize.value + (w - 1) * baseMargin.value}px`,
+    width: props.singleRow && !(props.type === 'add') ? '100%' : `${w * baseSize.value + (w - 1) * baseMargin.value}px`,
     height: `${h * baseSize.value + (h - 1) * baseMargin.value}px`,
   }
 })
@@ -66,12 +66,12 @@ const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component
 
 const className = computed(() => {
   if (props.type && props.singleRow) return 'border-color-primary'
-  return props.singleRow ? '' : 'shadow-xl'
+  return props.singleRow ? 'border-color-transparent' : 'shadow-xl border-color-transparent'
 })
 </script>
 
 <template>
-  <div relative select-none :style="widgetWH" rounded-lg border border-color-transparent :class="[className, scale]">
+  <div relative select-none :style="widgetWH" rounded-lg border :class="[className, scale]">
     <template v-if="type">
       <button :class="iconScale" absolute left-0 top-0 z1 class="-translate-x-1/3 -translate-y-1/3" text-2xl
         cursor-pointer hover:text-primary @click="handleClick">

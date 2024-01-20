@@ -112,10 +112,9 @@ defineExpose({ open })
         leave-active-class="animate-zoom-out "
       >
         <div
-          v-show="popperVisible" ref="floatingRef" animate-duration-150ms :style="styles" ring-black:5 mt1 ring-1 absolute
-          w40 right-0 origin-top-right divide-y rounded-md shadow-lg z-1 transition-width
-          transition-height
-          class="bg-white dark:bg-#18181B dark:divide-gray-800"
+          v-show="popperVisible" ref="floatingRef" animate-duration-100ms :style="styles" ring-black:5 mt1 ring-1 absolute
+          w40 right-0 origin-top-right divide-y rounded-md shadow-lg z-1 
+          class="bg-white dark:bg-#18181B dark:divide-gray-800 transition-property-[top,left] transition-duration-100ms"
         >
           <slot>
             <div v-for="(items, i) in showMenuList" :key="i" p1>
