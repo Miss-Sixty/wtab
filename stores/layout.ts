@@ -50,7 +50,7 @@ export default defineStore('layoutStore', () => {
     return Number(colsNum)
   })
 
-  const addWidget = (widget: any, component: 'string', size: string) => {
+  const addWidget = (widget: any, component: 'string', size: string, shadow: boolean) => {
     const position: any = {} // 布局位置
     const [w, h] = size.split(':').map(Number)
 
@@ -64,7 +64,7 @@ export default defineStore('layoutStore', () => {
       position[colsNum] = [x, y]
     }
     const id = `${component}-${nanoid()}`
-    layouts.value.push(JSON.parse(JSON.stringify({ id, widgetData: widget, widgetSize: size, position, update: dayjs().valueOf(), component })))
+    layouts.value.push(JSON.parse(JSON.stringify({ id, widgetData: widget, shadow, widgetSize: size, position, update: dayjs().valueOf(), component })))
   }
 
   const delWidget = (widget: any) => {

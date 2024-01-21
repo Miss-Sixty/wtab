@@ -31,7 +31,7 @@ export default (config: any) => {
       return
     draggingId.value = child.id.replace('grid-item-', '')
 
-    placeholderData.value = { id: 'placeholder', ...draggingXYWH.value }
+    placeholderData.value = { id: 'placeholder', ...draggingXYWH.value, singleRow: draggingData.value?.widgetData?.singleRow }
     pointerDown.value = true
 
     const childRect = child.getBoundingClientRect() // 记录鼠标按下时的小组件坐标

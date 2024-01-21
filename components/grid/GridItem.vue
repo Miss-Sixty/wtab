@@ -27,11 +27,10 @@ const singleRow = computed(() => {
 })
 
 const xywh = computed(() => {
-  if (!props.id)
-    return
-    if (props.id === 'placeholder') {
+  if (!props.id) return
+  if (props.id === 'placeholder') {
     let { x, y, w, h } = props.placeholder
-    if (singleRow.value) w = colsNum.value
+    if (singleRow.value || props.placeholder?.singleRow) w = colsNum.value
     return { x, y, w, h }
   }
 
@@ -39,13 +38,13 @@ const xywh = computed(() => {
   const [x, y] = position[colsNum.value]
   let [w, h] = widgetSize.split(':').map(Number)
   if (singleRow.value) w = colsNum.value
+
   return { x, y, w, h }
 })
 
 // 初始排序
 const initStyle = computed(() => {
-  if (!xywh.value)
-    return
+  if (!xywh.value) return
   return {
     transform: `translate3d(
         ${xywh.value.x * (baseMargin.value + baseSize.value)}px,

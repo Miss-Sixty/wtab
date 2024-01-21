@@ -1,131 +1,34 @@
 <script setup lang="ts">
-const props = defineProps({
-  widget: {
-    type: Object,
-    required: true,
-  },
-  size: {
-    type: String,
-    required: true,
-  },
-})
-const modelValue = defineModel()
+import dayjs from 'dayjs'
+import useLayoutStore from '@/stores/app'
 
-const formData = ref({
-  name: '',
-  host: '',
-  iconUrl: '',
-  bgColor: '',
-})
-
-watch(modelValue, (bl) => {
-  if (!bl)
-    return
-  for (const key in formData.value) formData.value[key] = props.widget.widgetData[key]
-})
-
-function onChange(e: any) {
-  const result = e.target.value.trim()
-  if (!result)
-    return
-  let host
-  if (result.substring(0, 7) === 'http://')
-    host = result
-  else if (result.substring(0, 8) === 'https://')
-    host = result
-  else
-    host = 'http://'.concat(result)
-
-  formData.value.host = host
-}
-
-// interface Icon {
-//   host: string
-//   icons: Array<string>
-//   logo: string
-// }
-const icons: any = ref()
-const loading = ref(false)
-async function getWebInfo() {
-  loading.value = true
-  try {
-    let host: Array<string> | string = formData.value.host.split('/') // 以“/”进行分割
-
-    if (host[2]) {
-      host = host[2]
-      if (host.substring(0, 4) === 'www.')
-        host = host.slice(4)
-    }
-    else {
-      host = '' // 如果url不正确就取空
-    }
-    if (!host)
-      return
-
-    const { data }: any = await $fetch('/api/favicon', {
-      method: 'get',
-      params: { host: `https://${host}` },
-    })
-
-    icons.value = data.icons
-    const [firstIcon] = data.icons
-    if (firstIcon)
-      formData.value.iconUrl = firstIcon
-    formData.value.name = data.name
-    formData.value.host = data.host
-  }
-  catch (err) {
-    console.log(11, err)
-  }
-  finally {
-    loading.value = false
-  }
-}
+const modelValue = defineModel({ default: false })
+const layoutStore = useLayoutStore()
+const formatClock = ref(layoutStore.formatClock)
+const time = computed(() => dayjs(layoutStore.date).format(formatClock.value))
 
 function onSubmit() {
-  for (const key in formData.value)
-    props.widget.widgetData[key] = formData.value[key]
+  layoutStore.formatClock = formatClock.value
   modelValue.value = false
 }
 </script>
 
 <template>
-  <WtabDialog v-model="modelValue" title="网址导航">
-    <form method="dialog" ring-1 ring-gray-200 rounded-xl>
+  <WtabDialog v-model="modelValue" title="时间设置">
+    <form action="" method="dialog" ring-1 ring-gray-200 rounded-xl>
       <div p-8 class="grid gap-y-8">
         <div>
-          <label for="url" block text-sm font-medium leading-6> 网站地址 </label>
-          <div flex items-center mt-2>
-            <input
-              v-model="formData.url"
-              flex-1
-              type="text" name="url" block w-full rounded-md py-1.5 px-3 border mr-2 outline-violet caret-violet
-              placeholder="请输入网站地址" placeholder:text-gray-400 leading-6 text-sm required @change="onChange"
-            >
-            <WtButton text="获取信息" size="lg" :loading="loading" @click="getWebInfo" />
-          </div>
-        </div>
+          <label for="name" flex justify-between block text-sm font-medium leading-6>
+            <span>时间格式：{{ time }}</span>
+            <a text-gray hover:text-gray-300 flex text-xs items-center class="after:content-['_↗']" href="https://dayjs.fenxianglu.cn/category/display.html#%E6%A0%BC%E5%BC%8F%E5%8C%96" target="_black">
+              <span>格式参考链接</span>
+            </a>
 
-        <div>
-          <label for="name" block text-sm font-medium leading-6> 网站名称 </label>
+          </label>
           <input
-            v-model="formData.name" type="text" name="name" mt-2 block w-full rounded-md py-1.5 px-3 border
-            outline-violet caret-violet placeholder="请输入网站名称" placeholder:text-gray-400 leading-6 text-sm required
+            id="name" v-model="formatClock" type="text" name="name" mt-2 block w-full rounded-md py-1.5 px-3 border
+            outline-violet caret-violet placeholder="请输入页面名称" placeholder:text-gray-400 leading-6 text-sm required
           >
-        </div>
-
-        <div>
-          <label for="name" block text-sm font-medium leading-6> 图标 </label>
-          <ul grid flex gap-2>
-            <li
-              v-for="(item, i) in icons" :key="i"
-              cursor-pointer
-              :class="{ 'border-purple': formData.iconUrl === item }"
-              bg-gray-100 border rounded-md overflow-hidden h-24 w-24 p1 @click="formData.iconUrl = item"
-            >
-              <img h-full w-full :src="item">
-            </li>
-          </ul>
         </div>
       </div>
 

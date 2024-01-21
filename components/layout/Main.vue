@@ -13,7 +13,7 @@ const { layouts, baseMargin, baseSize, editMode, colsNum } = storeToRefs(layoutS
       <GridItem v-for="item in layouts" :id="item.id" :key="item.id"
         @contextmenu.prevent.stop="$emit('widgetContextmenu', { e: $event, widget: item })">
         <WidgetsContainer :type="editMode ? 'del' : ''" :singleRow="item.widgetData.singleRow" :size="item.widgetSize"
-          :widget="item" :component="item.component" :dragging="dragging" />
+          :widget="item" :component="item.component" :dragging="dragging" :shadow="item.shadow"/>
       </GridItem>
     </Grid>
   </main>

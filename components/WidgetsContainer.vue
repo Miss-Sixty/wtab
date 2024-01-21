@@ -25,6 +25,10 @@ const props: any = defineProps({
   singleRow: {
     type: Boolean,
     default: false
+  },
+  shadow: {
+    type: Boolean,
+    default: true
   }
 })
 const layoutStore = useLayoutStore()
@@ -58,26 +62,27 @@ const iconScale = computed(() => {
 })
 
 function handleClick() {
-  props.type === 'add' && layoutStore.addWidget(props.widget, props.component, props.size)
+  props.type === 'add' && layoutStore.addWidget(props.widget, props.component, props.size, props.shadow)
   props.type === 'del' && layoutStore.delWidget(props.widget)
 }
 
 const AsyncComp = defineAsyncComponent(() => import(`~/widgets/${props.component}/index.vue`))
 
 const className = computed(() => {
-  if (props.type && props.singleRow) return 'border-color-primary'
-  return props.singleRow ? 'border-color-transparent' : 'shadow-xl border-color-transparent'
+  let name = ''
+  if (!props.singleRow) return 'border-color-transparent'
+  if (props.type) name += ' border border-color-primary'
+  return name
 })
 </script>
 
 <template>
-  <div relative select-none :style="widgetWH" rounded-lg :class="[className, scale]">
+  <div relative select-none :style="widgetWH" rounded-lg :class="[className, scale, shadow ? 'shadow-xl' : '']">
     <template v-if="type">
       <button :class="iconScale" absolute left-0 top-0 z1 class="-translate-x-1/3 -translate-y-1/3" text-2xl
         cursor-pointer hover:text-primary @click="handleClick">
         <div bg-red hover:bg-red-300 :class="type === 'add' ? 'i-solar-add-circle-bold' : 'i-solar-minus-circle-bold'" />
       </button>
-
       <div v-if="singleRow" absolute text-xs cursor-pointer bg-primary text-white px-2 py-0.5 rounded-bl-lg rounded-tr-lg
         class="-right-[1px] -top-[1px]">
         独占一行

@@ -4,7 +4,7 @@ import SettingDialog from './components/SettingDialog.vue'
 import calendar from '@/utils/lunar/index'
 import { cAF, rAF } from '@/utils/raf'
 
-defineProps({
+const props = defineProps({
   widget: {
     type: Object,
     default: () => ({}),
@@ -17,6 +17,10 @@ defineProps({
     type: String,
     required: true,
   },
+  dragging: {
+    type: Boolean,
+    default: false
+  }
 })
 const dateTime = ref(+new Date())
 let timer: ReturnType<typeof rAF> | undefined
@@ -50,17 +54,22 @@ const lunar: any = calendar.solar2lunar(
 const date = computed(() => dayjs(dateTime.value).format('YYYY年MM月DD日'))
 const time = computed(() => dayjs(dateTime.value).format('HH:mm:ss'))
 const YMD = computed(() => ` ${lunar.IMonthCn}${lunar.IDayCn} ${lunar.ncWeek}`)
+
 const dialogSettingVisible = ref(false)
+const onClick = () => {
+  if (props.dragging) return
+  dialogSettingVisible.value = true
+}
 </script>
 
 <template>
-  <div flex items-center justify-center flex-col rounded-lg tabular-nums>
+  <div flex items-center justify-center flex-col rounded-lg tabular-nums @click="onClick">
     <div text-18 leading-none>
       {{ time }}
     </div>
     <div text-5>
       {{ date }}{{ YMD }}
     </div>
-    <SettingDialog v-model="dialogSettingVisible" :size="size" :widget="widget" />
+    <SettingDialog v-model="dialogSettingVisible" />
   </div>
 </template>

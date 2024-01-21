@@ -19,8 +19,8 @@ init()
         <Swiper w-full flex-1 navigation loop pagination :modules="modules">
           <SwiperSlide v-for="(data, j) in list.sizes" :key="j">
             <div flex items-center justify-center h-full>
-              <WidgetsContainer id="widgets-container" type="add" :size="data.size" :singleRow="data.singleRow"
-                :widget="{ ...list.data, ...data }" :component="list.key" />
+              <WidgetsContainer id="widgets-container" type="add" :size="data.size" :shadow="list.shadow"
+                :singleRow="data.singleRow" :widget="{ ...list.data, ...data }" :component="list.key" />
             </div>
           </SwiperSlide>
         </Swiper>
