@@ -23,7 +23,7 @@
     "canvas-confetti": "^1.9.2",
     "crypto-js": "^4.2.0",
     "get-urls": "^12.1.0",
-    "jsdom": "^23.2.0",
+    "jsdom": "^24.0.0",
     "nanoid": "^5.0.4",
     "zipson": "^0.2.12"
   },
