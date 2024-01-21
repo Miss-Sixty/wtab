@@ -22,22 +22,34 @@ const props = defineProps({
 
 const dialogSettingVisible = ref(false)
 
+const widgetData = computed(() => props.widget.widgetData || {})
 function toUrl() {
   if (props.dragging) return
-  const url = props.widget.widgetData?.url
+  if (props.type === 'del') return dialogSettingVisible.value = true
+  const url = widgetData.value.host
   url && window.open(url)
 }
+
+const iconNameLength = computed(() => widgetData.value.iconName?.length || 0)
 </script>
 
 <template>
-  <div :title="widget.widgetData?.name" flex items-center justify-between flex-col rounded-lg
-    :class="[type === 'add' ? 'bg-white' : '']">
-    <div overflow-hidden rounded-lg cursor-pointer w-full h-full @click="toUrl">
-      <button v-if="!widget.widgetData?.iconUrl" w-full h-full bg-white @click="dialogSettingVisible = true">
+  <div :title="widgetData.name" flex items-center justify-between flex-col rounded-lg bg-white :style="{
+    backgroundColor: widgetData.iconType === 'text' ? widgetData.iconBgColor : '',
+    color: widgetData.iconType === 'text' ? '#fff' : ''
+  }" p1.5>
+    <NuxtLink overflow-hidden rounded-lg cursor-pointer w-full h-full @click="toUrl">
+      <button v-if="!widgetData.iconUrl" w-full h-full bg-transparent @click="dialogSettingVisible = true">
         <div m-auto class="h-2/5 w-2/5" i-solar-add-square-linear />
       </button>
-      <img v-else w-full h-full :src="widget.widgetData?.iconUrl" alt="">
-    </div>
+      <img v-else-if="widgetData.iconType === 'online'" w-full h-full :src="widgetData.iconUrl" alt="">
+      <div v-show="widgetData.iconType === 'text'" truncate w-full h-full flex="~ items-center justify-center" :class="[
+        iconNameLength === 1 ? 'text-xl' : '',
+        iconNameLength < 4 ? 'text-base' : '',
+        iconNameLength === 4 ? 'text-sm' : '',
+        iconNameLength > 4 ? 'text-xs' : ''
+      ]">{{ widgetData.iconName }}</div>
+    </NuxtLink>
     <SettingDialog v-model="dialogSettingVisible" :size="size" :widget="widget" />
   </div>
 </template>

@@ -9,7 +9,7 @@ export interface Props {
   disabled?: boolean
 }
 
-const { size, type } = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   size: 'base',
   type: 'default',
 })
@@ -23,7 +23,7 @@ const sizeClass = computed(() => {
     base: 'h-8 px-4 py-1',
     lg: 'h-10 px-4 py-1.5',
   }
-  return status[size]
+  return status[props.size]
 })
 
 const typeClass = computed(() => {
@@ -62,14 +62,18 @@ const typeClass = computed(() => {
     dark:disabled:hover:bg-gray-300
    `,
   }
-  return status[type]
+  return status[props.type]
 })
 </script>
 
 <template>
-  <button type="button" flex="~ items-center" shadow-sm text-sm leading-none select-none touch-manipulation
+  <button type="button" 
+    inline-flex items-center
+    shadow-sm text-sm leading-none select-none touch-manipulation
     focus-visible="outline outline-2 outline-offset-1 outline-primary" disabled:opacity-50 dark:disabled:opacity-40
-    disabled:cursor-not-allowed whitespace-nowrap :class="[
+    disabled:cursor-not-allowed whitespace-nowrap 
+    :class="[
+      'next-[button]-ml3',
       sizeClass,
       typeClass,
       round ? 'rounded-full' : 'rounded-md',

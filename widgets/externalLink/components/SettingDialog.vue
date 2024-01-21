@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import getUrls from 'get-urls';
+import { useUnaThemes } from '@/composables/useUnaThemes'
+const { primaryThemes, } = useUnaThemes()
+
+
 const props = defineProps({
   widget: {
     type: Object,
@@ -9,73 +14,48 @@ const props = defineProps({
     required: true,
   },
 })
-const modelValue = defineModel()
+const modelValue = defineModel({ default: false })
 
-const formData = ref({
+const formData: any = ref({
+  url: '',
   name: '',
   host: '',
-  iconUrl: '',
   bgColor: '',
+  iconType: 'online',
+  iconUrl: '',
+  iconName: '',
+  iconUpload: '',
+  iconBgColor: '',
+  iconColorType: 1,//0:固定色 1:自选色
 })
 
 watch(modelValue, (bl) => {
-  if (!bl)
-    return
+  if (!bl) return
   for (const key in formData.value) formData.value[key] = props.widget.widgetData[key]
+  props.widget.widgetData.iconUrl && icons.value.add(props.widget.widgetData.iconUrl)
 })
 
-function onChange(e: any) {
-  const result = e.target.value.trim()
-  if (!result)
-    return
-  let host
-  if (result.substring(0, 7) === 'http://')
-    host = result
-  else if (result.substring(0, 8) === 'https://')
-    host = result
-  else
-    host = 'http://'.concat(result)
-
-  formData.value.host = host
-}
-
-// interface Icon {
-//   host: string
-//   icons: Array<string>
-//   logo: string
-// }
-const icons: any = ref()
+const icons: any = ref(new Set())
 const loading = ref(false)
 async function getWebInfo() {
   loading.value = true
   try {
-    let host: Array<string> | string = formData.value.host.split('/') // 以“/”进行分割
-
-    if (host[2]) {
-      host = host[2]
-      if (host.substring(0, 4) === 'www.')
-        host = host.slice(4)
-    }
-    else {
-      host = '' // 如果url不正确就取空
-    }
-    if (!host)
-      return
+    const host = getUrls(formData.value.url, { stripWWW: false })
+    const [firstHost = ''] = host || [];
+    if (!firstHost) return;
 
     const { data }: any = await $fetch('/api/favicon', {
       method: 'get',
-      params: { host: `https://${host}` },
+      params: { host: firstHost },
     })
 
-    icons.value = data.icons
+    data.icons.forEach((item: string) => icons.value.add(item))
     const [firstIcon] = data.icons
-    if (firstIcon)
-      formData.value.iconUrl = firstIcon
+    if (!firstIcon) return
+    formData.value.iconUrl = firstIcon
     formData.value.name = data.name
     formData.value.host = data.host
-  }
-  catch (err) {
-    console.log(11, err)
+    formData.value.iconName = data.name
   }
   finally {
     loading.value = false
@@ -83,55 +63,101 @@ async function getWebInfo() {
 }
 
 function onSubmit() {
-  for (const key in formData.value)
-    props.widget.widgetData[key] = formData.value[key]
+  for (const key in formData.value) props.widget.widgetData[key] = formData.value[key]
   modelValue.value = false
+  icons.value.clear()
+}
+
+const iconNameLength = computed(() => formData.value?.iconName?.length || 0)
+
+const closed = () => {
+  icons.value.clear()
+  modelValue.value = false
+}
+
+const colors = [
+  ...primaryThemes.map(([, theme]) => theme['--wt-primary-hex']),
+]
+
+const setBgColor = (color: string | null, type: 1 | 2) => {
+  formData.value.iconBgColor = color
+  formData.value.iconColorType = type
 }
 </script>
 
 <template>
   <WtabDialog v-model="modelValue" title="网址导航">
-    <form method="dialog" ring-1 ring-gray-200 rounded-xl>
-      <div p-8 class="grid gap-y-8">
+    <form method="dialog" rounded-xl flex="~ col" h-full divide-y>
+      <div px2 flex="~ col 1" gap-y-6>
         <div>
-          <label for="url" block text-sm font-medium leading-6> 网站地址 </label>
-          <div flex items-center mt-2>
-            <input
-              v-model="formData.url"
-              flex-1
-              type="text" name="url" block w-full rounded-md py-1.5 px-3 border mr-2 outline-violet caret-violet
-              placeholder="请输入网站地址" placeholder:text-gray-400 leading-6 text-sm required @change="onChange"
-            >
-            <WtButton text="获取信息" size="lg" :loading="loading" @click="getWebInfo" />
+          <label for="url" block text-sm font-medium leading-6 mb-2> 网站地址 </label>
+          <div flex items-center>
+            <WtInput name="url" v-model="formData.url" flex-1 mr-2 placeholder="请输入网站地址" />
+            <WtButton type="primary" text="获取信息" :loading="loading" @click="getWebInfo" />
           </div>
         </div>
 
         <div>
-          <label for="name" block text-sm font-medium leading-6> 网站名称 </label>
-          <input
-            v-model="formData.name" type="text" name="name" mt-2 block w-full rounded-md py-1.5 px-3 border
-            outline-violet caret-violet placeholder="请输入网站名称" placeholder:text-gray-400 leading-6 text-sm required
-          >
+          <label for="name" block text-sm font-medium leading-6 mb-2> 网站名称 </label>
+          <WtInput v-model="formData.name" w-full placeholder="请输入网站名称" />
         </div>
 
         <div>
-          <label for="name" block text-sm font-medium leading-6> 图标 </label>
-          <ul grid flex gap-2>
-            <li
-              v-for="(item, i) in icons" :key="i"
-              cursor-pointer
-              :class="{ 'border-purple': formData.iconUrl === item }"
-              bg-gray-100 border rounded-md overflow-hidden h-24 w-24 p1 @click="formData.iconUrl = item"
-            >
-              <img h-full w-full :src="item">
+          <div flex gap-2>
+            <label for="name" block text-sm font-medium leading-6 mb-2> 图标 </label>
+            <div>
+              <WtButton size="sm" @click="formData.iconType = 'online'"
+                :type="formData.iconType === 'online' ? 'primary' : 'default'" text="在线图标" />
+              <WtButton size="sm" @click="formData.iconType = 'text'"
+                :type="formData.iconType === 'text' ? 'primary' : 'default'" text="文字图标" />
+              <WtButton size="sm" @click="formData.iconType = 'upload'"
+                :type="formData.iconType === 'upload' ? 'primary' : 'default'" text="上传图标" />
+            </div>
+          </div>
+          <ul grid flex gap-2 mt-1 v-show="formData.iconType === 'online'">
+            <li v-for="(item, i) in icons" :key="i" cursor-pointer
+              :class="['h-[72px]', 'w-[72px]', formData.iconUrl === item ? 'border-purple' : '']" border rounded-md
+              overflow-hidden p1.5 @click="formData.iconUrl = item" flex="~ items-center justify-center">
+              <img size-full :src="item">
             </li>
           </ul>
+          <div v-show="formData.iconType === 'text'" mt-1 rounded-md p1.5 flex="~ items-center justify-center" :class="[
+            'h-[72px]', 'w-[72px]',
+            iconNameLength === 1 ? 'text-xl' : '',
+            iconNameLength < 4 ? 'text-base' : '',
+            iconNameLength === 4 ? 'text-sm' : '',
+            iconNameLength > 4 ? 'text-xs' : '',
+            'text-white'
+          ]" :style="{ backgroundColor: formData.iconType === 'text' ? formData.iconBgColor : '' }">
+            <div truncate>{{ formData.iconName }}</div>
+          </div>
+        </div>
+
+        <div v-if="formData.iconType === 'text'">
+          <label for="name" block text-sm font-medium leading-6 mb-2> 图标名称 </label>
+          <WtInput :maxlength="10" v-model="formData.iconName" w-full placeholder="请输入图标名称" />
+        </div>
+
+        <div>
+          <label for="name" block text-sm font-medium leading-6 mb-2> 背景色 </label>
+
+          <div flex gap-2>
+            <button class="color-item" v-for="item in colors" :key="item" h-5 w-5 rounded-full
+              :style="{ backgroundColor: item }" :class="[formData.iconBgColor === item ? 'ring-2' : '']"
+              ring="primary offset-1" @click="setBgColor(item, 1)" />
+            <div h-5 w-5 rounded-full bg-primary relative
+              style="background: conic-gradient(red, #ff4d00, #ff9900, #ffe600, #ccff00, #80ff00, #33ff00, #00ff1a, #00ff66, #00ffb3, aqua, #00b3ff, #0066ff, #001aff, #3300ff, #8000ff, #cc00ff, #ff00e6, #ff0099, #ff004d, red)"
+              ring="primary offset-1" :class="[formData.iconColorType === 2 ? 'ring-2' : '']">
+              <input type="color" @input="setBgColor($event.target?.value, 2)" opacity-0 inset-0 absolute
+                cursor-pointer />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div flex gap-2 justify-end py3 px6 border-t>
-        <WtButton plain text="取消" @click="modelValue = false" />
-        <WtButton text="确定" type="submit" @click="onSubmit" />
+      <div flex justify-end pt4 pb3 px6>
+        <WtButton text="取消" @click="closed" />
+        <WtButton text="确定" type="primary" @click="onSubmit" />
       </div>
     </form>
   </WtabDialog>

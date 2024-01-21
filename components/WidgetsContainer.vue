@@ -71,7 +71,7 @@ const className = computed(() => {
 </script>
 
 <template>
-  <div relative select-none :style="widgetWH" rounded-lg border :class="[className, scale]">
+  <div relative select-none :style="widgetWH" rounded-lg :class="[className, scale]">
     <template v-if="type">
       <button :class="iconScale" absolute left-0 top-0 z1 class="-translate-x-1/3 -translate-y-1/3" text-2xl
         cursor-pointer hover:text-primary @click="handleClick">

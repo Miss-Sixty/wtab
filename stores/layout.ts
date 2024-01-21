@@ -105,7 +105,8 @@ export default defineStore('layoutStore', () => {
     paths: [
       'baseSize',
       'baseMargin',
-      'layouts'
+      'layouts',
+      'editMode'
     ],
     storage: persistedState.localStorage
   }
