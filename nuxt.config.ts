@@ -4,9 +4,9 @@ import pkg from './package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  features: {
-    inlineStyles: false,
-  },
+  // features: {
+  //   inlineStyles: false,
+  // },
   colorMode: {
     classSuffix: '',
   },
@@ -17,10 +17,8 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
-      bodyAttrs: {
-        class: 'overflow-x-hidden',
-      },
+      title:'WTab',
+      viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
       link: [
         { rel: 'icon', sizes: 'any', type: 'image/svg+xml', href: '/miaomiao.svg' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
@@ -79,7 +77,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
   ],
   devServer: {
-    host: '0', // 监听所有地址
+    // host: '0', // 监听所有地址
     fs: {
       strict: false,
     },
@@ -90,10 +88,10 @@ export default defineNuxtConfig({
     defaultTimezone: 'Asia/Shanghai',
   },
   pwa,
-  vite: {
-    define: {
-      'process.env.buildTime': JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-      'process.env.version': JSON.stringify(pkg.version),
-    },
-  },
+  // vite: {
+  //   define: {
+  //     'process.env.buildTime': JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+  //     'process.env.version': JSON.stringify(pkg.version),
+  //   },
+  // },
 })

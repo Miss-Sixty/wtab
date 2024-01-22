@@ -11,3 +11,7 @@ body,
 button{
   background-color: transparent;
 }
+
+body{
+  touch-action: pan-x pan-y;
+}

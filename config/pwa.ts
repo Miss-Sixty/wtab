@@ -16,12 +16,12 @@ export const pwa: ModuleOptions = {
   //   'apple-touch-icon.png',
   //   'apple-touch-icon-precomposed.png',
   // ],
-  filename: 'sw.ts',
-  srcDir: './service-worker',
-  strategies: 'injectManifest', // 注入模式
+  // filename: 'sw.ts',
+  // srcDir: './service-worker',
+  // strategies: 'injectManifest', // 注入模式
   injectManifest: {
     globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
-    globIgnores: ['emojis/**', 'manifest**.webmanifest'],
+    // globIgnores: ['emojis/**', 'manifest**.webmanifest'],
   },
   // manifest: {
   //   id: title,
