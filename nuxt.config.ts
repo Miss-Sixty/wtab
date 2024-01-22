@@ -10,10 +10,17 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
+  css: [
+    '@unocss/reset/tailwind-compat.css',
+    '~/styles/base.css',
+    '~/styles/scrollbars.css'
+  ],
   app: {
     head: {
-      title: 'WTab',
-      charset: 'utf-8',
+      viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
+      bodyAttrs: {
+        class: 'overflow-x-hidden',
+      },
       link: [
         { rel: 'icon', sizes: 'any', type: 'image/svg+xml', href: '/miaomiao.svg' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
@@ -54,7 +61,6 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-startup-image', media: 'screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)', href: '/splash_screens/8.3__iPad_Mini_portrait.png' },
       ],
       meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       ],

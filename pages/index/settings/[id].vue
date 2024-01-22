@@ -41,8 +41,6 @@ const list = computed(() => menuData[route.params.id])
 
 
 async function exportFile() {
-  if (!import.meta.client)
-    return
   const _wtabSettings = localStorage.getItem('wtab-settings')
   const _nuxtColorMode = localStorage.getItem('nuxt-color-mode')
   const _layoutStore = localStorage.getItem('layoutStore')

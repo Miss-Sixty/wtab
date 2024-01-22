@@ -41,7 +41,6 @@ function widgetContextmenu({ e, widget }: any) {
   widgetData.value = widget
 }
 
-const confettiVisible = ref(false)
 async function onConfetti() {
   const duration = 2 * 1000
   const end = Date.now() + duration;
@@ -72,8 +71,6 @@ const router = useRouter()
 function onSettingsBase() {
   router.push('/settings')
 }
-
-
 </script>
 
 <template>

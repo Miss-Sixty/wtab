@@ -1,0 +1,20 @@
+
+body {
+  --scroll-thumb-color: #dddee0;
+  --scroll-size: 6px;
+  scrollbar-color: var(--scroll-thumb-color) 
+}
+
+::-webkit-scrollbar {
+  width: var(--scroll-size) 
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb-color);
+  border-radius: 4px;
+  
+  }
