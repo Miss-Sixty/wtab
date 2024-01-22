@@ -57,6 +57,7 @@ const YMD = computed(() => ` ${lunar.IMonthCn}${lunar.IDayCn} ${lunar.ncWeek}`)
 
 const dialogSettingVisible = ref(false)
 const onClick = () => {
+  if (!props.type) return
   if (props.dragging) return
   dialogSettingVisible.value = true
 }

@@ -77,7 +77,7 @@ function onSettingsBase() {
 </script>
 
 <template>
-  <div overflow-hidden select-none touch-none class="pb-[var(safe-area-inset-left)]">
+  <div overflow-hidden select-none touch-none class="pb-[var(safe-area-inset-bottom)] pt-[var(safe-area-inset-top)] ">
     <ClientOnly>
       <LayoutHomeTetris />
     </ClientOnly>
