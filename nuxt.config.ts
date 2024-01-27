@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      title:'WTab',
+      title: 'WTab',
       viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
       link: [
         { rel: 'icon', sizes: 'any', type: 'image/svg+xml', href: '/miaomiao.svg' },
@@ -75,6 +75,7 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxt/image',
     '@vite-pwa/nuxt',
+    'unplugin-info/nuxt'
   ],
   devServer: {
     // host: '0', // 监听所有地址
@@ -88,10 +89,4 @@ export default defineNuxtConfig({
     defaultTimezone: 'Asia/Shanghai',
   },
   pwa,
-  // vite: {
-  //   define: {
-  //     'process.env.buildTime': JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-  //     'process.env.version': JSON.stringify(pkg.version),
-  //   },
-  // },
 })

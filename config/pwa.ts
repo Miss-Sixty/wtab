@@ -1,12 +1,29 @@
+import { isCI, isDevelopment } from 'std-env'
 import type { ModuleOptions } from '@vite-pwa/nuxt'
 import settings from './settings'
 
-// const { description, title } = settings
-// const scope = '/'
+const { description, title } = settings
 
 export const pwa: ModuleOptions = {
-  registerType: 'autoUpdate', // 注册类型
-  minify: true, // 最小化
+  mode: isCI ? 'production' : 'development',
+  scope: '/',
+  srcDir: './service-worker',
+  filename: 'sw.ts',
+  strategies: 'injectManifest',
+  injectRegister: false,
+  includeManifestIcons: false,
+  manifest: false,
+  injectManifest: {
+    globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+    globIgnores: ['emojis/**', 'manifest**.webmanifest'],
+  },
+  devOptions: {
+    enabled: process.env.VITE_DEV_PWA === 'true',
+    type: 'module',
+  },
+
+  // registerType: 'autoUpdate', // 注册类型
+  // minify: true, // 最小化
   // includeAssets: [
   //   'favicon.ico',
   //   'pwa-64x64.png',
@@ -16,13 +33,6 @@ export const pwa: ModuleOptions = {
   //   'apple-touch-icon.png',
   //   'apple-touch-icon-precomposed.png',
   // ],
-  // filename: 'sw.ts',
-  // srcDir: './service-worker',
-  // strategies: 'injectManifest', // 注入模式
-  injectManifest: {
-    globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
-    // globIgnores: ['emojis/**', 'manifest**.webmanifest'],
-  },
   // manifest: {
   //   id: title,
   //   name: title,
@@ -30,7 +40,7 @@ export const pwa: ModuleOptions = {
   //   start_url: '/',
   //   description,
   //   display: 'fullscreen',
-  //   theme_color: '#ffffff',
+  //   theme_color: '#f00',
   //   display_override: ['standalone', 'minimal-ui'],
   //   screenshots: [
   //     {
@@ -112,10 +122,4 @@ export const pwa: ModuleOptions = {
   //     },
   //   ],
   // },
-  // // registerWebManifestInRouteRules: true,//注册webmanifest路由规则
-  // writePlugin: true, // 写入插件
-  devOptions: {
-    enabled: process.env.VITE_DEV_PWA === 'true',
-    type: 'module',
-  },
 }

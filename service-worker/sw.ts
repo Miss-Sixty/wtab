@@ -35,23 +35,23 @@ precacheAndRoute(entries)
 cleanupOutdatedCaches()
 
 // allow only fallback in dev: we don't want to cache anything
-let allowlist: undefined | RegExp[]
-if (import.meta.env.DEV)
-  allowlist = [/^\/$/]
+// let allowlist: undefined | RegExp[]
+// if (import.meta.env.DEV)
+//   allowlist = [/^\/$/]
 
-// deny api and server page calls
-let denylist: undefined | RegExp[]
-if (import.meta.env.PROD) {
-  denylist = [
-    /^\/api\//,
-    /^\/web-share-target\//,
-    // exclude sw: if the user navigates to it, fallback to index.html
-    /^\/sw.js$/,
-  ]
-}
+// // deny api and server page calls
+// let denylist: undefined | RegExp[]
+// if (import.meta.env.PROD) {
+//   denylist = [
+//     /^\/api\//,
+//     /^\/web-share-target\//,
+//     // exclude sw: if the user navigates to it, fallback to index.html
+//     /^\/sw.js$/,
+//   ]
+// }
 
 // // 仅在本地构建 + 启动或生产过程中缓存页面和外部资产
-if (import.meta.env.PROD) {
+// if (import.meta.env.PROD) {
 //   // 包括webmanifest缓存
 //   registerRoute(
 //     ({ request, sameOrigin }) =>
@@ -96,13 +96,13 @@ if (import.meta.env.PROD) {
 //       }),
 //     )
 //   */
-}
+// }
 
 // to allow work offline
-registerRoute(new NavigationRoute(
-  createHandlerBoundToURL('/'),
-  { allowlist, denylist },
-))
+// registerRoute(new NavigationRoute(
+//   createHandlerBoundToURL('/'),
+//   { allowlist, denylist },
+// ))
 
 // self.addEventListener('push', onPush)
 // self.addEventListener('notificationclick', onNotificationClick)

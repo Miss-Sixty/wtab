@@ -25,6 +25,7 @@
     "get-urls": "^12.1.0",
     "jsdom": "^24.0.0",
     "nanoid": "^5.0.4",
+    "unplugin-info": "^1.0.2",
     "zipson": "^0.2.12"
   },
   "devDependencies": {
