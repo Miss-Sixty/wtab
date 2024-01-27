@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import getUrls from 'get-urls';
 import { useUnaThemes } from '@/composables/useUnaThemes'
+import useImage2Base64 from '~/composables/useImage2Base64';
+
 const { primaryThemes, } = useUnaThemes()
 
 
@@ -39,6 +41,9 @@ const icons: any = ref(new Set())
 const loading = ref(false)
 async function getWebInfo() {
   loading.value = true
+  formData.value.iconType = 'online'
+  clear({ clearUrl: false })
+
   try {
     const host = getUrls(formData.value.url, { stripWWW: false })
     const [firstHost = ''] = host || [];
@@ -51,8 +56,15 @@ async function getWebInfo() {
 
     data.icons.forEach((item: string) => icons.value.add(item))
     const [firstIcon] = data.icons
-    if (!firstIcon) return
-    formData.value.iconUrl = firstIcon
+    if (firstIcon) formData.value.iconUrl = firstIcon
+    else {
+      formData.value.iconType = 'text'
+    }
+    if (data.themeColor) {
+      formData.value.iconColorType = 2
+      formData.value.iconBgColor = data.themeColor
+    }
+    else formData.value.iconBgColor = colors[0]
     formData.value.name = data.name
     formData.value.host = data.host
     formData.value.iconName = data.name
@@ -62,17 +74,35 @@ async function getWebInfo() {
   }
 }
 
-function onSubmit() {
+async function onSubmit() {
   for (const key in formData.value) props.widget.widgetData[key] = formData.value[key]
+  props.widget.widgetData.iconUrl = await useImage2Base64(formData.value.iconUrl)
   modelValue.value = false
-  icons.value.clear()
+  clear()
 }
 
 const iconNameLength = computed(() => formData.value?.iconName?.length || 0)
 
 const closed = () => {
-  icons.value.clear()
   modelValue.value = false
+  clear()
+}
+
+const clear = (options?: any) => {
+  const { clearUrl = true } = options
+  icons.value.clear()
+  formData.value = {
+    url: clearUrl ? '' : formData.value.url,
+    name: '',
+    host: '',
+    bgColor: '',
+    iconType: 'online',
+    iconUrl: '',
+    iconName: '',
+    iconUpload: '',
+    iconBgColor: '',
+    iconColorType: 1,
+  }
 }
 
 const colors = [
