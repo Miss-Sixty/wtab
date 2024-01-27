@@ -43,7 +43,7 @@ const iconNameLength = computed(() => widgetData.value.iconName?.length || 0)
         @click="dialogSettingVisible = true">
         <div m-auto class="h-2/5 w-2/5" i-solar-add-square-linear />
       </button>
-      <img v-else-if="widgetData.iconType === 'online'" w-full h-full :src="widgetData.iconUrl" alt="">
+      <img v-else-if="widgetData.iconType === 'online'" select-none draggable="false" w-full h-full :src="widgetData.iconUrl" alt="">
       <div v-show="widgetData.iconType === 'text'" flex="~ items-center justify-center" w-full h-full>
         <span truncate :class="[
           iconNameLength === 1 ? 'text-xl' : '',
