@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import configs from '@/config/settings'
-import dayjs from '#dayjs'
+import dayjs from 'dayjs'
 import now from '~build/time'
 import { version } from '~build/package';
 const buildTime = dayjs(now).format('YYYY-MM-DD HH:mm:ss')

@@ -1,6 +1,4 @@
-import dayjs from 'dayjs'
-import { pwa } from './config/pwa'
-import pkg from './package.json'
+// import { pwa } from './config/pwa'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -88,5 +86,5 @@ export default defineNuxtConfig({
     defaultLocale: 'zh-cn',
     defaultTimezone: 'Asia/Shanghai',
   },
-  pwa,
+  // pwa,
 })
