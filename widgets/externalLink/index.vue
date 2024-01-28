@@ -26,33 +26,30 @@ const widgetData = computed(() => props.widget.widgetData || {})
 function toUrl() {
   if (props.dragging) return
   if (props.type === 'del') return dialogSettingVisible.value = true
-  const url = widgetData.value.host
-  url && window.open(url)
+  const { url, host } = widgetData.value
+  window.open(host || url)
 }
 
 const iconNameLength = computed(() => widgetData.value.iconName?.length || 0)
 </script>
 
 <template>
-  <div :title="widgetData.name" flex-col rounded-lg bg-white :style="{
+  <div :title="widgetData.name" rounded-lg :style="{
     backgroundColor: widgetData.iconType === 'text' ? widgetData.iconBgColor : '',
     color: widgetData.iconType === 'text' ? '#fff' : ''
-  }" p1.5>
-    <NuxtLink overflow-hidden rounded-lg cursor-pointer w-full h-full @click="toUrl">
-      <button v-if="!widgetData.iconUrl && !widgetData.iconName" w-full h-full bg-transparent
-        @click="dialogSettingVisible = true">
-        <div m-auto class="h-2/5 w-2/5" i-solar-add-square-linear />
-      </button>
-      <img v-else-if="widgetData.iconType === 'online'" select-none draggable="false" w-full h-full :src="widgetData.iconUrl" alt="">
-      <div v-show="widgetData.iconType === 'text'" flex="~ items-center justify-center" w-full h-full>
-        <span truncate :class="[
-          iconNameLength === 1 ? 'text-xl' : '',
-          iconNameLength < 4 ? 'text-base' : '',
-          iconNameLength === 4 ? 'text-sm' : '',
-          iconNameLength > 4 ? 'text-xs' : ''
-        ]">{{ widgetData.iconName }}</span>
-      </div>
-    </NuxtLink>
+  }" @click="toUrl" p1.5 cursor-pointer flex="~ items-center justify-center">
+    <button v-if="!widgetData.iconUrl && !widgetData.iconName" w-full h-full bg-transparent
+      @click="dialogSettingVisible = true">
+      <div m-auto class="h-2/5 w-2/5" i-solar-add-square-linear />
+    </button>
+    <img v-else-if="widgetData.iconType === 'online'" select-none draggable="false" w-full h-full
+      :src="widgetData.iconUrl" alt="">
+    <span v-else-if="widgetData.iconType === 'text'" truncate :class="[
+      iconNameLength === 1 ? 'text-xl' : '',
+      iconNameLength < 4 ? 'text-base' : '',
+      iconNameLength === 4 ? 'text-sm' : '',
+      iconNameLength > 4 ? 'text-xs' : ''
+    ]">{{ widgetData.iconName }}</span>
     <SettingDialog v-model="dialogSettingVisible" :size="size" :widget="widget" />
   </div>
 </template>

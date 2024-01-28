@@ -89,7 +89,7 @@ const closed = () => {
 }
 
 const clear = (options?: any) => {
-  const { clearUrl = true } = options
+  const { clearUrl = true } = options || {}
   icons.value.clear()
   formData.value = {
     url: clearUrl ? '' : formData.value.url,
