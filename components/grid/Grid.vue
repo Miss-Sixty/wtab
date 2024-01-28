@@ -62,19 +62,11 @@ provide('gridContextKey', {
 })
 
 
-const { width } = useWindowSize()
-const girdRightWidth = computed(() => width.value - 80)
-const gridLeftWidth = ref(640)
-const gridBaseWidth = ref(girdRightWidth.value)
-watch(width, () => {
-  if (gridBaseWidth.value > girdRightWidth.value) gridBaseWidth.value = girdRightWidth.value
-})
 
 const cursorClass = computed(() => {
-  if (isSwiping.value) return 'cursor-none'
-  if (gridBaseWidth.value >= girdRightWidth.value) {
+  if (gridWidth.value >= girdMaxWidth.value) {
     return 'cursor-w-resize'
-  } else if (gridBaseWidth.value > gridLeftWidth.value && gridBaseWidth.value < girdRightWidth.value) {
+  } else if (gridWidth.value > gridMinWidth.value && gridWidth.value < girdMaxWidth.value) {
     return 'cursor-ew-resize'
   } else {
     return 'cursor-e-resize'
@@ -82,21 +74,32 @@ const cursorClass = computed(() => {
 })
 
 const handleRef = ref()
-const { isSwiping } = usePointerSwipe(handleRef, {
+const { width } = useWindowSize()
+const girdMaxWidth = computed(() => width.value - 40)
+const gridMinWidth = ref(640)
+const gridWidth = ref(girdMaxWidth.value)
+watch(width, val => {
+  if (gridWidth.value > val - 40) gridWidth.value = val - 40
+  if (gridWidth.value < gridMinWidth.value) gridWidth.value = gridMinWidth.value
+})
+const { x } = useElementBounding(handleRef)
+usePointerSwipe(handleRef, {
   disableTextSelect: true,
   threshold: 0,
   onSwipe(e: PointerEvent) {
-    gridBaseWidth.value += e.movementX * 2
-    if(gridBaseWidth.value < gridLeftWidth.value) gridBaseWidth.value = gridLeftWidth.value
-    if(gridBaseWidth.value > girdRightWidth.value) gridBaseWidth.value = girdRightWidth.value
-  },
+    if (gridWidth.value <= gridMinWidth.value && e.clientX < x.value) return
+    if (gridWidth.value >= girdMaxWidth.value && e.clientX > x.value) return
+    gridWidth.value += e.movementX * 2
+    if (gridWidth.value < gridMinWidth.value) gridWidth.value = gridMinWidth.value
+    if (gridWidth.value > girdMaxWidth.value) gridWidth.value = girdMaxWidth.value
+  }
 })
 </script>
 
 <template>
   <ClientOnly>
     <div ref="gridRef" relative mx-auto :style="{
-      width: `${gridBaseWidth}px`,
+      width: `${gridWidth}px`,
     }" p10 rounded-lg ring-1 ring-slate-300 h-full>
       <div absolute inset-y-0 left-full hidden items-center px-2 flex>
         <div ref="handleRef" :class="[cursorClass]" h-8 w-1.5 rounded-full bg-slate-400></div>
