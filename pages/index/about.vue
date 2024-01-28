@@ -3,6 +3,7 @@ import configs from '@/config/settings'
 import dayjs from 'dayjs'
 import now from '~build/time'
 import { version } from '~build/package';
+import miaomiao from '~/public/miaomiao.svg'
 const buildTime = dayjs(now).format('YYYY-MM-DD HH:mm:ss')
 const links = [
   {
@@ -19,7 +20,7 @@ const links = [
 <template>
   <DialogPage title="关于">
     <div class="relative flex h-full flex-col items-center antialiased">
-      <NuxtPicture class="mb-3 mt-14 w-28" src="/miaomiao.svg" />
+      <NuxtPicture class="mb-3 mt-14 w-28" :src="miaomiao" />
       <p class="text-xl font-bold">
         {{ configs.title }}
       </p>
