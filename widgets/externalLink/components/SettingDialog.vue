@@ -121,21 +121,21 @@ const setBgColor = (color: string | null, type: 1 | 2) => {
     <form method="dialog" rounded-xl flex="~ col" h-full divide-y>
       <div px2 flex="~ col 1" gap-y-6>
         <div>
-          <label for="url" block text-sm font-medium leading-6 mb-2> 网站地址 </label>
+          <label for="externalLinkUrl" block text-sm font-medium leading-6 mb-2> 网站地址 </label>
           <div flex items-center>
-            <WtInput name="url" v-model="formData.url" flex-1 mr-2 placeholder="请输入网站地址" />
+            <WtInput id="externalLinkUrl" v-model="formData.url" flex-1 mr-2 placeholder="请输入网站地址" />
             <WtButton type="primary" text="获取信息" :loading="loading" @click="getWebInfo" />
           </div>
         </div>
 
         <div>
-          <label for="name" block text-sm font-medium leading-6 mb-2> 网站名称 </label>
-          <WtInput v-model="formData.name" w-full placeholder="请输入网站名称" />
+          <label for="externalLinkName" block text-sm font-medium leading-6 mb-2> 网站名称 </label>
+          <WtInput id="externalLinkName" v-model="formData.name" w-full placeholder="请输入网站名称" />
         </div>
 
         <div>
           <div flex gap-2>
-            <label for="name" block text-sm font-medium leading-6 mb-2> 图标 </label>
+            <label block text-sm font-medium leading-6 mb-2> 图标 </label>
             <div>
               <WtButton size="sm" @click="formData.iconType = 'online'"
                 :type="formData.iconType === 'online' ? 'primary' : 'default'" text="在线图标" />
@@ -165,12 +165,12 @@ const setBgColor = (color: string | null, type: 1 | 2) => {
         </div>
 
         <div v-if="formData.iconType === 'text'">
-          <label for="name" block text-sm font-medium leading-6 mb-2> 图标名称 </label>
-          <WtInput :maxlength="10" v-model="formData.iconName" w-full placeholder="请输入图标名称" />
+          <label for="externalLinkIconName" block text-sm font-medium leading-6 mb-2> 图标名称 </label>
+          <WtInput id="externalLinkIconName" :maxlength="10" v-model="formData.iconName" w-full placeholder="请输入图标名称" />
         </div>
 
         <div>
-          <label for="name" block text-sm font-medium leading-6 mb-2> 背景色 </label>
+          <label block text-sm font-medium leading-6 mb-2> 背景色 </label>
 
           <div flex gap-2>
             <button class="color-item" v-for="item in colors" :key="item" h-5 w-5 rounded-full
