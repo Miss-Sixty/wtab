@@ -74,15 +74,16 @@ function onSettingsBase() {
 </script>
 
 <template>
-  <div overflow-hidden select-none touch-none class="pb-[var(safe-area-inset-bottom)] pt-[var(safe-area-inset-top)] ">
-    <ClientOnly>
+  <div overflow-hidden w-screen h-screen flex="~ col" select-none touch-none
+    class="pb-[var(safe-area-inset-bottom)] pt-[var(safe-area-inset-top)]">
+    <!-- <ClientOnly>
       <LayoutHomeTetris />
-    </ClientOnly>
-    <NuxtPage />
+    </ClientOnly> -->
     <Header @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti" />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu ref="contextMunuRef" @settings-base="onSettingsBase" @edit-mode="layoutStore.editMode = true"
       @del-widgets="layoutStore.delWidget(widgetData)">
     </ContextMenu>
+    <NuxtPage />
   </div>
 </template>

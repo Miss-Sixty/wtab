@@ -74,12 +74,12 @@ export default defineNuxtConfig({
     // '@vite-pwa/nuxt',
     'unplugin-info/nuxt'
   ],
-  devServer: {
+  // devServer: {
     // host: '0', // 监听所有地址
-    fs: {
-      strict: false,
-    },
-  },
+    // fs: {
+    //   strict: false,
+    // },
+  // },
   dayjs: {
     plugins: ['utc', 'timezone'],
     defaultLocale: 'zh-cn',

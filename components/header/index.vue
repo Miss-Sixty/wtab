@@ -31,10 +31,15 @@ async function ensurePermissionsa() {
   else
     alert('您已禁用通知，请在浏览器开启。')
 }
+
+const addBreakpoints = ()=>{
+  console.log(11);
+  
+}
 </script>
 
 <template>
-  <nav rounded-lg z-1 p="x2 y1.5" flex items-center gap-1.5>
+  <nav bg-red rounded-lg z-1 p="x2 y1.5" flex items-center gap-1.5>
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
       <WtIcon :icon="item.icon">
         {{ item.text }}
@@ -54,6 +59,7 @@ async function ensurePermissionsa() {
     </Transition> -->
 
     <div flex-auto />
+    <WtButton icon="i-solar-add-circle-linear" v-show="layoutStore.editMode" size="sm" round text="记录当前宽度布局" @click="addBreakpoints" />
     <WtButton type="primary" v-show="layoutStore.editMode" size="sm" round text="完成" @click="layoutStore.editMode = false" />
     <HeaderPremium />
     <ClientOnly>
