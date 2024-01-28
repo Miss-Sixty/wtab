@@ -1,11 +1,11 @@
-import { isCI, isDevelopment } from 'std-env'
+// import { isCI, isDevelopment } from 'std-env'
 import type { ModuleOptions } from '@vite-pwa/nuxt'
-import settings from './settings'
+// import settings from './settings'
 
-const { description, title } = settings
+// const { description, title } = settings
 
 export const pwa: ModuleOptions = {
-  mode: isCI ? 'production' : 'development',
+  // mode: isCI ? 'production' : 'development',
   scope: '/',
   srcDir: './service-worker',
   filename: 'sw.ts',

@@ -2,9 +2,7 @@
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // features: {
-  //   inlineStyles: false,
-  // },
+  ssr: process.env.VITE_DEV_VUE !== 'true',
   colorMode: {
     classSuffix: '',
   },
@@ -14,8 +12,8 @@ export default defineNuxtConfig({
     '~/styles/scrollbars.css'
   ],
   app: {
+    buildAssetsDir: 'assets', // don't use "_" at the begining of the folder name to avoids nojkill conflict
     head: {
-      title: 'WTab',
       viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
       link: [
         { rel: 'icon', sizes: 'any', type: 'image/svg+xml', href: '/miaomiao.svg' },
@@ -72,7 +70,7 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxt/image',
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
     'unplugin-info/nuxt'
   ],
   devServer: {
