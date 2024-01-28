@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '~/styles/scrollbars.css'
   ],
   app: {
+    baseURL:'/wtab/',
     buildAssetsDir: 'assets', // don't use "_" at the begining of the folder name to avoids nojkill conflict
     head: {
       viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
