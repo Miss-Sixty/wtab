@@ -48,6 +48,7 @@ async function getWebInfo() {
     const host = getUrls(formData.value.url, { stripWWW: false })
     const [firstHost = ''] = host || [];
     if (!firstHost) return;
+    formData.value.host = firstHost
 
     const { data }: any = await $fetch('/api/favicon', {
       method: 'get',
