@@ -7,7 +7,7 @@ const { layouts, baseMargin, baseSize, editMode, colsNum } = storeToRefs(layoutS
 </script>
 
 <template>
-  <main overflow-hidden flex-1 h-full justify-center bg-yellow p5>
+  <main overflow-hidden flex-1 h-full justify-center bg-yellow p6>
     <Grid v-model="layouts" :cols-num="colsNum" :base-size="baseSize" :base-margin="baseMargin" :edit-mode="editMode"
       v-slot="{ dragging }">
       <GridItem v-for="item in layouts" :id="item.id" :key="item.id"

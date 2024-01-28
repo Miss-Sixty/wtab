@@ -39,7 +39,7 @@ const addBreakpoints = ()=>{
 </script>
 
 <template>
-  <nav bg-red rounded-lg z-1 p="x2 y1.5" flex items-center gap-1.5>
+  <nav bg-red rounded-lg z-1 px2 flex items-center gap-1.5>
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
       <WtIcon :icon="item.icon">
         {{ item.text }}
@@ -59,14 +59,14 @@ const addBreakpoints = ()=>{
     </Transition> -->
 
     <div flex-auto />
+    <HeaderPremium />
     <WtButton icon="i-solar-add-circle-linear" v-show="layoutStore.editMode" size="sm" round text="记录当前宽度布局" @click="addBreakpoints" />
     <WtButton type="primary" v-show="layoutStore.editMode" size="sm" round text="完成" @click="layoutStore.editMode = false" />
-    <HeaderPremium />
-    <ClientOnly>
+    <!-- <ClientOnly>
       <HeaderAddPWA :class="opacityClass" />
       <WtIcon v-if="isSupported && !permissionGranted" :class="opacityClass" icon="i-solar-bell-bing-bold-duotone"
         @click="ensurePermissionsa" />
-    </ClientOnly>
+    </ClientOnly> -->
     <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
     <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold-duotone"
       @click="$emit('handleSettingIcon', settingIconRef)" />

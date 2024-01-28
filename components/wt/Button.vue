@@ -73,7 +73,6 @@ const typeClass = computed(() => {
     focus-visible="outline outline-2 outline-offset-1 outline-primary" disabled:opacity-50 dark:disabled:opacity-40
     disabled:cursor-not-allowed whitespace-nowrap 
     :class="[
-      'next-[button]-ml3',
       sizeClass,
       typeClass,
       round ? 'rounded-full' : 'rounded-md',

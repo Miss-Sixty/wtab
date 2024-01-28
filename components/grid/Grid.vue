@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import useGesture from './useGesture'
+import useLayoutStore from '@/stores/layout'
+const layoutStore = useLayoutStore()
 
 const props = defineProps({
   modelValue: {
@@ -22,21 +24,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
-
-const widthStyle = computed(() => `${props.colsNum * (props.baseSize + props.baseMargin) - props.baseMargin + 80}px`)
-const heightStyle = computed(() => {
-  let h = 0
-  let y = 0
-  props.modelValue.forEach((widget: any) => {
-    const widgetY = widget.position[props.colsNum][1]
-    const widgetH = Number(widget.widgetSize.split(':')[1])
-    if (widgetY + widgetH > y + h) {
-      h = widgetH
-      y = widgetY
-    }
-  })
-  return `${(y + h) * (props.baseSize + props.baseMargin) - props.baseMargin + 80}px`
 })
 
 const gridRef = ref<HTMLElement | null>(null)
@@ -75,11 +62,11 @@ const cursorClass = computed(() => {
 
 const handleRef = ref()
 const { width } = useWindowSize()
-const girdMaxWidth = computed(() => width.value - 40)
+const girdMaxWidth = computed(() => width.value - 48)
 const gridMinWidth = ref(640)
 const gridWidth = ref(girdMaxWidth.value)
 watch(width, val => {
-  if (gridWidth.value > val - 40) gridWidth.value = val - 40
+  if (gridWidth.value > val - 48) gridWidth.value = val - 48
   if (gridWidth.value < gridMinWidth.value) gridWidth.value = gridMinWidth.value
 })
 const { x } = useElementBounding(handleRef)
@@ -100,8 +87,8 @@ usePointerSwipe(handleRef, {
   <ClientOnly>
     <div ref="gridRef" relative mx-auto :style="{
       width: `${gridWidth}px`,
-    }" p10 rounded-lg ring-1 ring-slate-300 h-full>
-      <div absolute inset-y-0 left-full hidden items-center px-2 flex>
+    }" :class="{ 'ring-1': layoutStore.editMode }" p10 rounded-lg ring-slate-300 h-full>
+      <div absolute inset-y-0 left-full hidden items-center px-2 flex v-if="layoutStore.editMode">
         <div ref="handleRef" :class="[cursorClass]" h-8 w-1.5 rounded-full bg-slate-400></div>
       </div>
       <GridItem v-show="dragging" :id="placeholderData?.id" :key="placeholderData?.id" bg-violet-50
