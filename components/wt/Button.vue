@@ -68,12 +68,12 @@ const typeClass = computed(() => {
 
 <template>
   <button type="button" 
+    active:scale-96
     inline-flex items-center
     shadow-sm text-sm leading-none select-none touch-manipulation
     focus-visible="outline outline-2 outline-offset-1 outline-primary" disabled:opacity-50 dark:disabled:opacity-40
     disabled:cursor-not-allowed whitespace-nowrap 
     :class="[
-      'next-[button]-ml3',
       sizeClass,
       typeClass,
       round ? 'rounded-full' : 'rounded-md',

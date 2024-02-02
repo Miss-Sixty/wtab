@@ -71,9 +71,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'unplugin-info/nuxt'
   ],
-  devServer: {
-    // host: '0', // 监听所有地址
-  },
+  // devServer: {
+  //   host: '0', // 监听所有地址
+  // },
   dayjs: {
     plugins: ['utc', 'timezone'],
     defaultLocale: 'zh-cn',

@@ -77,9 +77,9 @@ function onSettingsBase() {
   <div overflow-hidden select-none touch-none class="pb-[var(safe-area-inset-bottom)] pt-[var(safe-area-inset-top)] ">
     <ClientOnly>
       <LayoutHomeTetris />
+      <Header @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti" />
     </ClientOnly>
     <NuxtPage />
-    <Header @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti" />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu ref="contextMunuRef" @settings-base="onSettingsBase" @edit-mode="layoutStore.editMode = true"
       @del-widgets="layoutStore.delWidget(widgetData)">
