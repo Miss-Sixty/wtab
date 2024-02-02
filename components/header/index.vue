@@ -55,13 +55,13 @@ async function ensurePermissionsa() {
 
     <div flex-auto />
     <WtButton type="primary" v-show="layoutStore.editMode" size="sm" round text="完成" @click="layoutStore.editMode = false" />
-    <HeaderPremium />
-    <ClientOnly>
+    <!-- <HeaderPremium /> -->
+    <!-- <ClientOnly>
       <HeaderAddPWA :class="opacityClass" />
       <WtIcon v-if="isSupported && !permissionGranted" :class="opacityClass" icon="i-solar-bell-bing-bold-duotone"
         @click="ensurePermissionsa" />
-    </ClientOnly>
-    <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" />
+    </ClientOnly> -->
+    <!-- <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" /> -->
     <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold-duotone"
       @click="$emit('handleSettingIcon', settingIconRef)" />
   </nav>

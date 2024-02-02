@@ -1,5 +1,3 @@
-// import { pwa } from './config/pwa'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: process.env.VITE_DEV_VUE !== 'true',
@@ -71,19 +69,14 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxt/image',
-    // '@vite-pwa/nuxt',
     'unplugin-info/nuxt'
   ],
   devServer: {
     // host: '0', // 监听所有地址
-    fs: {
-      strict: false,
-    },
   },
   dayjs: {
     plugins: ['utc', 'timezone'],
     defaultLocale: 'zh-cn',
     defaultTimezone: 'Asia/Shanghai',
   },
-  // pwa,
 })
