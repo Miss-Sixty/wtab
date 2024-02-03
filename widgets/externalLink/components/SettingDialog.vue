@@ -141,15 +141,7 @@ const radioTabData = [
         <div>
           <div flex gap-2>
             <label block text-sm font-medium leading-6 mb-2> 图标 </label>
-            <div>
-              <WtSegmented v-model="formData.iconType" :list="radioTabData" />
-              <!-- <WtButton size="sm" @click="formData.iconType = 'online'"
-                :type="formData.iconType === 'online' ? 'primary' : 'default'" text="在线图标" />
-              <WtButton size="sm" @click="formData.iconType = 'text'"
-                :type="formData.iconType === 'text' ? 'primary' : 'default'" text="文字图标" />
-              <WtButton size="sm" @click="formData.iconType = 'upload'"
-                :type="formData.iconType === 'upload' ? 'primary' : 'default'" text="上传图标" /> -->
-            </div>
+            <WtSegmented v-model="formData.iconType" :list="radioTabData" />
           </div>
           <ul grid flex gap-2 mt-1 v-show="formData.iconType === 'online'">
             <li v-for="(item, i) in icons" :key="i" cursor-pointer
@@ -192,7 +184,7 @@ const radioTabData = [
         </div>
       </div>
 
-      <div flex justify-end pt4 pb3 px6>
+      <div flex justify-end pt4 pb3 gap3>
         <WtButton text="取消" @click="closed" />
         <WtButton text="确定" type="primary" @click="onSubmit" />
       </div>
