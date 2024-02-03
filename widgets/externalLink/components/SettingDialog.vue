@@ -114,6 +114,12 @@ const setBgColor = (color: string | null, type: 1 | 2) => {
   formData.value.iconBgColor = color
   formData.value.iconColorType = type
 }
+
+const radioTabData = [
+  { label: '在线图标', value: 'online' },
+  { label: '文字图标', value: 'text' },
+  { label: '上传图标', value: 'upload', disabled: true },
+]
 </script>
 
 <template>
@@ -132,17 +138,17 @@ const setBgColor = (color: string | null, type: 1 | 2) => {
           <label for="externalLinkName" block text-sm font-medium leading-6 mb-2> 网站名称 </label>
           <WtInput id="externalLinkName" v-model="formData.name" w-full placeholder="请输入网站名称" />
         </div>
-
         <div>
           <div flex gap-2>
             <label block text-sm font-medium leading-6 mb-2> 图标 </label>
             <div>
-              <WtButton size="sm" @click="formData.iconType = 'online'"
+              <WtSegmented v-model="formData.iconType" :list="radioTabData" />
+              <!-- <WtButton size="sm" @click="formData.iconType = 'online'"
                 :type="formData.iconType === 'online' ? 'primary' : 'default'" text="在线图标" />
               <WtButton size="sm" @click="formData.iconType = 'text'"
                 :type="formData.iconType === 'text' ? 'primary' : 'default'" text="文字图标" />
               <WtButton size="sm" @click="formData.iconType = 'upload'"
-                :type="formData.iconType === 'upload' ? 'primary' : 'default'" text="上传图标" />
+                :type="formData.iconType === 'upload' ? 'primary' : 'default'" text="上传图标" /> -->
             </div>
           </div>
           <ul grid flex gap-2 mt-1 v-show="formData.iconType === 'online'">
