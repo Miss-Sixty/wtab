@@ -64,7 +64,6 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
-    'nuxt-swiper',
     '@pinia/nuxt',
     'dayjs-nuxt',
     '@pinia-plugin-persistedstate/nuxt',
