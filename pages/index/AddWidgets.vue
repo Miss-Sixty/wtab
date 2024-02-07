@@ -1,8 +1,6 @@
 <script setup>
-import { Navigation, Pagination } from 'swiper/modules'
 import widgetJson from '@/widgets'
 
-const modules = [Pagination, Navigation]
 const widgetList = shallowRef()
 async function init() {
   const res = await widgetJson()
@@ -16,7 +14,7 @@ init()
   <DialogPage title="添加小组件" :width="1024">
     <div class="grid grid-cols-1 gap-3 lg:grid-cols-2">
       <div v-for="(list, i) in widgetList" :key="i" flex h-96 flex-col overflow-hidden rounded-lg class="bg-black/10">
-        <div w-full flex-1 navigation loop pagination :modules="modules">
+        <div w-full flex-1 navigation loop pagination>
           <div v-for="(data, j) in list.sizes" :key="j">
             <div flex items-center justify-center h-full>
               <WidgetsContainer id="widgets-container" type="add" :size="data.size" :shadow="list.shadow"
@@ -36,25 +34,3 @@ init()
     </div>
   </DialogPage>
 </template>
-
-<style>
-.swiper-button-prev,
-.swiper-button-next {
-  width: 28px;
-  border-radius: 50%;
-  background: #B1B9C0;
-  height: 28px;
-}
-
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background: #9DA4AA;
-}
-
-:root {
-  --swiper-navigation-size: 12px;
-  --swiper-navigation-top-offset: 50%;
-  --swiper-navigation-sides-offset: 10px;
-  --swiper-navigation-color: #fff;
-}
-</style>
