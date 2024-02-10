@@ -20,21 +20,7 @@ export default defineConfig({
         900: `rgba(var(--wt-primary-900))`,
         950: `rgba(var(--wt-primary-950))`,
         DEFAULT: `rgba(var(--wt-primary-500))`,
-      },
-      gray: {
-        50: `rgba(var(--wt-gray-50))`,
-        100: `rgba(var(--wt-gray-100))`,
-        200: `rgba(var(--wt-gray-200))`,
-        300: `rgba(var(--wt-gray-300))`,
-        400: `rgba(var(--wt-gray-400))`,
-        500: `rgba(var(--wt-gray-500))`,
-        600: `rgba(var(--wt-gray-600))`,
-        700: `rgba(var(--wt-gray-700))`,
-        800: `rgba(var(--wt-gray-800))`,
-        900: `rgba(var(--wt-gray-900))`,
-        950: `rgba(var(--wt-gray-950))`,
-        DEFAULT: `rgba(var(--wt-gray-500))`,
-      },
+      }
     },
     breakpoints: {
       sm: `${40 * 16}px`,

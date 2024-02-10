@@ -5,10 +5,8 @@ import type { ColorPalette, Colors } from '@/types/index'
 type Shade = keyof ColorPalette
 
 const primaryColors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose']
-const grayColors = ['slate', 'gray', 'zinc', 'neutral', 'stone']
 const colorPalette = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950']
 const filteredPrimaryColors = filteredColors(primaryColors, colorPalette)
-const filteredGrayColors = filteredColors(grayColors, colorPalette)
 // 将 colors 中的颜色值过滤出 colorPalette 中的颜色值
 function filteredColors(colorsName: Array<string>, colorPalette: Array<string>) {
   return Object.fromEntries(
@@ -21,26 +19,15 @@ function filteredColors(colorsName: Array<string>, colorPalette: Array<string>) 
   ) as unknown as Record<string, ColorPalette>
 }
 
-// merge the primary colors and the gray colors
-const filteredColorsAll = {
-  ...filteredPrimaryColors,
-  ...filteredGrayColors,
-} as Record<string, ColorPalette>
-
 export function useUnaThemes() {
   const primaryThemes = Object.entries(filteredPrimaryColors).map(([color]) => [
     color,
     getColors(color, 'primary'),
   ]) as [string, Colors][]
 
-  const grayThemes = Object.entries(filteredGrayColors).map(([color]) => [
-    color,
-    getColors(color, 'gray'),
-  ]) as [string, Colors][]
-
   // transfer to utils
   function getColors(color: string, prefix: string): Colors {
-    const colorPalette: ColorPalette = filteredColorsAll[color]
+    const colorPalette: ColorPalette = filteredPrimaryColors[color]
     const colors = {} as Required<Colors> // Initialize an empty object to store the theme colors
 
     colors[`--wt-${prefix}-hex`] = colorPalette[500] as string // Assign the primary color hex code to the corresponding theme variable
@@ -55,14 +42,8 @@ export function useUnaThemes() {
     return primaryThemes.filter(([colorName, _]) => colorName === color)[0][1]
   }
 
-  function getGrayColors(color: string) {
-    return grayThemes.filter(([colorName, _]) => colorName === color)[0][1]
-  }
-
   return {
     primaryThemes,
-    grayThemes,
     getPrimaryColors,
-    getGrayColors,
   }
 }

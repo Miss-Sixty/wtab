@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import useLayoutStore from '@/stores/layout'
 import useAppStore from '@/stores/app'
-import ColorPicker from './components/color-picker/ColorPicker.vue'
+import ColorPicker from './components/ColorPicker.vue'
 import ThemeSelect from './components/ThemeSelect.vue'
 import { downloadConfig, uploadConfig } from '@/composables/useDownload'
 
@@ -90,7 +90,7 @@ onChange(async (files) => {
     <div w-full flex items-center>
       <div sm:mr-5 mr-4 text-2xl :class="item.icon" />
       <div w-full text-left>
-        <p>
+        <p py2>
           {{ item.title }}
         </p>
         <p text-gray-400 text-xs>

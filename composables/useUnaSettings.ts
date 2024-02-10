@@ -7,20 +7,17 @@ import { useAppConfig } from '#imports'
 export function useUnaSettings() {
   const { ui } = useAppConfig()
 
-  const { getPrimaryColors, getGrayColors } = useUnaThemes()
+  const { getPrimaryColors } = useUnaThemes()
 
   const defaultSettings: UnaSettings = {
     primaryColors: getPrimaryColors(ui.primary),
-    grayColors: getGrayColors(ui.gray),
     primary: ui.primary,
-    gray: ui.gray,
   } as const
 
   const settings = useStorage('wtab-settings', defaultSettings)
 
   watchEffect(() => {
     settings.value.primaryColors = getPrimaryColors(settings.value.primary)
-    settings.value.grayColors = getGrayColors(settings.value.gray)
   })
 
   return {
