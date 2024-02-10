@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computePosition, flip, shift } from '@floating-ui/dom'
 
-const emit = defineEmits(['settingsBase', 'addWidgets', 'editMode', 'delWidgets', 'closed'])
+const emit = defineEmits(['editMode', 'delWidgets', 'closed'])
 
 function originMiddlewareFn(type: string) {
   const placementMap: any = {
@@ -68,7 +68,7 @@ async function open(config = {}) {
 const menuList = [
   [{ label: '常规设置', type: 'settingsBase', to: '/settings' }],
   [
-    { label: '添加小组件', type: 'addWidgets', to: '/addWidgets' },
+    { label: '添加小组件', type: 'addWidgets', to: '/widgets' },
     { label: '编辑桌面', type: 'editMode' },
     { label: '删除此小组件', type: 'delWidgets', visibles: ['widget'] },
   ],

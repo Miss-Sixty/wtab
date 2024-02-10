@@ -68,9 +68,6 @@ async function onConfetti() {
 }
 
 const router = useRouter()
-function onSettingsBase() {
-  router.push('/settings')
-}
 </script>
 
 <template>
@@ -81,7 +78,7 @@ function onSettingsBase() {
     </ClientOnly>
     <NuxtPage />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
-    <ContextMenu ref="contextMunuRef" @settings-base="onSettingsBase" @edit-mode="layoutStore.editMode = true"
+    <ContextMenu ref="contextMunuRef" @edit-mode="layoutStore.editMode = true"
       @del-widgets="layoutStore.delWidget(widgetData)">
     </ContextMenu>
   </div>

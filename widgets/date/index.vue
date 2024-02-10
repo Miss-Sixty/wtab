@@ -68,7 +68,7 @@ const onClick = () => {
     <div text-18 leading-none>
       {{ time }}
     </div>
-    <div text-5>
+    <div whitespace-nowrap text-5>
       {{ date }}{{ YMD }}
     </div>
     <SettingDialog v-model="dialogSettingVisible" />
