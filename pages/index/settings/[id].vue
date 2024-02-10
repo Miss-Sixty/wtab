@@ -4,6 +4,7 @@ import useAppStore from '@/stores/app'
 import ColorPicker from './components/ColorPicker.vue'
 import ThemeSelect from './components/ThemeSelect.vue'
 import { downloadConfig, uploadConfig } from '@/composables/useDownload'
+import { useUnaSettings } from '@/composables/useUnaSettings'
 
 const layoutStore: any = useLayoutStore()
 const appStore: any = useAppStore()
@@ -36,10 +37,6 @@ const menuData = {
 
 const list = computed(() => menuData[route.params.id])
 
-
-
-
-
 async function exportFile() {
   const _wtabSettings = localStorage.getItem('wtab-settings')
   const _nuxtColorMode = localStorage.getItem('nuxt-color-mode')
@@ -49,11 +46,15 @@ async function exportFile() {
 }
 
 
+
 function resetData() {
   const layoutStore: any = useLayoutStore()
   const appStore: any = useAppStore()
   layoutStore.$reset()
   appStore.$reset()
+  const { settings } = useUnaSettings()
+  const appConfig = useAppConfig()
+  settings.value.primary = appConfig.ui.primary
 }
 
 

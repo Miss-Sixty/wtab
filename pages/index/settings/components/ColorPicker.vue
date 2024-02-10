@@ -15,6 +15,8 @@ const currentPrimaryThemeName = computed(() => {
 
 // update theme in storage
 function updatePrimaryTheme(theme: string) {
+  console.log(11,theme);
+  
   settings.value.primary = theme
 }
 </script>
