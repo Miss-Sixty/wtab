@@ -3,7 +3,7 @@ import configs from '@/config/settings'
 import dayjs from 'dayjs'
 import now from '~build/time'
 import { version } from '~build/package';
-import miaomiao from '~/public/miaomiao.svg?url'
+import miaomiao from '/miaomiao.svg?url'
 const buildTime = dayjs(now).format('YYYY-MM-DD HH:mm:ss')
 const links = [
   {

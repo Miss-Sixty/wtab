@@ -16,25 +16,24 @@
     "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/miaomiao.svg"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.1",
+    "@floating-ui/dom": "^1.6.3",
     "@headlessui/vue": "^1.7.19",
     "@neoconfetti/vue": "^2.2.1",
     "@pinia/nuxt": "^0.5.1",
-    "@vercel/speed-insights": "^1.0.9",
     "canvas-confetti": "^1.9.2",
     "crypto-js": "^4.2.0",
     "get-urls": "^12.1.0",
     "jsdom": "^24.0.0",
-    "nanoid": "^5.0.5",
+    "nanoid": "^5.0.6",
     "unplugin-info": "^1.1.0",
     "zipson": "^0.2.12"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.6.4",
+    "@antfu/eslint-config": "^2.8.0",
     "@iconify-json/solar": "^1.1.9",
-    "@iconify/json": "^2.2.181",
+    "@iconify/json": "^2.2.189",
     "@nuxt/devtools": "latest",
-    "@nuxt/image": "^1.3.0",
+    "@nuxt/image": "^1.4.0",
     "@nuxtjs/color-mode": "^3.3.2",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@types/canvas-confetti": "^1.6.4",
@@ -42,14 +41,13 @@
     "@types/jsdom": "^21.1.6",
     "@unocss/nuxt": "^0.58.5",
     "@unocss/preset-icons": "^0.58.5",
-    "@vercel/analytics": "^1.1.3",
-    "@vite-pwa/assets-generator": "^0.2.3",
-    "@vite-pwa/nuxt": "^0.4.0",
-    "@vueuse/nuxt": "^10.7.2",
+    "@vite-pwa/assets-generator": "^0.2.4",
+    "@vite-pwa/nuxt": "^0.5.0",
+    "@vueuse/nuxt": "^10.9.0",
     "dayjs-nuxt": "^2.1.9",
-    "nuxt": "^3.10.1",
-    "tsx": "^4.7.0",
-    "vue": "^3.4.18",
-    "vue-router": "^4.2.5"
+    "nuxt": "^3.10.3",
+    "tsx": "^4.7.1",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   }
 }
