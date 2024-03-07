@@ -80,8 +80,8 @@ devDependencies:
     specifier: ^0.2.4
     version: 0.2.4
   '@vite-pwa/nuxt':
-    specifier: ^0.5.0
-    version: 0.5.0(@vite-pwa/assets-generator@0.2.4)(rollup@2.79.1)(vite@5.1.5)(workbox-build@7.0.0)(workbox-window@7.0.0)
+    specifier: ^0.6.0
+    version: 0.6.0(@vite-pwa/assets-generator@0.2.4)(rollup@2.79.1)(vite@5.1.5)(workbox-build@7.0.0)(workbox-window@7.0.0)
   '@vueuse/nuxt':
     specifier: ^10.9.0
     version: 10.9.0(nuxt@3.10.3)(rollup@2.79.1)(vue@3.4.21)
@@ -3741,15 +3741,20 @@ packages:
       unconfig: 0.3.11
     dev: true
 
-  /@vite-pwa/nuxt@0.5.0(@vite-pwa/assets-generator@0.2.4)(rollup@2.79.1)(vite@5.1.5)(workbox-build@7.0.0)(workbox-window@7.0.0):
-    resolution: {integrity: sha512-5Si0Qpj9FGYmgrX52HJtY1OZKNDXJVmx17yULk0Karb7+6GKXhRcWP3DnFTEG7zkctXuzBli5sXjQaEEbEgy6w==}
+  /@vite-pwa/nuxt@0.6.0(@vite-pwa/assets-generator@0.2.4)(rollup@2.79.1)(vite@5.1.5)(workbox-build@7.0.0)(workbox-window@7.0.0):
+    resolution: {integrity: sha512-oW2fQ18yC7p81F4NeZe7y14dqzWR0IBljoEp5Ns2hHh44EyBsPP8kdFYqDOLJsbVGjqZdSmWdxESgLfT3SGpLA==}
+    peerDependencies:
+      '@vite-pwa/assets-generator': ^0.2.4
+    peerDependenciesMeta:
+      '@vite-pwa/assets-generator':
+        optional: true
     dependencies:
       '@nuxt/kit': 3.10.3(rollup@2.79.1)
+      '@vite-pwa/assets-generator': 0.2.4
       pathe: 1.1.2
       ufo: 1.4.0
       vite-plugin-pwa: 0.19.2(@vite-pwa/assets-generator@0.2.4)(vite@5.1.5)(workbox-build@7.0.0)(workbox-window@7.0.0)
     transitivePeerDependencies:
-      - '@vite-pwa/assets-generator'
       - rollup
       - supports-color
       - vite
@@ -7521,6 +7526,7 @@ packages:
 
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
+    requiresBuild: true
     dev: true
 
   /merge-stream@2.0.0:
@@ -11125,6 +11131,7 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0
