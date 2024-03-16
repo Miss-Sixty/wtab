@@ -64,7 +64,7 @@ const onClick = () => {
 </script>
 
 <template>
-  <div flex items-center justify-center flex-col rounded-lg tabular-nums @click="onClick">
+  <div color-white text-shadow-md flex items-center justify-center flex-col rounded-lg tabular-nums @click="onClick">
     <div text-17 leading-none>
       {{ time }}
     </div>
