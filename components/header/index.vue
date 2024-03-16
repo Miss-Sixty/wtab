@@ -2,6 +2,8 @@
 import type { UseWebNotificationOptions } from '@vueuse/core'
 import useLayoutStore from '@/stores/layout'
 import useAppStore from '@/stores/app'
+import { useFullscreen } from '@vueuse/core'
+const { isFullscreen, enter, exit, toggle } = useFullscreen()
 
 defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker', 'handleCalendarIcon'])
 const appStore = useAppStore()
@@ -62,6 +64,8 @@ async function ensurePermissionsa() {
         @click="ensurePermissionsa" />
     </ClientOnly> -->
     <!-- <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" /> -->
+    <WtIcon  :class="opacityClass" icon="i-solar-full-screen-square-bold-duotone"
+      @click="toggle" />
     <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold-duotone"
       @click="$emit('handleSettingIcon', settingIconRef)" />
   </nav>

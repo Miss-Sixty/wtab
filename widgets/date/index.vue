@@ -65,10 +65,10 @@ const onClick = () => {
 
 <template>
   <div flex items-center justify-center flex-col rounded-lg tabular-nums @click="onClick">
-    <div text-18 leading-none>
+    <div text-17 leading-none>
       {{ time }}
     </div>
-    <div whitespace-nowrap text-5>
+    <div whitespace-nowrap text-4>
       {{ date }}{{ YMD }}
     </div>
     <SettingDialog v-model="dialogSettingVisible" />
