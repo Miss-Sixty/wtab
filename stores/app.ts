@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia'
+import settings from '@/config/settings'
 
+const { app } = settings
 export default defineStore('appStore', () => {
   const formatClock = ref('YYYY-MM-DD HH:mm:ss')
   const date = ref(+new Date())
-  const headerConstant = ref(true)
+  const headerConstant = ref(app.headerConstant)
   const calendar: any = shallowRef([]) //假期数据
 
   // let timer: ReturnType<typeof rAF> | undefined

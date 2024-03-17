@@ -7,6 +7,10 @@ export default {
   theme: 'auto', // 默认主题
   color: '', // 主色调
 
+  app: {
+    headerConstant: 'false', // 头部是否透明
+  },
+
   layout: {
     breakpoints: { // 布局 key-4个最小卡片 value-屏幕分辨率
       4: 366,
