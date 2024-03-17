@@ -7,7 +7,7 @@ export default {
   },
   sizes: [
     {
-      size: '4:2',
+      size: ':2',
       singleRow: true// 独占一行
     },
   ]

@@ -5,30 +5,32 @@ import { nanoid } from 'nanoid/non-secure'
 import settings from '@/config/settings'
 
 const { layout } = settings
-function findPosition([widgetW, widgetH]: [any, number], layouts: any, colsNum: number) {
-  for (let y = 0; ; y++) {
-    for (let x = 0; x <= colsNum - widgetW; x++) {
-      let canPlace = true
-      for (let i = 0; i < layouts.length; i++) {
-        const rect = layouts[i]
-        const [rectX, rectY] = rect.position[colsNum]
-        let [rectW, rectH] = rect.widgetSize.split(':').map(Number)
-        const { singleRow } = rect.widgetData
-        if (singleRow) rectW = colsNum
-        if (
-          x <= rectX + (rectW || widgetW) - 1
-          && x + widgetW - 1 >= rectX
-          && y <= rectY + rectH - 1
-          && y + widgetH - 1 >= rectY
-        ) {
-          canPlace = false
-          break
-        }
-      }
-      if (canPlace)
-        return [x, y]
+function findPosition(widget:any,layouts: any, colsNum: number) {
+  let maxX = 0
+  let maxY = 0
+  let itemWH 
+  layouts.forEach((item: any) => {
+    const { position,widgetData } = item
+    const {size,singleRow} = widgetData
+    let [x, y] = position[colsNum]
+    itemWH = size.split(':').map(Number)
+    if(singleRow) itemWH[0] = colsNum
+    if(y>maxY)  maxY = y
+    if(x>maxX)  maxX = x
+
+    const widgetWH = size.split(':').map(Number)
+    if(widget.singleRow) widgetWH[0] = colsNum
+
+    if(maxX+itemWH[0]>colsNum||singleRow||maxX+itemWH[0]+widgetWH[0]>colsNum) {
+      maxX = 0
+      maxY = maxY+itemWH[1]
+    }else{
+      maxX = maxX+itemWH[0]
+      maxY = maxY
     }
-  }
+    
+  })
+  return [maxX, maxY]
 }
 
 export default defineStore('layoutStore', () => {
@@ -52,7 +54,6 @@ export default defineStore('layoutStore', () => {
 
   const addWidget = (widget: any, component: 'string', size: string, shadow: boolean) => {
     const position: any = {} // 布局位置
-    const [w, h] = size.split(':').map(Number)
 
     for (const colsNum in breakpoints.value) {
       // 首次添加
@@ -60,7 +61,7 @@ export default defineStore('layoutStore', () => {
         position[colsNum] = [0, 0]
         continue
       }
-      const [x, y] = findPosition([w, h], layouts.value, +colsNum)
+      const [x, y] = findPosition(widget,layouts.value, +colsNum)
       position[colsNum] = [x, y]
     }
     const id = `${component}-${nanoid()}`
