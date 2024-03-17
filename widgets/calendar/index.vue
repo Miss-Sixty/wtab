@@ -63,10 +63,9 @@ if (!router.hasRoute('index-calendar')) {
 
 <template>
   <div bg-white cursor-pointer w-full h-full flex flex-col rounded-lg py1 px2 relative overflow-hidden>
-    <NuxtLink to="/calendar">
-      <div absolute opacity-10 i-solar-calendar-mark-bold-duotone class="-rotate-30 -right-2.5"
-        text-primary
-        :style="{ height: minSize + 'px', width: minSize + 'px' }" />
+    <NuxtLink v-slot="{ navigate }" custom to="/calendar">
+      <div @click="!dragging && navigate()" absolute opacity-10 i-solar-calendar-mark-bold-duotone
+        class="-rotate-30 -right-2.5" text-primary :style="{ height: minSize + 'px', width: minSize + 'px' }" />
       <component :is="components[`size${size.replace(':','x')}`]" :data="days" />
     </NuxtLink>
   </div>
