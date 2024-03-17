@@ -5,7 +5,7 @@
 
 <style scoped>
 .bg {
-  background-image: url('/bg2.jpg');
+  background-image: url('/bg/bg1.heic');
 }
 
 /* .bg {
