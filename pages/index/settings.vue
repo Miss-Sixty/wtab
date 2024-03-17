@@ -17,46 +17,25 @@ const showLeftSection = computed(() => md.value && route.path !== '/settings')
 const showRightSection = computed(() => md.value && route.path === '/settings')
 
 const list = [
-  { title: '样式设置', path: '/settings/style' },
-  { title: '头部设置', path: '/settings/base' },
-  { title: '布局设置', path: '/settings/layout' },
-  { title: '数据设置', path: '/settings/data' },
+  { title: '基础设置', path: '/settings/base' },
 ]
 </script>
 
 <template>
   <ClientOnly>
-    <DialogPage title="基础设置" :width="1024" :back-router="showLeftSection ? '/settings' : ''">
+    <DialogPage title="设置" :width="1024" :back-router="showLeftSection ? '/settings' : ''">
       <div flex h-full>
-        <section
-          v-if="!showLeftSection"
-          md:border-r
-          pr-0 h-full md:pr-6
-          class="basis-full md:basis-2/5"
-          space-y-1
-        >
-          <NuxtLink
-            v-for="(item, i) in list"
-            :key="i"
-            v-slot="{ navigate, isActive }"
-            :to="item.path" custom
-          >
-            <button
-              type="button"
-              hover:bg-primary-50
-              :class="isActive ? 'bg-primary-50' : ''"
-              flex justify-between items-center w-full rounded-md
-              p3 text-sm
-
-              @click="navigate"
-            >
+        <section v-if="!showLeftSection" md:border-r pr-0 h-full md:pr-6 class="basis-full md:basis-2/5" space-y-1>
+          <NuxtLink v-for="(item, i) in list" :key="i" v-slot="{ navigate, isActive }" :to="item.path" custom>
+            <button type="button" hover:bg-primary-50 :class="isActive ? 'bg-primary-50' : ''" flex justify-between
+              items-center w-full rounded-md p3 text-sm @click="navigate">
               <p>{{ item.title }}</p>
               <div i-solar-alt-arrow-right-linear />
             </button>
           </NuxtLink>
         </section>
 
-        <section v-if="!showRightSection" class="basis-full md:basis-3/5" space-y-1 pl-0 md:pl-3>
+        <section v-if="!showRightSection" class="basis-full md:basis-3/5" overflow-y-auto space-y-1 pl-0 md:pl-3 pb-3>
           <NuxtPage />
         </section>
       </div>
