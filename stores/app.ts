@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import settings from '@/config/settings'
+import useLayoutStore from '@/stores/layout'
+import { useUnaSettings } from '@/composables/useUnaSettings'
 
 const { app } = settings
 export default defineStore('appStore', () => {
@@ -45,13 +47,23 @@ export default defineStore('appStore', () => {
     calendar.value = []
   }
 
+  function resetData() {
+    const layoutStore: any = useLayoutStore()
+    layoutStore.$reset()
+    $reset
+    const { settings } = useUnaSettings()
+    const appConfig = useAppConfig()
+    settings.value.primary = appConfig.ui.primary
+  }
+
   return {
     formatClock,
     date,
     headerConstant,
     $reset,
     calendar,
-    getCalendar
+    getCalendar,
+    resetData
   }
 }, {
   persist: {

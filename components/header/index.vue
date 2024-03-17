@@ -31,6 +31,11 @@ async function ensurePermissionsa() {
   else
     alert('您已禁用通知，请在浏览器开启。')
 }
+
+const messageBoxVisible = ref(false)
+const confirm = () => {
+  appStore.resetData()
+}
 </script>
 
 <template>
@@ -54,7 +59,11 @@ async function ensurePermissionsa() {
     </Transition> -->
 
     <div flex-auto />
-    <WtButton type="primary" v-show="layoutStore.editMode" size="sm" round text="完成" @click="layoutStore.editMode = false" />
+    <ResetDataBtn v-slot="{ show }">
+      <WtButton type="danger" v-show="layoutStore.editMode" size="sm" round text="重置数据" @click="show" />
+    </ResetDataBtn>
+    <WtButton type="primary" v-show="layoutStore.editMode" size="sm" round text="完成"
+      @click="layoutStore.editMode = false" />
     <!-- <HeaderPremium /> -->
     <!-- <ClientOnly>
       <HeaderAddPWA :class="opacityClass" />

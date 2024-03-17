@@ -4,7 +4,6 @@ import useAppStore from '@/stores/app'
 import ColorPicker from './components/ColorPicker.vue'
 import ThemeSelect from './components/ThemeSelect.vue'
 import { downloadConfig, uploadConfig } from '@/composables/useDownload'
-import { useUnaSettings } from '@/composables/useUnaSettings'
 
 const layoutStore: any = useLayoutStore()
 const appStore: any = useAppStore()
@@ -30,7 +29,7 @@ const menuData = {
   data: [
     { title: '导出数据', type: 'button', props: { text: '导 出', type: 'primary', icon: 'i-solar-export-linear' }, desc: '导出所有数据到本地', icon: 'i-solar-upload-square-broken', fn: exportFile },
     { title: '导入数据', type: 'button', props: { text: '导 入', type: 'primary', icon: 'i-solar-import-linear' }, desc: '将本地数据导入，会覆盖已有数据', icon: 'i-solar-download-square-broken', fn: open },
-    { title: '重置数据', type: 'button', props: { text: '重 置', type: 'danger', icon: 'i-solar-restart-bold' }, desc: '将所有数据重置到默认数据', icon: 'i-solar-restart-square-broken', fn: resetData },
+    { title: '重置数据', type: 'button', key: 'resetData', props: { text: '重 置', type: 'danger', icon: 'i-solar-restart-bold' }, desc: '将所有数据重置到默认数据', icon: 'i-solar-restart-square-broken', },
   ],
 } as any
 
@@ -44,20 +43,6 @@ async function exportFile() {
   const _appStore = localStorage.getItem('appStore')
   downloadConfig({ _wtabSettings, _nuxtColorMode, _layoutStore, _appStore })
 }
-
-
-
-function resetData() {
-  const layoutStore: any = useLayoutStore()
-  const appStore: any = useAppStore()
-  layoutStore.$reset()
-  appStore.$reset()
-  const { settings } = useUnaSettings()
-  const appConfig = useAppConfig()
-  settings.value.primary = appConfig.ui.primary
-}
-
-
 
 onChange(async (files) => {
   const layoutStore: any = useLayoutStore()
@@ -104,7 +89,8 @@ onChange(async (files) => {
       <WtSwitch v-if="item.type === 'switch'" v-model="appStore[item.switchModel]" @click.stop />
       <WtInput v-if="item.type === 'inputNumber'" v-model.number="layoutStore[item.switchModel]" placeholder="请输入"
         @click.stop />
-      <WtButton v-if="item.type === 'button'" v-bind="item.props" @click.stop="item.fn" />
+      <ResetDataBtn v-if="item.key === 'resetData'" v-bind="item.props" />
+      <WtButton v-else-if="item.type === 'button'" v-bind="item.props" @click.stop="item.fn" />
     </div>
   </button>
 </template>
