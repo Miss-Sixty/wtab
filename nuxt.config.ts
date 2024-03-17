@@ -66,13 +66,12 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@pinia/nuxt',
     'dayjs-nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
     '@nuxt/image',
     'unplugin-info/nuxt'
   ],
-  // devServer: {
-  //   host: '0', // 监听所有地址
-  // },
+  devServer: {
+    host: '0', // 监听所有地址
+  },
   dayjs: {
     plugins: ['utc', 'timezone'],
     defaultLocale: 'zh-cn',

@@ -65,10 +65,5 @@ export default defineStore('appStore', () => {
     getCalendar,
     resetData
   }
-}, {
-  persist: {
-    paths: ['formatClock', 'headerConstant', 'calendar'],
-    storage: persistedState.localStorage,
-  }
 })
 

@@ -5,30 +5,30 @@ import { nanoid } from 'nanoid/non-secure'
 import settings from '@/config/settings'
 
 const { layout } = settings
-function findPosition(widget:any,layouts: any, colsNum: number) {
+function findPosition(widget: any, layouts: any, colsNum: number) {
   let maxX = 0
   let maxY = 0
-  let itemWH 
+  let itemWH
   layouts.forEach((item: any) => {
-    const { position,widgetData } = item
-    const {size,singleRow} = widgetData
+    const { position, widgetData } = item
+    const { size, singleRow } = widgetData
     let [x, y] = position[colsNum]
     itemWH = size.split(':').map(Number)
-    if(singleRow) itemWH[0] = colsNum
-    if(y>maxY)  maxY = y
-    if(x>maxX)  maxX = x
+    if (singleRow) itemWH[0] = colsNum
+    if (y > maxY) maxY = y
+    if (x > maxX) maxX = x
 
     const widgetWH = size.split(':').map(Number)
-    if(widget.singleRow) widgetWH[0] = colsNum
+    if (widget.singleRow) widgetWH[0] = colsNum
 
-    if(maxX+itemWH[0]>colsNum||singleRow||maxX+itemWH[0]+widgetWH[0]>colsNum) {
+    if (maxX + itemWH[0] > colsNum || singleRow || maxX + itemWH[0] + widgetWH[0] > colsNum) {
       maxX = 0
-      maxY = maxY+itemWH[1]
-    }else{
-      maxX = maxX+itemWH[0]
+      maxY = maxY + itemWH[1]
+    } else {
+      maxX = maxX + itemWH[0]
       maxY = maxY
     }
-    
+
   })
   return [maxX, maxY]
 }
@@ -61,7 +61,7 @@ export default defineStore('layoutStore', () => {
         position[colsNum] = [0, 0]
         continue
       }
-      const [x, y] = findPosition(widget,layouts.value, +colsNum)
+      const [x, y] = findPosition(widget, layouts.value, +colsNum)
       position[colsNum] = [x, y]
     }
     const id = `${component}-${nanoid()}`
@@ -100,15 +100,5 @@ export default defineStore('layoutStore', () => {
     pageMenu,
     addPage,
     $reset,
-  }
-}, {
-  persist: {
-    paths: [
-      'baseSize',
-      'baseMargin',
-      'layouts',
-      'editMode'
-    ],
-    storage: persistedState.localStorage
   }
 })
