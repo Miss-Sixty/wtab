@@ -41,7 +41,7 @@ export default defineStore('appStore', () => {
   function $reset() {
     formatClock.value = 'YYYY-MM-DD HH:mm:ss'
     date.value = +new Date()
-    headerConstant.value = true
+    headerConstant.value = false
     calendar.value = []
   }
 

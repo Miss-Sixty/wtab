@@ -8,7 +8,7 @@ export default {
   color: '', // 主色调
 
   app: {
-    headerConstant: 'false', // 头部是否透明
+    headerConstant: false, // 头部是否透明
   },
 
   layout: {
