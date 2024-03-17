@@ -45,7 +45,7 @@
     "@vite-pwa/nuxt": "^0.6.0",
     "@vueuse/nuxt": "^10.9.0",
     "dayjs-nuxt": "^2.1.9",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.11.0",
     "tsx": "^4.7.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
