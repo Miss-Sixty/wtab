@@ -25,6 +25,7 @@
     "get-urls": "^12.1.0",
     "jsdom": "^24.0.0",
     "nanoid": "^5.0.6",
+    "remeda": "^1.50.1",
     "unplugin-info": "^1.1.0",
     "zipson": "^0.2.12"
   },

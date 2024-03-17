@@ -3,6 +3,7 @@ import useLayoutStore from '@/stores/layout'
 import useAppStore from '@/stores/app'
 import ColorPicker from './components/ColorPicker.vue'
 import ThemeSelect from './components/ThemeSelect.vue'
+import Wallpaper from './components/Wallpaper.vue'
 import { downloadConfig, uploadConfig } from '@/composables/useDownload'
 
 const layoutStore: any = useLayoutStore()
@@ -24,8 +25,12 @@ const menuData = {
     { title: '导出数据', type: 'button', divided: true, props: { text: '导 出', type: 'primary', icon: 'i-solar-export-linear' }, desc: '导出所有数据到本地', icon: 'i-solar-upload-square-broken', fn: exportFile },
     { title: '导入数据', type: 'button', props: { text: '导 入', type: 'primary', icon: 'i-solar-import-linear' }, desc: '将本地数据导入，会覆盖已有数据', icon: 'i-solar-download-square-broken', fn: open },
     { title: '重置数据', type: 'button', key: 'resetData', props: { text: '重 置', type: 'danger', icon: 'i-solar-restart-bold' }, desc: '将所有数据重置到默认数据', icon: 'i-solar-restart-square-broken', },
-
   ],
+  wallpaper: [
+    { title: '自定义壁纸', type: 'customWallpaper', component: Wallpaper },
+    { title: '每日 Bing', type: 'bingWallpaper', component: Wallpaper },
+    { title: '默认壁纸', type: 'baseWallpaper', component: Wallpaper },
+  ]
 } as any
 
 
@@ -79,7 +84,7 @@ onChange(async (files) => {
           <p v-if="item.desc" text-gray-400 text-xs>
             {{ item.desc }}
           </p>
-          <component :is="item.component" />
+          <component :is="item.component" :type="item.type"/>
         </div>
       </div>
       <div flex>

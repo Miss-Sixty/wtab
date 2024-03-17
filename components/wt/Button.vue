@@ -70,6 +70,7 @@ const typeClass = computed(() => {
   <button type="button" 
     active:scale-96
     inline-flex items-center
+    justify-center
     shadow-sm text-sm leading-none select-none touch-manipulation
     focus-visible="outline outline-2 outline-offset-1 outline-primary" disabled:opacity-50 dark:disabled:opacity-40
     disabled:cursor-not-allowed whitespace-nowrap 
