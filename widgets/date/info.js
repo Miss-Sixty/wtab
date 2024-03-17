@@ -10,8 +10,5 @@ export default {
       size: '4:2',
       singleRow: true// 独占一行
     },
-    {
-      size: '4:2',
-    },
   ]
 }
