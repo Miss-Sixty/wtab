@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { pwa } from './config/pwa'
+
 export default defineNuxtConfig({
   ssr: process.env.VITE_DEV_VUE !== 'true',
   colorMode: {
@@ -67,8 +69,10 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'dayjs-nuxt',
     '@nuxt/image',
-    'unplugin-info/nuxt'
+    'unplugin-info/nuxt',
+    '@vite-pwa/nuxt'
   ],
+  pwa,
   devServer: {
     host: '0', // 监听所有地址
   },
