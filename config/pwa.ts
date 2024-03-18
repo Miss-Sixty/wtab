@@ -65,36 +65,6 @@ export const pwa: ModuleOptions = {
     skipWaiting: true, // 跳过等待
     clientsClaim: true, // 客户端声明
     cleanupOutdatedCaches: true, // 清除旧缓存
-    runtimeCaching: [// 运行时缓存
-      {
-        urlPattern: /^https:\/\/fonts.googleapis.com\/.*/i,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'google-fonts-cache',
-          expiration: {
-            maxEntries: 10,
-            maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
-      },
-      {
-        urlPattern: /^https:\/\/fonts.gstatic.com\/.*/i,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'gstatic-fonts-cache',
-          expiration: {
-            maxEntries: 10,
-            maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
-      },
-    ],
   },
   // registerWebManifestInRouteRules: true,//注册webmanifest路由规则
   writePlugin: true, // 写入插件
