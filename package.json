@@ -25,14 +25,14 @@
     "get-urls": "^12.1.0",
     "jsdom": "^24.0.0",
     "nanoid": "^5.0.6",
-    "remeda": "^1.50.1",
+    "remeda": "^1.53.0",
     "unplugin-info": "^1.1.0",
     "zipson": "^0.2.12"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.3",
     "@iconify-json/solar": "^1.1.9",
-    "@iconify/json": "^2.2.192",
+    "@iconify/json": "^2.2.193",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.4.0",
     "@nuxtjs/color-mode": "^3.3.2",
