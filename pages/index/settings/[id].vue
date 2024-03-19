@@ -5,6 +5,7 @@ import ColorPicker from './components/ColorPicker.vue'
 import ThemeSelect from './components/ThemeSelect.vue'
 import Wallpaper from './components/Wallpaper.vue'
 import { downloadConfig, uploadConfig } from '@/composables/useDownload'
+import { openDB } from 'idb';
 
 const layoutStore: any = useLayoutStore()
 const appStore: any = useAppStore()
@@ -37,35 +38,20 @@ const menuData = {
 const list = computed(() => menuData[route.params.id])
 
 async function exportFile() {
-  const _wtabSettings = localStorage.getItem('wtab-settings')
-  const _nuxtColorMode = localStorage.getItem('nuxt-color-mode')
-  const _layoutStore = localStorage.getItem('layoutStore')
-  const _appStore = localStorage.getItem('appStore')
-  downloadConfig({ _wtabSettings, _nuxtColorMode, _layoutStore, _appStore })
+  const db = await openDB('wtabDB');
+  let layoutData = await db.get('wtab', 'layoutStore');
+  let appData = await db.get('wtab', 'appStore');
+  downloadConfig({ layoutData, appData, })
 }
 
 onChange(async (files) => {
-  const layoutStore: any = useLayoutStore()
-  const appStore: any = useAppStore()
+  // const layoutStore: any = useLayoutStore()
+  // const appStore: any = useAppStore()
   const [rawFile]: any = files || []
-  const { _wtabSettings, _nuxtColorMode, _layoutStore, _appStore } = await uploadConfig(rawFile)
+  const { layoutData, appData, } = await uploadConfig(rawFile)
 
-  localStorage.setItem('wtab-settings', _wtabSettings)
-  localStorage.setItem('nuxt-color-mode', _nuxtColorMode)
+  console.log('import:', layoutData, appData);
 
-  if (_layoutStore) {
-    const { baseSize, baseMargin, breakpoints, layouts, pageMenu } = JSON.parse(_layoutStore)
-    layoutStore.baseSize = baseSize
-    layoutStore.baseMargin = baseMargin
-    layoutStore.breakpoints = breakpoints
-    layoutStore.layouts = layouts
-    layoutStore.pageMenu = pageMenu
-  }
-  if (_appStore) {
-    const { headerConstant, formatClock } = JSON.parse(_appStore)
-    appStore.headerConstant = headerConstant
-    appStore.formatClock = formatClock
-  }
 })
 </script>
 
@@ -84,7 +70,7 @@ onChange(async (files) => {
           <p v-if="item.desc" text-gray-400 text-xs>
             {{ item.desc }}
           </p>
-          <component :is="item.component" :type="item.type"/>
+          <component :is="item.component" :type="item.type" />
         </div>
       </div>
       <div flex>
