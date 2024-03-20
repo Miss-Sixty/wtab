@@ -37,7 +37,7 @@ dependencies:
     version: 5.0.6
   remeda:
     specifier: ^1.53.0
-    version: 1.53.0
+    version: 1.54.0
   unplugin-info:
     specifier: ^1.1.0
     version: 1.1.0(rollup@2.79.1)(vite@5.1.6)(webpack@5.90.3)
@@ -9522,8 +9522,8 @@ packages:
       jsesc: 0.5.0
     dev: true
 
-  /remeda@1.53.0:
-    resolution: {integrity: sha512-zZEHGfjQD8uGU+I33kEX5tvLIzcrT81kuw0XUxfwmml/TvoGAexJ1m9PmpQaK16dQKsj1M17AEQlvy6jPxqlKQ==}
+  /remeda@1.54.0:
+    resolution: {integrity: sha512-gQ8lazX6VC+/29XTAt7v+ozGpoEg4PYOvZxyCTIhxwGltv4+1yaQvFBUhUzx/POuQ5n1sJvrPGb+q3c8R0bEHg==}
     dev: false
 
   /require-directory@2.1.1:
