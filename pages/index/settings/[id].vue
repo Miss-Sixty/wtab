@@ -39,19 +39,28 @@ const list = computed(() => menuData[route.params.id])
 
 async function exportFile() {
   const db = await openDB('wtabDB');
-  let layoutData = await db.get('wtab', 'layoutStore');
-  let appData = await db.get('wtab', 'appStore');
-  downloadConfig({ layoutData, appData, })
+
+  const [layoutStoreData, appStoreData] = await Promise.all([
+    db.get('wtab', 'layoutStore'),
+    db.get('wtab', 'appStore')
+  ]);
+
+  downloadConfig({ layoutStoreData, appStoreData })
 }
 
 onChange(async (files) => {
-  // const layoutStore: any = useLayoutStore()
-  // const appStore: any = useAppStore()
+  const db = await openDB('wtabDB');
   const [rawFile]: any = files || []
-  const { layoutData, appData, } = await uploadConfig(rawFile)
+  const { layoutStoreData, appStoreData }: any = await uploadConfig(rawFile)
+  const tx = db.transaction('wtab', 'readwrite');
+  await Promise.all([
+    tx.store.put(layoutStoreData, 'layoutStore'),
+    tx.store.put(appStoreData, 'appStore'),
+    tx.done,
+  ]);
 
-  console.log('import:', layoutData, appData);
-
+  layoutStore.$patch(layoutStoreData)
+  appStore.$patch(appStoreData)
 })
 </script>
 

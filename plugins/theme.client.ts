@@ -1,8 +1,6 @@
 import { watchEffect } from 'vue'
 import { useUnaSettings } from '../composables/useUnaSettings'
 
-import { defineNuxtPlugin } from '#app'
-
 let unaUIStyle: HTMLStyleElement
 
 export default defineNuxtPlugin(() => {
@@ -22,7 +20,6 @@ export default defineNuxtPlugin(() => {
       styleTag.innerHTML = `
     :root {
         ${Object.entries(settings.value.primaryColors || {}).map(([k, v]) => `${k}: ${v};`).join('\n')}
-        ${Object.entries(settings.value.grayColors || {}).map(([k, v]) => `${k}: ${v};`).join('\n')}
     }
     `.replace(/\s*\n+\s*/g, '')
     }

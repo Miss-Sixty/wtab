@@ -1,78 +1,58 @@
 import dayjs from 'dayjs'
 import { parse, stringify } from 'zipson'
 import { decrypt, encrypt } from '@/utils/crypto'
-import { zipSync, strToU8, unzipSync } from 'fflate';
+import { zip, unzip, strToU8, strFromU8 } from 'fflate';
+
+let zipObj: any = {
+  wtab: []
+};
+var ALREADY_COMPRESSED = [
+  'zip', 'gz', 'png', 'jpg', 'jpeg', 'pdf', 'doc', 'docx', 'ppt', 'pptx',
+  'xls', 'xlsx', 'heic', 'heif', '7z', 'bz2', 'rar', 'gif', 'webp', 'webm',
+  'mp4', 'mov', 'mp3', 'aifc'
+];
+
+function fileToU8(file: File): Promise<Uint8Array> {
+  return new Promise((resolve, reject) => {
+    const fr = new FileReader();
+    fr.readAsArrayBuffer(file);
+    fr.onerror = reject;
+    fr.onloadend = () => {
+      resolve(new Uint8Array(fr.result as ArrayBuffer));
+    }
+  });
+}
+
+const download = (file: BlobPart) => {
+  const url = URL.createObjectURL(new Blob([file]));
+  const dl = document.createElement('a');
+  dl.download = `WTab备份-${dayjs().format('YYYY-MM-DD HH:mm')}.wtab`;
+  dl.href = url;
+  dl.click();
+  URL.revokeObjectURL(url);
+}
+
 // 下载配置
-export function downloadConfig(data: any) {
+export async function downloadConfig(data: any) {
   const brotliData = stringify(data)
-  // const saveData = encrypt(brotliData)
-  // const blob = new Blob([saveData]) // 将数据保存在 blob 对象中
-  // const url = URL.createObjectURL(blob)
-  // const link = document.createElement('a')
-  // link.href = url
-  // link.download = `WTab备份-${dayjs().format('YYYY-MM-DD HH:mm')}.wtab` // 设置保存的文件名称
-  // link.click()
-  // link.remove()
-  // URL.revokeObjectURL(url)
-  console.log(111, data);
+  const saveData = encrypt(brotliData)
 
-  let reader = new FileReader();
-  // reader.readAsArrayBuffer(imgUrl);
-  console.log(22, reader);
-  // reader.addEventListener('load', (e) => {
-  const zipped = zipSync({
-    // "imgs": {
-    //   "11.png": new Uint8Array(e?.target?.result),
-    // },
-    "layout.json": strToU8(brotliData)
-  },
-    { level: 9 });
-  console.log(33, zipped);
-
-  const blob = new Blob([zipped.buffer], { type: 'application/zip' });
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = `WTab备份-${dayjs().format('YYYY-MM-DD HH:mm')}.wtab` // 设置保存的文件名称
-  link.click()
-  link.remove()
-  URL.revokeObjectURL(url)
-  // });
+  zipObj.wtab.push({ "layout.json": strToU8(saveData) });
+  zip(zipObj, { level: 0 }, (err, data) => {
+    if (err) return alert(err);
+    download(data);
+  });
 }
 
 // 上传配置
-export async function uploadConfig(file: any) {
-  console.log(33, file);
-  const fileData: any = await readFile(file);
-  console.log(44, fileData);
-  const unzip = unzipSync(fileData)
-  console.log(55, unzip);
-
-  const files = []
-  Object.keys(unzip).forEach((key) => {
-    files.push({ name: key, data: unzip[key] });
-  });
-  console.log(66, files);
-  // return new Promise((resolve, reject) => {
-  //   const reader = new FileReader()
-  //   reader.readAsText(file)
-  //   reader.onload = (e: any) => {
-  //     resolve(parse(decrypt(e.target.result)))
-  //   }
-  //   reader.onerror = (e) => {
-  //     reject(e)
-  //   }
-  // })
-}
-
-
-function readFile(file) {
+export async function uploadConfig(file: File) {
+  const fileData = await fileToU8(file);
   return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsArrayBuffer(file);
-    reader.onerror = reject;
-    reader.onloadend = () => {
-      resolve(new Uint8Array(reader.result));
-    }
-  });
+    unzip(fileData, {}, (err, data) => {
+      if (err) reject(err);
+      const fileData = strFromU8(data["wtab/layout.json"]);
+      const decryptedData = decrypt(fileData)
+      resolve(parse(decryptedData))
+    });
+  })
 }
