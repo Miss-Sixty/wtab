@@ -10,7 +10,7 @@ export const pwa: ModuleOptions = {
     id: title,
     name: title,
     short_name: title,
-    start_url: "/index.html",
+    // start_url: "/index.html",/
     description,
     display: 'fullscreen',
     theme_color: '#ffffff',
