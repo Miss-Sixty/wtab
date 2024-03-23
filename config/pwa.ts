@@ -5,6 +5,7 @@ const { description, title } = settings
 
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
+  scope: '/',
   base: '/',
   registerWebManifestInRouteRules: true,
   workbox: {
@@ -18,6 +19,8 @@ export const pwa: ModuleOptions = {
     short_name: title,
     description,
     theme_color: '#ffffff',
+    start_url: '/',
+    scope: '/',
     //   display: 'fullscreen',
     //   display_override: ["fullscreen", "minimal-ui", "standalone"],
     //   screenshots: [

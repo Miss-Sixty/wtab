@@ -82,4 +82,7 @@ export default defineNuxtConfig({
     defaultLocale: 'zh-cn',
     defaultTimezone: 'Asia/Shanghai',
   },
+  routeRules:{
+    '/': { prerender: true },
+  }
 })
