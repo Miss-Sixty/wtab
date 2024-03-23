@@ -6,7 +6,23 @@ const { description, title } = settings
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
   workbox: {
-    globPatterns: ['**/*.{js,css,html,json,webp,svg,png,jpg,heic}'],
+    globPatterns: ['**/*.{js,css,html,json,webp,svg,png,jpg,heic}','**/*.heic*'],
+    runtimeCaching: [
+      {
+        urlPattern: '/^next.wtab.cn\/image.*/i',
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'google-fonts-cache',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+          },
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
+        },
+      }
+    ]
   },
   manifest: {
     name: title,
@@ -55,7 +71,7 @@ export const pwa: ModuleOptions = {
     ],
   },
   devOptions: {
-    enabled: process.env.NODE_ENV==='development',
+    enabled: process.env.NODE_ENV === 'development',
     suppressWarnings: true, // 抑制警告
     type: 'module',
   },
