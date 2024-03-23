@@ -5,6 +5,7 @@ const { description, title } = settings
 
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
+  scope: '/', base: '/',
   manifest: {
     id: title,
     name: title,
