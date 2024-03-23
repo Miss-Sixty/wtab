@@ -1,5 +1,6 @@
 import type { ModuleOptions } from '@vite-pwa/nuxt'
 import settings from './settings'
+import { registerSW } from '@vite-pwa/nuxt'
 
 const { description, title } = settings
 
@@ -55,6 +56,11 @@ export const pwa: ModuleOptions = {
       },
     ],
   },
+  devOptions: {
+    enabled: true,
+    navigateFallbackAllowlist: [/^index.html$/]
+    /* other options */
+  }
   // client: {
   //   installPrompt: true, // 安装提示
   // },
@@ -64,7 +70,6 @@ export const pwa: ModuleOptions = {
   //   // navigateFallback: '/', // 导航回退
   //   skipWaiting: true, // 跳过等待
   //   clientsClaim: true, // 客户端声明
-  //   cleanupOutdatedCaches: true, // 清除旧缓存
   // },
   // // registerWebManifestInRouteRules: true,//注册webmanifest路由规则
   // writePlugin: true, // 写入插件
