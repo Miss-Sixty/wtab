@@ -9,7 +9,7 @@ export const pwa: ModuleOptions = {
   registerWebManifestInRouteRules: true,
   workbox: {
     navigateFallback: '/',
-    globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+    globPatterns: ['**/*.{js,css,html,json,webp,svg,png,webmanifest}'],
     navigateFallbackDenylist: [/^\/api\//],//导航回退拒绝列表
   },
   manifest: {
@@ -61,7 +61,10 @@ export const pwa: ModuleOptions = {
   },
   devOptions: {
     enabled: true,
-    type: 'module',
+      type: 'module',
+      suppressWarnings: true,
+      navigateFallback: '/',
+      navigateFallbackAllowlist: [/^\/$/]
   },
   client: {
     installPrompt: true, // 安装提示
