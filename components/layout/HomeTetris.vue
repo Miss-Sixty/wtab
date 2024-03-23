@@ -1,4 +1,9 @@
 <template>
-  <NuxtImg quality="100" format="webp" src="/bg/1.heic" object-cover size-full select-none z--1 fixed
-    :placeholder="[500, 250, 90, 9]" />
+  <div class="bg" select-none z--1 fixed size-full bg-cover bg-no-repeat bg-fixed bg-center></div>
 </template>
+
+<style scoped>
+.bg {
+  background-image: url('/bg/1.heic');
+}
+</style>
