@@ -6,13 +6,13 @@ const { description, title } = settings
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
   workbox: {
-    globPatterns: ['**/*.{js,css,html,json,webp,svg,png,jpg,heic}','**/*.heic*'],
+    globPatterns: ['**/*.{js,css,html,json,webp,svg,png,jpg,heic}'],
     runtimeCaching: [
       {
-        urlPattern: '/^next.wtab.cn\/image.*/i',
+        urlPattern: '/^\/image/',
         handler: 'CacheFirst',
         options: {
-          cacheName: 'google-fonts-cache',
+          cacheName: 'images-cache',
           expiration: {
             maxEntries: 10,
             maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
