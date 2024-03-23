@@ -1,19 +1,4 @@
 <template>
-  <div class="bg" select-none z--1 fixed size-full bg-cover bg-no-repeat bg-fixed></div>
-  <!-- <div class="bg"></div> -->
+  <NuxtImg format="webp" src="/bg/1.heic" fit="inside" object-cover size-full select-none z--1 fixed
+    :placeholder="[500, 250, 90, 9]" />
 </template>
-
-<style scoped>
-.bg {
-  background-image: url('/bg/1.heic');
-}
-
-/* .bg {
-  background-image: url('/bg.svg');
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: -1;
-  user-select: none;
-} */
-</style>
