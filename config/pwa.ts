@@ -9,7 +9,7 @@ export const pwa: ModuleOptions = {
     id: title,
     name: title,
     short_name: title,
-    start_url: '/',
+    scope: '/',
     description,
     display: 'fullscreen',
     theme_color: '#ffffff',
@@ -56,7 +56,7 @@ export const pwa: ModuleOptions = {
     installPrompt: true, // 安装提示
   },
   workbox: {
-    globPatterns: ['**/*.{js,css,html,ico,png,svg}'],		//缓存相关静态资源
+    globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
     // navigateFallbackDenylist: [/^\/api\//],//导航回退拒绝列表
     // navigateFallback: '/', // 导航回退
     skipWaiting: true, // 跳过等待
