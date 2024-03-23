@@ -42,7 +42,7 @@ const wallpaperStore = {
     </div>
   </WallpaperContent>
 
-  <div v-if="type === 'baseWallpaper'" grid grid-cols-3 gap-6>
+  <div v-if="type === 'baseWallpaper'" grid sm:grid-cols-3 sm:gap-6 gap-3 grid-cols-2>
     <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/1.heic" />
     <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/2.heic" />
     <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/3.heic" />
