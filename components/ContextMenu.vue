@@ -73,7 +73,6 @@ const menuList = [
     { label: '删除此小组件', type: 'delWidgets', visibles: ['widget'] },
   ],
   [
-    { label: '路线图', type: 'roadmap', to: '/roadmap', visibles: ['settingsBase'] },
     { label: '关于', type: 'about', to: '/about', visibles: ['settingsBase'] },
   ],
 ]
