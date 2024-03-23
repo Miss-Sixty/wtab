@@ -6,7 +6,7 @@ const { description, title } = settings
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
   workbox: {
-    globPatterns: ['**/*.{js,css,html,json,webp,svg,png,heic}'],
+    globPatterns: ['**/*.{js,css,html,json,webp,svg,png,jpg,heic}'],
   },
   manifest: {
     name: title,
