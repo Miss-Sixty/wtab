@@ -6,6 +6,7 @@ const { description, title } = settings
 
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
+  base: '/',
   workbox: {
     globPatterns: ['**/*.{js,css,html,ico,png,svg}']
   },
@@ -58,8 +59,10 @@ export const pwa: ModuleOptions = {
   },
   devOptions: {
     enabled: true,
-    navigateFallbackAllowlist: [/^index.html$/]
-    /* other options */
+    navigateFallbackAllowlist: [/^index.html$/],
+    type: 'module',
+    navigateFallback: 'index.html',
+    suppressWarnings: true,
   }
   // client: {
   //   installPrompt: true, // 安装提示
