@@ -60,11 +60,11 @@ export const pwa: ModuleOptions = {
     ],
   },
   devOptions: {
-    enabled: true,
-      type: 'module',
-      suppressWarnings: true,
-      navigateFallback: '/',
-      navigateFallbackAllowlist: [/^\/$/]
+    // enabled: true,
+    type: 'module',
+    suppressWarnings: true,
+    navigateFallback: '/',
+    navigateFallbackAllowlist: [/^\/$/]
   },
   client: {
     installPrompt: true, // 安装提示
