@@ -74,15 +74,14 @@ export default defineNuxtConfig({
   ],
   pwa,
   devServer: {
-    // https:true,
-    host: '0', // 监听所有地址
+    host: "0.0.0.0",
   },
   dayjs: {
     plugins: ['utc', 'timezone'],
     defaultLocale: 'zh-cn',
     defaultTimezone: 'Asia/Shanghai',
   },
-  routeRules:{
+  routeRules: {
     '/': { prerender: true },
   }
 })
