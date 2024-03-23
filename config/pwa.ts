@@ -6,8 +6,11 @@ const { description, title } = settings
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
   base: '/',
+  registerWebManifestInRouteRules: true,
   workbox: {
-    globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+    navigateFallback: '/',
+    globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+    navigateFallbackDenylist: [/^\/api\//],//导航回退拒绝列表
   },
   manifest: {
     //   id: title,
@@ -58,22 +61,17 @@ export const pwa: ModuleOptions = {
   },
   devOptions: {
     enabled: true,
-    navigateFallbackAllowlist: [/^index.html$/],
     type: 'module',
-    navigateFallback: 'index.html',
-    suppressWarnings: true,
-  }
-  // client: {
-  //   installPrompt: true, // 安装提示
-  // },
+  },
+  client: {
+    installPrompt: true, // 安装提示
+  },
   // workbox: {
   //   globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
-  //   // navigateFallbackDenylist: [/^\/api\//],//导航回退拒绝列表
   //   // navigateFallback: '/', // 导航回退
   //   skipWaiting: true, // 跳过等待
   //   clientsClaim: true, // 客户端声明
   // },
-  // // registerWebManifestInRouteRules: true,//注册webmanifest路由规则
   // writePlugin: true, // 写入插件
   // devOptions: {
   //   enabled: false,
