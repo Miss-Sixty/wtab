@@ -74,7 +74,7 @@ export default defineNuxtConfig({
   ],
   pwa,
   devServer: {
-    https:true,
+    // https:true,
     host: '0', // 监听所有地址
   },
   dayjs: {

@@ -9,7 +9,7 @@ export const pwa: ModuleOptions = {
     id: title,
     name: title,
     short_name: title,
-    start_url: './',
+    start_url: '/',
     description,
     display: 'fullscreen',
     theme_color: '#ffffff',
@@ -52,6 +52,9 @@ export const pwa: ModuleOptions = {
       },
     ],
   },
+  client: {
+    installPrompt: true, // 安装提示
+  },
   workbox: {
     globPatterns: ['**/*.{js,css,html,ico,png,svg}'],		//缓存相关静态资源
     // navigateFallbackDenylist: [/^\/api\//],//导航回退拒绝列表
@@ -61,10 +64,10 @@ export const pwa: ModuleOptions = {
     cleanupOutdatedCaches: true, // 清除旧缓存
   },
   // registerWebManifestInRouteRules: true,//注册webmanifest路由规则
-  // writePlugin: true, // 写入插件
+  writePlugin: true, // 写入插件
   devOptions: {
     enabled: true,
-    // suppressWarnings: true, // 抑制警告
+    suppressWarnings: true, // 抑制警告
     type: 'module', // 模块类型
   },
 }
