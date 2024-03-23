@@ -5,13 +5,13 @@ const { description, title } = settings
 
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
-  scope: '/',
-  base: '/',
-  registerWebManifestInRouteRules: true,
+  // scope: '/',
+  // base: '/',
+  // registerWebManifestInRouteRules: true,
   workbox: {
-    navigateFallback: '/',
-    globPatterns: ['**/*.{js,css,html,json,webp,svg,png,webmanifest}'],
-    navigateFallbackDenylist: [/^\/api\//],//导航回退拒绝列表
+    // navigateFallback: '/',
+    globPatterns: ['**/*.{js,css,html,json,webp,svg,png,heic}'],
+    // navigateFallbackDenylist: [/^\/api\//],//导航回退拒绝列表
   },
   manifest: {
     //   id: title,
@@ -19,8 +19,8 @@ export const pwa: ModuleOptions = {
     short_name: title,
     description,
     theme_color: '#ffffff',
-    start_url: '/',
-    scope: '/',
+    // start_url: '/',
+    // scope: '/',
     //   display: 'fullscreen',
     //   display_override: ["fullscreen", "minimal-ui", "standalone"],
     //   screenshots: [
@@ -65,9 +65,9 @@ export const pwa: ModuleOptions = {
   devOptions: {
     // enabled: true,
     type: 'module',
-    suppressWarnings: true,
-    navigateFallback: '/',
-    navigateFallbackAllowlist: [/^\/$/]
+    // suppressWarnings: true,
+    // navigateFallback: '/',
+    // navigateFallbackAllowlist: [/^\/$/]
   },
   client: {
     installPrompt: true, // 安装提示
