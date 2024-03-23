@@ -48,6 +48,6 @@ const wallpaperStore = {
     <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/3.heic" />
     <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/4.heic" />
     <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/5.heic" />
-    <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/6.jpg" />
+    <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/6.heic" />
   </div>
 </template>
