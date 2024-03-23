@@ -1,6 +1,5 @@
 import type { ModuleOptions } from '@vite-pwa/nuxt'
 import settings from './settings'
-import { registerSW } from '@vite-pwa/nuxt'
 
 const { description, title } = settings
 
