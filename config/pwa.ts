@@ -66,7 +66,7 @@ export const pwa: ModuleOptions = {
   // registerWebManifestInRouteRules: true,//注册webmanifest路由规则
   writePlugin: true, // 写入插件
   devOptions: {
-    enabled: true,
+    enabled: false,
     suppressWarnings: true, // 抑制警告
     type: 'module', // 模块类型
   },
