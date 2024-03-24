@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import WallpaperContent from './WallpaperContent.vue'
-import useAppStore from '@/stores/app'
-const appStore = useAppStore()
+import useWallpaperStore from '@/stores/wallpaper'
+const wallpaperStore = useWallpaperStore()
 
 defineEmits(['click'])
 export interface Props {
@@ -16,19 +16,23 @@ const { open, onChange } = useFileDialog({
 onChange(async (files) => {
   const [rawFile]: any = files || []
   if (!rawFile) return
-  appStore.wallpaperCustomFile = rawFile
-  appStore.wallpaperType = 'custom'
+  wallpaperStore.customFile = rawFile
+  activeCustomChange()
 })
 
 const activeBaseChange = (item: string) => {
-  appStore.wallpaperBase = item
-  appStore.wallpaperType = 'base'
+  wallpaperStore.url = item
+  wallpaperStore.type = 'base'
+}
+const activeCustomChange = () => {
+  wallpaperStore.url = wallpaperStore.custom
+  wallpaperStore.type = 'custom'
 }
 </script>
 
 <template>
-  <WallpaperContent v-if="type === 'customWallpaper'" @click="appStore.wallpaperType = 'custom'"
-    :active="appStore.wallpaperType === 'custom'" :src="appStore.wallpaperActive" title="将您的图片设为壁纸。"
+  <WallpaperContent v-if="type === 'customWallpaper'" @click="activeCustomChange"
+    :active="wallpaperStore.type === 'custom'" :src="wallpaperStore.custom" title="将您的图片设为壁纸。"
     tip="建议分辨率：1920×1080 或更高">
     <WtButton style="width: 130px" mt-auto type="primary" @click="open">浏览…</WtButton>
   </WallpaperContent>
@@ -48,7 +52,7 @@ const activeBaseChange = (item: string) => {
   </WallpaperContent> -->
 
   <div v-if="type === 'baseWallpaper'" grid sm:grid-cols-3 sm:gap-6 gap-3 grid-cols-2>
-    <WallpaperContent v-for="item in appStore.wallpaperBaseList" @click="activeBaseChange(item)"
-      :active="appStore.wallpaperBase === item" :src="item" />
+    <WallpaperContent v-for="item in wallpaperStore.baseList" @click="activeBaseChange(item)"
+      :active="wallpaperStore.url === item" :src="item" />
   </div>
 </template>

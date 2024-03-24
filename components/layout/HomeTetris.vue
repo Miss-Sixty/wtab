@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import useAppStore from '@/stores/app'
-const appStore = useAppStore()
-
-const url = ref('')
-watch(() => appStore.wallpaperType, (val) => {
-  url.value = val === 'custom' ? appStore.wallpaperCustomUrl : val
-})
+import useWallpaperStore from '@/stores/wallpaper'
+const wallpaperStore = useWallpaperStore()
 
 onMounted(() => {
-  url.value = appStore.wallpaperType === 'custom' ? appStore.wallpaperCustomUrl : appStore.wallpaperType
+  if (!wallpaperStore.url) {
+    wallpaperStore.url = wallpaperStore.baseList[0]
+  }
 })
+
 </script>
 
 <template>
   <Transition enter-active-class="animate-fade-in">
-    <div v-if="url" :style="{ backgroundImage: `url(${url})` }" s select-none z--1 fixed size-full
-      bg-cover bg-no-repeat bg-fixed bg-center>
+    <div v-if="wallpaperStore.url" :style="{ backgroundImage: `url(${wallpaperStore.url})` }" s select-none z--1 fixed
+      size-full bg-cover bg-no-repeat bg-fixed bg-center>
     </div>
   </Transition>
 </template>

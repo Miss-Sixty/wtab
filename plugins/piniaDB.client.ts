@@ -3,6 +3,7 @@ import { openDB } from 'idb';
 import { clone } from 'remeda'
 import useLayoutStore from '@/stores/layout'
 import useAppStore from '@/stores/app'
+import useWallpaperStore from '@/stores/wallpaper'
 
 // export default defineNuxtPlugin(() => {
 const initDb = () => {
@@ -24,6 +25,10 @@ async function PiniaPlugin({ store }: PiniaPluginContext) {
   let appData = await db.get('wtab', 'appStore');
   const appStore = useAppStore()
   appStore.$patch(appData)
+
+  let wallpaperData = await db.get('wtab', 'wallpaperStore');
+  const wallpaperStore = useWallpaperStore()
+  wallpaperStore.$patch(wallpaperData)
 
 
   store.$subscribe(({ storeId }, state) => {
