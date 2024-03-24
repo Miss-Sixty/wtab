@@ -57,9 +57,10 @@ const opacityClass = computed(() => ([
 
     <div flex-auto />
     <ResetDataBtn v-slot="{ show }">
-      <WtButton type="danger" v-show="layoutStore.editMode" size="sm" round text="重置数据" @click="show" />
+      <WtButton class="right-icon" type="danger" v-show="layoutStore.editMode" size="sm" round text="重置数据"
+        @click="show" />
     </ResetDataBtn>
-    <WtButton type="primary" v-show="layoutStore.editMode" size="sm" round text="完成"
+    <WtButton class="right-icon" type="primary" v-show="layoutStore.editMode" size="sm" round text="完成"
       @click="layoutStore.editMode = false" />
     <!-- <HeaderPremium /> -->
     <!-- <ClientOnly>
