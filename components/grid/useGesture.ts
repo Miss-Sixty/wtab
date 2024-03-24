@@ -56,9 +56,9 @@ export default (config: any) => {
     let placeholderY = Math.round((childY - baseMargin.value) / (baseSize.value + baseMargin.value))
 
     // 边界计算，超出边界时，placeholderGridItem 不可移动到该位置，且不与其他元素重叠
-    const { widgetSize } = draggingData.value
-    const [widgetW] = widgetSize.split(':').map(Number)
-
+    const { widgetSize, widgetData } = draggingData.value
+    let [widgetW] = widgetSize.split(':').map(Number)
+    if (widgetData.singleRow) widgetW = colsNum.value
     if (placeholderX + widgetW > colsNum.value)
       placeholderX = colsNum.value - widgetW
 
