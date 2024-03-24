@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useFileDialog } from '@vueuse/core'
 import WallpaperContent from './WallpaperContent.vue'
+import useAppStore from '@/stores/app'
+const appStore = useAppStore()
+
 defineEmits(['click'])
 export interface Props {
   type?: 'customWallpaper' | 'bingWallpaper' | 'baseWallpaper'
@@ -23,7 +26,7 @@ const wallpaperStore = {
 </script>
 
 <template>
-  <WallpaperContent v-if="type === 'customWallpaper'" @click="wallpaperStore.type = 'my'"
+  <!-- <WallpaperContent v-if="type === 'customWallpaper'" @click="wallpaperStore.type = 'my'"
     :active="wallpaperStore.type === 'my'" :src="wallpaperStore.my_url" title="将您的图片设为壁纸。" tip="建议分辨率：1920×1080 或更高">
     <WtButton style="width: 130px" mt-auto type="primary" @click="open">浏览…</WtButton>
   </WallpaperContent>
@@ -40,14 +43,14 @@ const wallpaperStore = {
         原图 <div class="i-solar-arrow-right-up-linear"></div>
       </a>
     </div>
-  </WallpaperContent>
+  </WallpaperContent> -->
 
   <div v-if="type === 'baseWallpaper'" grid sm:grid-cols-3 sm:gap-6 gap-3 grid-cols-2>
-    <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/1.heic" />
-    <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/2.heic" />
-    <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/3.heic" />
-    <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/4.heic" />
-    <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/5.heic" />
-    <WallpaperContent @click="wallpaperStore.type = 'my'" :active="wallpaperStore.type === 'my'" src="/bg/6.heic" />
+    <WallpaperContent @click="appStore.wallpaperType = 'base1'" :active="appStore.wallpaperType === 'base1'" src="/bg/1.heic" />
+    <WallpaperContent @click="appStore.wallpaperType = 'base2'" :active="appStore.wallpaperType === 'base2'" src="/bg/2.heic" />
+    <WallpaperContent @click="appStore.wallpaperType = 'base3'" :active="appStore.wallpaperType === 'base3'" src="/bg/3.heic" />
+    <WallpaperContent @click="appStore.wallpaperType = 'base4'" :active="appStore.wallpaperType === 'base4'" src="/bg/4.heic" />
+    <WallpaperContent @click="appStore.wallpaperType = 'base5'" :active="appStore.wallpaperType === 'base5'" src="/bg/5.heic" />
+    <WallpaperContent @click="appStore.wallpaperType = 'base6'" :active="appStore.wallpaperType === 'base6'" src="/bg/6.heic" />
   </div>
 </template>

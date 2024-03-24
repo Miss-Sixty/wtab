@@ -10,27 +10,8 @@ export default defineStore('appStore', () => {
   const headerConstant = ref(app.headerConstant)
   const calendar: any = shallowRef([]) //假期数据
 
-  // let timer: ReturnType<typeof rAF> | undefined
-  // const stopTimer = () => {
-  //   if (!timer)
-  //     return
-  //   cAF(timer)
-  //   timer = undefined
-  // }
-
-  // const startTimer = () => {
-  //   const frameFunc = () => {
-  //     date.value = +new Date()
-
-  //     timer = rAF(frameFunc)
-  //   }
-  //   timer = rAF(frameFunc)
-  // }
-
-  // const visibility = useDocumentVisibility()
-  // watchEffect(() => {
-  //   visibility.value === 'hidden' ? stopTimer() : startTimer()
-  // })
+  const wallpaperType = ref('base1')
+  const wallpaperUrl = ref('') // 自定义壁纸地址
 
   // 请求节假日数据
   async function getCalendar() {
@@ -45,6 +26,7 @@ export default defineStore('appStore', () => {
     date.value = +new Date()
     headerConstant.value = false
     calendar.value = []
+    wallpaperType.value = 'base'
   }
 
   function resetData() {
@@ -63,7 +45,8 @@ export default defineStore('appStore', () => {
     $reset,
     calendar,
     getCalendar,
-    resetData
+    resetData,
+    wallpaperType,
   }
 })
 
