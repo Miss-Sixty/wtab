@@ -10,6 +10,8 @@ const opacityClass = computed(() => ([
   appStore.headerConstant || layoutStore.editMode ? 'opacity-100' : '',
   'opacity-10',
   'hover:opacity-100',
+  'right-icon',
+  'mr-1.5'
 ]))
 
 // const options: UseWebNotificationOptions = {
@@ -34,7 +36,8 @@ const opacityClass = computed(() => ([
 </script>
 
 <template>
-  <nav rounded-lg z-1 p="x2 pb1.5" flex items-center gap-1.5 class="pt-[env(safe-area-inset-top, titlebar-area-height, 6px)]">
+  <nav rounded-lg z-1 flex items-center>
+    <!-- class="pt-[env(safe-area-inset-top, titlebar-area-height, 6px)] nav" -->
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
       <WtIcon :icon="item.icon">
         {{ item.text }}
@@ -70,3 +73,17 @@ const opacityClass = computed(() => ([
       @click="$emit('handleSettingIcon', settingIconRef)" />
   </nav>
 </template>
+
+<style scoped>
+nav {
+  app-region: drag;
+  height: env(titlebar-area-height, 38px);
+  width: env(titlebar-area-width, 100%);
+  margin-left: env(titlebar-area-x, 0);
+  margin-top: env(titlebar-area-y, 0);
+}
+
+.right-icon {
+  app-region: no-drag;
+}
+</style>

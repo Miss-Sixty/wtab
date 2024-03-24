@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import useSetThemeColor from '@/composables/useSetThemeColor'
 
 export default defineStore('wallpaperStore', () => {
   const type = ref('base') // base: 基础壁纸, custom: 自定义壁纸, bing: 必应壁纸
@@ -13,6 +14,8 @@ export default defineStore('wallpaperStore', () => {
     if (type.value !== 'custom') return
     url.value = custom.value
   })
+
+  watch(url, (url) => useSetThemeColor(url))
 
   function $reset() {
     type.value = 'base'

@@ -22,6 +22,7 @@
     "@pinia/nuxt": "^0.5.1",
     "canvas-confetti": "^1.9.2",
     "crypto-js": "^4.2.0",
+    "fast-average-color": "^9.4.0",
     "fflate": "^0.8.2",
     "get-urls": "^12.1.0",
     "jsdom": "^24.0.0",
