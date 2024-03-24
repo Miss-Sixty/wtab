@@ -26,12 +26,13 @@ defineProps({
 
 <template>
   <div flex>
-    <div class="w-[145px] h-[96px]" rounded-md overflow-hidden relative flex-shrink-0 @click="src && $emit('click')">
-      <NuxtImg v-if="src" fit="cover" size-full :src="src" absolute :style="{ cursor: src ? 'pointer' : '' }"
-        placeholder hover:scale-110 transition duration-250 ease-in-out />
+    <div class="w-[145px] h-[96px]" rounded-md overflow-hidden relative flex-shrink-0 @click="src && $emit('click')"
+      text-gray-400 bg-gray-200>
+      <NuxtImg loading="lazy" v-if="src" fit="cover" size-full :src="src" absolute
+        :style="{ cursor: src ? 'pointer' : '' }" placeholder hover:scale-110 transition duration-250 ease-in-out />
 
       <div v-else="active" flex items-center justify-center absolute right-0 bottom-0 left-0 top-0 text-2xl w-full
-        h-full text-gray-400 bg-gray-200>
+        h-full>
         <svg v-if="loading" animate-spin mr-1 w-1em h-1em fill="none" viewBox="0 0 24 24">
           <circle opacity-25 cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
           <path opacity-75 fill="currentColor"
