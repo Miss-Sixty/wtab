@@ -9,7 +9,6 @@ export const pwa: ModuleOptions = {
     globPatterns: ['**/*.{js,css,html,json,webp,svg,png,jpg,heic}'],
     cleanupOutdatedCaches: true,
     runtimeCaching: [
-      // 缓存 https://next.wtab.cn/_vercel/image?url=%2Fbg%2F2.heic&w=1536&q=100 配置
       {
         urlPattern: /^https:\/\/next\.wtab\.cn\/_vercel\/image\?url=/,
         handler: 'CacheFirst',
@@ -24,21 +23,6 @@ export const pwa: ModuleOptions = {
           },
         },
       },
-
-      // {
-      //   urlPattern: '/^\/image/',
-      //   handler: 'CacheFirst',
-      //   options: {
-      //     cacheName: 'images-cache',
-      //     expiration: {
-      //       maxEntries: 10,
-      //       maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
-      //     },
-      //     cacheableResponse: {
-      //       statuses: [0, 200],
-      //     },
-      //   },
-      // }
     ]
   },
   manifest: {
@@ -46,7 +30,7 @@ export const pwa: ModuleOptions = {
     short_name: title,
     description,
     theme_color: '#ffffff',
-    // display_override: ["fullscreen", "minimal-ui", "standalone"],
+    display: 'standalone',
     display_override: ["window-controls-overlay", "standalone", "minimal-ui", "fullscreen", "browser"],
     screenshots: [
       {
