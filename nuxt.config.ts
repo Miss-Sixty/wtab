@@ -83,7 +83,8 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': { prerender: true },
-    '/settings/base': { prerender: true },
-    '/**/*': { prerender: true },
+    '/settings/*': { prerender: true },
+    '/widgets/*': { prerender: true },
+    '/about': { prerender: true },
   }
 })
