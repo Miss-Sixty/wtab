@@ -11,7 +11,6 @@ const opacityClass = computed(() => ([
   'opacity-10',
   'hover:opacity-100',
   'right-icon',
-  'mr-1.5'
 ]))
 
 // const options: UseWebNotificationOptions = {
@@ -36,7 +35,7 @@ const opacityClass = computed(() => ([
 </script>
 
 <template>
-  <nav rounded-lg z-1 flex items-center>
+  <nav rounded-lg z-1 flex items-center gap-1.5>
     <!-- class="pt-[env(safe-area-inset-top, titlebar-area-height, 6px)] nav" -->
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
       <WtIcon :icon="item.icon">
@@ -69,7 +68,7 @@ const opacityClass = computed(() => ([
         @click="ensurePermissionsa" />
     </ClientOnly> -->
     <!-- <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" /> -->
-    <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold"
+    <WtIcon mr-1.5 ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold"
       @click="$emit('handleSettingIcon', settingIconRef)" />
   </nav>
 </template>
