@@ -41,10 +41,8 @@ function closed() {
     </Transition>
     <Transition enter-active-class="animate-zoom-in" leave-active-class="animate-zoom-out">
       <div v-show="modelValue" fixed inset-0 flex items-center justify-center animate-duration-150ms>
-        <div
-          :style="{ width: `${width}px` }" flex flex-col sm:h600px h-full transform overflow-hidden sm:rounded-xl
-          bg-white shadow-xl transition-all sm:mx-40px class="dark:bg-#18181B"
-        >
+        <div :style="{ width: `${width}px` }" flex flex-col sm:h600px h-full transform overflow-hidden sm:rounded-xl
+          bg-white shadow-xl transition-all sm:mx-40px class="dark:bg-#18181B pt-[env(safe-area-inset-top)]">
           <div flex justify-between items-center sm:pl-6 px-3 sm:pr-2 sm:h-14 h-10 shrink-0>
             <div flex justify-between items-center>
               <NuxtLink v-if="backRouter" v-slot="{ navigate }" :to="backRouter" custom>
@@ -57,12 +55,8 @@ function closed() {
                 {{ title }}
               </h3>
             </div>
-            <button
-              flex h-9 w-11 items-center justify-center rounded-lg hover:bg-primary-100
-              transition
-              dark:hover:bg-primary-800
-              @click="closed"
-            >
+            <button flex h-9 w-11 items-center justify-center rounded-lg hover:bg-primary-100 transition
+              dark:hover:bg-primary-800 @click="closed">
               <div text-xl i-material-symbols-close-rounded text-gray-400 />
             </button>
           </div>

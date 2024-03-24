@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import type { UseWebNotificationOptions } from '@vueuse/core'
+// import type { UseWebNotificationOptions } from '@vueuse/core'
 import useLayoutStore from '@/stores/layout'
 import useAppStore from '@/stores/app'
-import { useFullscreen } from '@vueuse/core'
-const { isFullscreen, toggle } = useFullscreen()
 defineEmits(['handleSettingIcon', 'confetti', 'handleColorPicker', 'handleCalendarIcon'])
 const appStore = useAppStore()
 const layoutStore = useLayoutStore()
@@ -14,29 +12,25 @@ const opacityClass = computed(() => ([
   'hover:opacity-100',
 ]))
 
-const options: UseWebNotificationOptions = {
-  title: '您已开启浏览器通知。',
-  requestPermissions: false,
-}
-const {
-  isSupported,
-  ensurePermissions,
-  permissionGranted,
-  show,
-} = useWebNotification(options)
+// const options: UseWebNotificationOptions = {
+//   title: '您已开启浏览器通知。',
+//   requestPermissions: false,
+// }
+// const {
+//   isSupported,
+//   ensurePermissions,
+//   permissionGranted,
+//   show,
+// } = useWebNotification(options)
 
-async function ensurePermissionsa() {
-  const bl = await ensurePermissions()
-  if (bl)
-    show()
-  else
-    alert('您已禁用通知，请在浏览器开启。')
-}
+// async function ensurePermissionsa() {
+//   const bl = await ensurePermissions()
+//   if (bl)
+//     show()
+//   else
+//     alert('您已禁用通知，请在浏览器开启。')
+// }
 
-const messageBoxVisible = ref(false)
-const confirm = () => {
-  appStore.resetData()
-}
 </script>
 
 <template>
@@ -72,9 +66,6 @@ const confirm = () => {
         @click="ensurePermissionsa" />
     </ClientOnly> -->
     <!-- <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" /> -->
-    <WtIcon :class="opacityClass"
-      :icon="isFullscreen ? 'i-solar-quit-full-screen-square-linear' : 'i-solar-full-screen-square-linear'"
-      @click="toggle" />
     <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold"
       @click="$emit('handleSettingIcon', settingIconRef)" />
   </nav>
