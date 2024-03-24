@@ -4,17 +4,17 @@ const appStore = useAppStore()
 
 const url = ref('')
 watch(() => appStore.wallpaperType, (val) => {
-  url.value = val
+  url.value = val === 'custom' ? appStore.wallpaperCustomUrl : val
 })
 
 onMounted(() => {
-  url.value = appStore.wallpaperType
+  url.value = appStore.wallpaperType === 'custom' ? appStore.wallpaperCustomUrl : appStore.wallpaperType
 })
 </script>
 
 <template>
   <Transition enter-active-class="animate-fade-in">
-    <div v-if="url" :style="{ backgroundImage: `url(${appStore.wallpaperType})` }" s select-none z--1 fixed size-full
+    <div v-if="url" :style="{ backgroundImage: `url(${url})` }" s select-none z--1 fixed size-full
       bg-cover bg-no-repeat bg-fixed bg-center>
     </div>
   </Transition>

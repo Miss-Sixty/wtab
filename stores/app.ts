@@ -10,13 +10,18 @@ export default defineStore('appStore', () => {
   const headerConstant = ref(app.headerConstant)
   const calendar: any = shallowRef([]) //假期数据
 
-  const wallpaperType = ref('/bg/1.heic')
-  const wallpaperBase = ref(['/bg/1.heic', '/bg/2.heic', '/bg/3.heic', '/bg/4.heic', '/bg/5.heic', '/bg/6.heic']) // 基础壁纸地址
-  const wallpaperCustomFile = ref() // 自定义壁纸文件
-  // 将 wallpagerCustomFile 转为 url
-  const wallpaperCustomUrl = computed(() => {
-    return wallpaperCustomFile.value ? URL.createObjectURL(wallpaperCustomFile.value) : ''
+  const wallpaperType = ref('base') // base: 基础壁纸, custom: 自定义壁纸, bing: 必应壁纸
+  const wallpaperBaseList = ['/bg/1.heic', '/bg/2.heic', '/bg/3.heic', '/bg/4.heic', '/bg/5.heic', '/bg/6.heic']
+  const wallpaperBase = ref('') // 基础壁纸地址
+
+  const wallpaperActive = computed(() => {
+    if (wallpaperType.value === 'base') return wallpaperBase.value || wallpaperBase.value[0]
+    if (wallpaperType.value === 'custom') return wallpaperCustomFile.value ? URL.createObjectURL(wallpaperCustomFile.value) : ''
   })
+
+  const wallpaperCustomFile = ref() // 自定义壁纸文件
+  const wallpaperCustom = ref('') // 自定义壁纸地址
+
 
   // 请求节假日数据
   async function getCalendar() {
@@ -52,9 +57,11 @@ export default defineStore('appStore', () => {
     getCalendar,
     resetData,
     wallpaperType,
+    wallpaperBaseList,
     wallpaperBase,
-    wallpaperCustomUrl,
-    wallpaperCustomFile
+    wallpaperActive,
+    wallpaperCustomFile,
+    wallpaperCustom
   }
 })
 

@@ -17,14 +17,19 @@ onChange(async (files) => {
   const [rawFile]: any = files || []
   if (!rawFile) return
   appStore.wallpaperCustomFile = rawFile
-  appStore.wallpaperType = appStore.wallpaperCustomUrl
+  appStore.wallpaperType = 'custom'
 })
+
+const activeBaseChange = (item: string) => {
+  appStore.wallpaperBase = item
+  appStore.wallpaperType = 'base'
+}
 </script>
 
 <template>
-  <WallpaperContent v-if="type === 'customWallpaper'" @click="appStore.wallpaperType = appStore.wallpaperCustomUrl"
-    :active="appStore.wallpaperType === appStore.wallpaperCustomUrl" :src="appStore.wallpaperCustomUrl"
-    title="将您的图片设为壁纸。" tip="建议分辨率：1920×1080 或更高">
+  <WallpaperContent v-if="type === 'customWallpaper'" @click="appStore.wallpaperType = 'custom'"
+    :active="appStore.wallpaperType === 'custom'" :src="appStore.wallpaperActive" title="将您的图片设为壁纸。"
+    tip="建议分辨率：1920×1080 或更高">
     <WtButton style="width: 130px" mt-auto type="primary" @click="open">浏览…</WtButton>
   </WallpaperContent>
   <!--  <WallpaperContent v-if="type === 'bingWallpaper'" @click="wallpaperStore.type = 'my'"
@@ -43,7 +48,7 @@ onChange(async (files) => {
   </WallpaperContent> -->
 
   <div v-if="type === 'baseWallpaper'" grid sm:grid-cols-3 sm:gap-6 gap-3 grid-cols-2>
-    <WallpaperContent v-for="item in appStore.wallpaperBase" @click="appStore.wallpaperType = item"
-      :active="appStore.wallpaperType === item" :src="item" />
+    <WallpaperContent v-for="item in appStore.wallpaperBaseList" @click="activeBaseChange(item)"
+      :active="appStore.wallpaperBase === item" :src="item" />
   </div>
 </template>
