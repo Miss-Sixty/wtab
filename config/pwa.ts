@@ -5,9 +5,12 @@ const { description, title } = settings
 
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
+  // disable: process.env.NODE_ENV === 'development', // 禁用
+  scope: '/',
   workbox: {
     globPatterns: ['**/*.{js,css,html,json,webp,svg,png,jpg,heic}'],
     cleanupOutdatedCaches: true,
+    skipWaiting: true,
     runtimeCaching: [
       {
         urlPattern: /^https:\/\/next\.wtab\.cn\/_vercel\/image\?url=/,
