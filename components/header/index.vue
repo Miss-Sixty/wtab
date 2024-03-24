@@ -81,6 +81,7 @@ nav {
   width: env(titlebar-area-width, 100%);
   margin-left: env(titlebar-area-x, 0);
   margin-top: env(titlebar-area-y, 0);
+  margin-top: env(safe-area-inset-top, 0);
 }
 
 .right-icon {
