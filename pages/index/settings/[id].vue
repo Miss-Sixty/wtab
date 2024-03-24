@@ -16,11 +16,8 @@ const { open, onChange } = useFileDialog({
   accept: '.wtab',
 })
 
-const menuData = {
+const menuData: any = {
   base: [
-    { title: '主题', type: 'theme', component: ThemeSelect },
-    { title: '强调色', type: 'color', component: ColorPicker },
-    { title: '头部透明', hover: true, type: 'switch', divided: true, switchModel: 'headerConstant', desc: '头部按钮是否透明，关闭后鼠标移才上会显示', icon: 'i-solar-sidebar-minimalistic-broken' },
     { title: '主题', type: 'theme', component: ThemeSelect },
     { title: '强调色', type: 'color', component: ColorPicker },
     { title: '头部透明', hover: true, type: 'switch', divided: true, switchModel: 'headerConstant', desc: '头部按钮是否透明，关闭后鼠标移才上会显示', icon: 'i-solar-sidebar-minimalistic-broken' },
@@ -35,7 +32,7 @@ const menuData = {
     { title: '每日 Bing', type: 'bingWallpaper', component: Wallpaper },
     { title: '默认壁纸', type: 'baseWallpaper', component: Wallpaper },
   ]
-} as any
+}
 
 
 const list = computed(() => menuData[route.params.id])
