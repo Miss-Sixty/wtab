@@ -34,7 +34,7 @@ const opacityClass = computed(() => ([
 </script>
 
 <template>
-  <nav rounded-lg z-1 p="x2 y1.5" flex items-center gap-1.5 class="pt-[env(safe-area-inset-top, titlebar-area-y)]">
+  <nav rounded-lg z-1 p="x2 pb1.5" flex items-center gap-1.5 class="pt-[env(safe-area-inset-top, titlebar-area-height, 6px)]">
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
       <WtIcon :icon="item.icon">
         {{ item.text }}
