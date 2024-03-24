@@ -6,7 +6,8 @@ import ThemeSelect from './components/ThemeSelect.vue'
 import Wallpaper from './components/Wallpaper.vue'
 import { downloadConfig, uploadConfig } from '@/composables/useDownload'
 import { openDB } from 'idb';
-
+import useWallpaperStore from '@/stores/wallpaper'
+const wallpaperStore = useWallpaperStore()
 const layoutStore: any = useLayoutStore()
 const appStore: any = useAppStore()
 const route: any = useRoute()
@@ -61,6 +62,10 @@ onChange(async (files) => {
 
   layoutStore.$patch(layoutStoreData)
   appStore.$patch(appStoreData)
+})
+
+onMounted(() => {
+  wallpaperStore.getBingWallpaper()
 })
 </script>
 
