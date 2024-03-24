@@ -10,8 +10,13 @@ export default defineStore('appStore', () => {
   const headerConstant = ref(app.headerConstant)
   const calendar: any = shallowRef([]) //假期数据
 
-  const wallpaperType = ref('base1')
-  const wallpaperUrl = ref('') // 自定义壁纸地址
+  const wallpaperType = ref('/bg/1.heic')
+  const wallpaperBase = ref(['/bg/1.heic', '/bg/2.heic', '/bg/3.heic', '/bg/4.heic', '/bg/5.heic', '/bg/6.heic']) // 基础壁纸地址
+  const wallpaperCustomFile = ref() // 自定义壁纸文件
+  // 将 wallpagerCustomFile 转为 url
+  const wallpaperCustomUrl = computed(() => {
+    return wallpaperCustomFile.value ? URL.createObjectURL(wallpaperCustomFile.value) : ''
+  })
 
   // 请求节假日数据
   async function getCalendar() {
@@ -47,6 +52,9 @@ export default defineStore('appStore', () => {
     getCalendar,
     resetData,
     wallpaperType,
+    wallpaperBase,
+    wallpaperCustomUrl,
+    wallpaperCustomFile
   }
 })
 
