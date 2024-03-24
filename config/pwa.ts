@@ -5,12 +5,11 @@ const { description, title } = settings
 
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate', // 注册类型
-  // disable: process.env.NODE_ENV === 'development', // 禁用
-  scope: '/',
+  disable: process.env.NODE_ENV === 'development', // 禁用
   workbox: {
     globPatterns: ['**/*.{js,css,html,json,webp,svg,png,jpg,heic}'],
-    cleanupOutdatedCaches: true,
-    skipWaiting: true,
+    cleanupOutdatedCaches: true, // 清理过期缓存
+    skipWaiting: true, // 跳过等待
     runtimeCaching: [
       {
         urlPattern: /^https:\/\/next\.wtab\.cn\/_vercel\/image\?url=/,
@@ -32,9 +31,7 @@ export const pwa: ModuleOptions = {
     name: title,
     short_name: title,
     description,
-    theme_color: '#ffffff',
-    display: 'standalone',
-    display_override: ["window-controls-overlay", "standalone", "minimal-ui", "fullscreen", "browser"],
+    display_override: ["window-controls-overlay", "standalone", "minimal-ui", "fullscreen", "browser"], // 显示模式覆盖
     screenshots: [
       {
         src: 'iShot_2024-01-13_17.13.52.png',
