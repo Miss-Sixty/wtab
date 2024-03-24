@@ -2,14 +2,20 @@
 import useAppStore from '@/stores/app'
 const appStore = useAppStore()
 
-defineEmits(['click'])
-export interface Props {
-  type?: 'customWallpaper' | 'bingWallpaper' | 'baseWallpaper'
-}
-defineProps<Props>()
+const url = ref('')
+watch(() => appStore.wallpaperType, (val) => {
+  url.value = val
+})
+
+onMounted(() => {
+  url.value = appStore.wallpaperType
+})
 </script>
 
 <template>
-  <div :style="{ backgroundImage: `url(${appStore.wallpaperType})` }" select-none z--1 fixed size-full bg-cover
-    bg-no-repeat bg-fixed bg-center />
+  <Transition enter-active-class="animate-fade-in">
+    <div v-if="url" :style="{ backgroundImage: `url(${appStore.wallpaperType})` }" s select-none z--1 fixed size-full
+      bg-cover bg-no-repeat bg-fixed bg-center>
+    </div>
+  </Transition>
 </template>

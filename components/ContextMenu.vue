@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computePosition, flip, shift } from '@floating-ui/dom'
 
-const emit = defineEmits(['editMode', 'delWidgets', 'closed'])
+const emit = defineEmits(['editMode', 'delWidgets'])
 
 function originMiddlewareFn(type: string) {
   const placementMap: any = {
@@ -89,7 +89,6 @@ const showMenuList = computed(() => {
 // 点击外部关闭
 onClickOutside(floatingRef, () => {
   popperVisible.value = false
-  emit('closed')
 })
 async function onClick(item: any) {
   popperVisible.value = false
@@ -101,41 +100,37 @@ async function onClick(item: any) {
 }
 
 defineExpose({ open })
+
+const activeItem = (activeItem: Function) => {
+  popperVisible.value = false
+  activeItem()
+}
 </script>
 
 <template>
   <ClientOnly>
     <Teleport to="body">
-      <Transition
-        type="animation" enter-active-class="animate-zoom-in transition-none"
-        leave-active-class="animate-zoom-out "
-      >
-        <div
-          v-show="popperVisible" ref="floatingRef" animate-duration-100ms :style="styles" ring-black:5 mt1 ring-1 absolute
-          w40 right-0 origin-top-right divide-y rounded-md shadow-lg z-1 
-          class="bg-white dark:bg-#18181B dark:divide-gray-800 transition-property-[top,left] transition-duration-100ms"
-        >
+      <Transition type="animation" enter-active-class="animate-zoom-in transition-none"
+        leave-active-class="animate-zoom-out ">
+        <div v-show="popperVisible" ref="floatingRef" animate-duration-100ms :style="styles" ring-black:5 mt1 ring-1
+          absolute w40 right-0 origin-top-right divide-y rounded-md shadow-lg z-1
+          class="bg-white dark:bg-#18181B dark:divide-gray-800 transition-property-[top,left] transition-duration-100ms">
           <slot>
             <div v-for="(items, i) in showMenuList" :key="i" p1>
               <template v-for="(item, j) in items" :key="j">
                 <NuxtLink v-if="item.to" v-slot="{ navigate }" :to="item.to" custom>
-                  <button
-                    bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white
-                    dark:text-gray-300 dark:hover:text-gray-300
+                  <button bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white dark:text-gray-300
+                    dark:hover:text-gray-300
                     :class="item.type === 'delWidgets' ? 'text-red-500  hover:bg-red-400' : 'hover:bg-primary text-gray-900'"
-                    @click="navigate"
-                  >
+                    @click="activeItem(navigate)">
                     {{ item.label }}
                   </button>
                 </NuxtLink>
 
-                <button
-                  v-else
-                  bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white
-                  dark:text-gray-300 dark:hover:text-gray-300
+                <button v-else bg-inherit flex w-full rounded-md px-2 py-2 text-sm hover:text-white dark:text-gray-300
+                  dark:hover:text-gray-300
                   :class="item.type === 'delWidgets' ? 'text-red-500  hover:bg-red-400' : 'hover:bg-primary text-gray-900'"
-                  @click="onClick(item)"
-                >
+                  @click="onClick(item)">
                   {{ item.label }}
                 </button>
               </template>
