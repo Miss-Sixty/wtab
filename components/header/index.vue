@@ -40,7 +40,7 @@ const confirm = () => {
 </script>
 
 <template>
-  <nav rounded-lg z-1 p="x2 y1.5" flex items-center gap-1.5>
+  <nav rounded-lg z-1 p="x2 y1.5" flex items-center gap-1.5 class="pt-[env(safe-area-inset-top)]">
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
       <WtIcon :icon="item.icon">
         {{ item.text }}
@@ -72,7 +72,9 @@ const confirm = () => {
         @click="ensurePermissionsa" />
     </ClientOnly> -->
     <!-- <WtIcon :class="opacityClass" icon="i-solar-confetti-bold-duotone" @click="$emit('confetti')" /> -->
-    <WtIcon :class="opacityClass" :icon="isFullscreen ? 'i-solar-quit-full-screen-square-linear' : 'i-solar-full-screen-square-linear'" @click="toggle" />
+    <WtIcon :class="opacityClass"
+      :icon="isFullscreen ? 'i-solar-quit-full-screen-square-linear' : 'i-solar-full-screen-square-linear'"
+      @click="toggle" />
     <WtIcon ref="settingIconRef" :class="opacityClass" icon="i-solar-settings-bold"
       @click="$emit('handleSettingIcon', settingIconRef)" />
   </nav>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import confetti from 'canvas-confetti'
+// import confetti from 'canvas-confetti'
 import useLayoutStore from '@/stores/layout'
 
 const layoutStore = useLayoutStore()
@@ -41,41 +41,38 @@ function widgetContextmenu({ e, widget }: any) {
   widgetData.value = widget
 }
 
-async function onConfetti() {
-  const duration = 2 * 1000
-  const end = Date.now() + duration;
+// async function onConfetti() {
+//   const duration = 2 * 1000
+//   const end = Date.now() + duration;
 
-  (function frame() {
-    // launch a few confetti from the left edge
-    confetti({
-      particleCount: 7,
-      angle: 60,
-      spread: 55,
-      origin: { x: 0 },
-    })
-    // and launch a few from the right edge
-    confetti({
-      particleCount: 7,
-      angle: 120,
-      spread: 55,
-      origin: { x: 1 },
-    })
+//   (function frame() {
+//     // launch a few confetti from the left edge
+//     confetti({
+//       particleCount: 7,
+//       angle: 60,
+//       spread: 55,
+//       origin: { x: 0 },
+//     })
+//     // and launch a few from the right edge
+//     confetti({
+//       particleCount: 7,
+//       angle: 120,
+//       spread: 55,
+//       origin: { x: 1 },
+//     })
 
-    // keep going until we are out of time
-    if (Date.now() < end)
-      requestAnimationFrame(frame)
-  }())
-}
+//     // keep going until we are out of time
+//     if (Date.now() < end)
+//       requestAnimationFrame(frame)
+//   }())
+// }
 
-const router = useRouter()
 </script>
 
 <template>
-  <div overflow-hidden select-none touch-none class="pb-[var(safe-area-inset-bottom)] pt-[var(safe-area-inset-top)] ">
-    <ClientOnly>
-      <LayoutHomeTetris />
-      <Header @handle-setting-icon="handleHeaderIcon" @confetti="onConfetti" />
-    </ClientOnly>
+  <div overflow-hidden select-none touch-none>
+    <LayoutHomeTetris />
+    <Header @handle-setting-icon="handleHeaderIcon" />
     <NuxtPage />
     <LayoutMain @widget-contextmenu="widgetContextmenu" />
     <ContextMenu ref="contextMunuRef" @edit-mode="layoutStore.editMode = true"
