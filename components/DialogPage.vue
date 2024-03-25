@@ -41,8 +41,8 @@ function closed() {
     </Transition>
     <Transition enter-active-class="animate-zoom-in" leave-active-class="animate-zoom-out">
       <div v-show="modelValue" fixed inset-0 flex items-center justify-center animate-duration-150ms>
-        <div :style="{ width: `${width}px` }" flex flex-col sm:h600px h-full transform overflow-hidden sm:rounded-xl
-          bg-white shadow-xl transition-all sm:mx-40px class="dark:bg-#18181B pt-[env(safe-area-inset-top)]">
+        <div :style="`width: ${width}px`" flex flex-col sm:h600px h-full transform overflow-hidden sm:rounded-xl
+          bg-white shadow-xl transition-all sm:mx-40px class="dark:bg-#18181B area">
           <div flex justify-between items-center sm:pl-6 px-3 sm:pr-2 sm:h-14 h-10 shrink-0>
             <div flex justify-between items-center>
               <NuxtLink v-if="backRouter" v-slot="{ navigate }" :to="backRouter" custom>
@@ -68,3 +68,12 @@ function closed() {
     </Transition>
   </div>
 </template>
+<style >
+:root {
+  --safe-top: max(env(safe-area-inset-top), env(titlebar-area-y));
+}
+
+.area {
+  padding-top: var(--safe-top)
+}
+</style>

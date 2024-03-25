@@ -10,7 +10,7 @@ const opacityClass = computed(() => ([
   appStore.headerConstant || layoutStore.editMode ? 'opacity-100' : '',
   'opacity-10',
   'hover:opacity-100',
-  'right-icon',
+  'no-drag',
 ]))
 
 // const options: UseWebNotificationOptions = {
@@ -35,7 +35,7 @@ const opacityClass = computed(() => ([
 </script>
 
 <template>
-  <nav rounded-lg z-1 flex items-center gap-1.5>
+  <nav rounded-lg z-1 flex items-center gap-1.5 drag safe-area-inset-top titlebar-area-height titlebar-area-width titlebar-area-x>
     <!-- class="pt-[env(safe-area-inset-top, titlebar-area-height, 6px)] nav" -->
     <!-- <NuxtLink v-for="(item, i) in pageMenu" :key="i" :to="item.to" exact-active-class="text-violet-500">
       <WtIcon :icon="item.icon">
@@ -57,10 +57,9 @@ const opacityClass = computed(() => ([
 
     <div flex-auto />
     <ResetDataBtn v-slot="{ show }">
-      <WtButton class="right-icon" type="danger" v-show="layoutStore.editMode" size="sm" round text="重置数据"
-        @click="show" />
+      <WtButton no-drag type="danger" v-show="layoutStore.editMode" size="sm" round text="重置数据" @click="show" />
     </ResetDataBtn>
-    <WtButton class="right-icon" type="primary" v-show="layoutStore.editMode" size="sm" round text="完成"
+    <WtButton no-drag type="primary" v-show="layoutStore.editMode" size="sm" round text="完成"
       @click="layoutStore.editMode = false" />
     <!-- <HeaderPremium /> -->
     <!-- <ClientOnly>
@@ -74,17 +73,12 @@ const opacityClass = computed(() => ([
   </nav>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 nav {
   app-region: drag;
-  height: env(titlebar-area-height, 38px);
+  /* height: env(titlebar-area-height, 38px);
   width: env(titlebar-area-width, 100%);
   margin-left: env(titlebar-area-x, 0);
-  margin-top: env(titlebar-area-y, 0);
-  margin-top: env(safe-area-inset-top, 0);
+  margin-top: max(env(safe-area-inset-top, 0), env(titlebar-area-y,0));  */
 }
-
-.right-icon {
-  app-region: no-drag;
-}
-</style>
+</style> -->

@@ -1,10 +1,21 @@
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
-  shortcuts: {
-    // 'bg-base': 'bg-green-100 dark:bg-gray-800 color-green-500',
-    // 'icon': 'p1 rounded-lg cursor-pointer hover:bg-base ',
-  },
+  // shortcuts: {
+  // 'bg-base': 'bg-green-100 dark:bg-gray-800 color-green-500',
+  // 'icon': 'p1 rounded-lg cursor-pointer hover:bg-base ',
+  // },
+  rules: [
+    ['titlebar-area-y', { 'padding-top': 'env(titlebar-area-y, 0)' }],
+    ['safe-area-inset-top', { 'padding-top': 'env(safe-area-inset-top, 0)' }],
+    ['area-top', { 'padding-top': 'max(env(titlebar-area-height, 0), env(safe-area-inset-top, 0))' }],
+    ['safe-area-inset-bottom', { 'padding-top': 'env(safe-area-inset-bottom, 0)' }],
+    ['titlebar-area-x', { 'margin-left': 'env(titlebar-area-x, 0)' }],
+    ['titlebar-area-height', { 'height': 'env(titlebar-area-height, 38px)' }],
+    ['titlebar-area-width', { 'width': 'env(titlebar-area-width, 100%)' }],
+    ['drag', { 'app-region': 'drag' }],
+    ['no-drag', { 'app-region': 'no-drag' }],
+  ],
   theme: {
     colors: {
       primary: {
@@ -34,7 +45,7 @@ export default defineConfig({
       lg: '3px 3px 6px rgb(0 0 0 / 26%), 0 0 5px rgb(15 3 86 / 22%)',
       xl: '1px 1px 3px rgb(0 0 0 / 29%), 2px 4px 7px rgb(73 64 125 / 35%)',
       none: 'none',
-   }
+    },
   },
   presets: [
     presetUno(),

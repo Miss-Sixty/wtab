@@ -36,7 +36,8 @@ const list = [
           </NuxtLink>
         </section>
 
-        <section v-if="!showRightSection" class="basis-full md:basis-5/7 pb-[env(safe-area-inset-bottom)]" overflow-y-auto space-y-1 pl-0 md:pl-3>
+        <section v-if="!showRightSection" class="basis-full md:basis-5/7" safe-area-inset-bottom overflow-y-auto
+          space-y-1 pl-0 md:pl-3>
           <NuxtPage />
         </section>
       </div>
