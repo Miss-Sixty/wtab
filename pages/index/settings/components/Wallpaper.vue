@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import bg1 from '/bg/1.heic'
+import bg2 from '/bg/2.heic'
+import bg3 from '/bg/3.heic'
+import bg4 from '/bg/4.heic'
+import bg5 from '/bg/5.heic'
+import bg6 from '/bg/6.heic'
 import WallpaperContent from './WallpaperContent.vue'
 import useWallpaperStore from '@/stores/wallpaper'
 const wallpaperStore = useWallpaperStore()
@@ -53,17 +59,11 @@ const activeCustomChange = () => {
   </WallpaperContent> -->
 
   <div v-if="type === 'baseWallpaper'" grid sm:grid-cols-3 sm:gap-6 gap-3 grid-cols-2>
-    <WallpaperContent @click="activeBaseChange('/bg/1.heic')" :active="wallpaperStore.url === '/bg/1.heic'"
-      src="/bg/1.heic" />
-    <WallpaperContent @click="activeBaseChange('/bg/2.heic')" :active="wallpaperStore.url === '/bg/2.heic'"
-      src="/bg/2.heic" />
-    <WallpaperContent @click="activeBaseChange('/bg/3.heic')" :active="wallpaperStore.url === '/bg/3.heic'"
-      src="/bg/3.heic" />
-    <WallpaperContent @click="activeBaseChange('/bg/4.heic')" :active="wallpaperStore.url === '/bg/4.heic'"
-      src="/bg/4.heic" />
-    <WallpaperContent @click="activeBaseChange('/bg/5.heic')" :active="wallpaperStore.url === '/bg/5.heic'"
-      src="/bg/5.heic" />
-    <WallpaperContent @click="activeBaseChange('/bg/6.heic')" :active="wallpaperStore.url === '/bg/6.heic'"
-      src="/bg/6.heic" />
+    <WallpaperContent @click="activeBaseChange('bg1')" :active="wallpaperStore.url === 'bg1'" :src="bg1" />
+    <WallpaperContent @click="activeBaseChange('bg2')" :active="wallpaperStore.url === 'bg2'" :src="bg2" />
+    <WallpaperContent @click="activeBaseChange('bg3')" :active="wallpaperStore.url === 'bg3'" :src="bg3" />
+    <WallpaperContent @click="activeBaseChange('bg4')" :active="wallpaperStore.url === 'bg4'" :src="bg4" />
+    <WallpaperContent @click="activeBaseChange('bg5')" :active="wallpaperStore.url === 'bg5'" :src="bg5" />
+    <WallpaperContent @click="activeBaseChange('bg6')" :active="wallpaperStore.url === 'bg6'" :src="bg6" />
   </div>
 </template>
