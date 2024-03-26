@@ -4,7 +4,7 @@ const wallpaperStore = useWallpaperStore()
 
 onMounted(() => {
   if (!wallpaperStore.url) {
-    wallpaperStore.url = wallpaperStore.baseList[0]
+    wallpaperStore.url = `/bg/${wallpaperStore.baseList[0]}`
   }
 })
 
