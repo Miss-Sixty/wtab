@@ -10,6 +10,7 @@ export const pwa: ModuleOptions = {
     globPatterns: ['**/*.{js,css,html,json,webp,svg,png,jpg,heic}'],
     cleanupOutdatedCaches: true, // 清理过期缓存
     skipWaiting: true, // 跳过等待
+    maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,// 添加此项配置，增加需要缓存的最大文件大小
     runtimeCaching: [
       {
         urlPattern: /^https:\/\/next\.wtab\.cn\/_vercel\/image\?url=/,

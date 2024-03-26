@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import useWallpaperStore from '@/stores/wallpaper'
+import bg1 from '/bg/1.heic'
 const wallpaperStore = useWallpaperStore()
 
 onMounted(() => {
   if (!wallpaperStore.url) {
-    wallpaperStore.url = wallpaperStore.baseList[0]
+    wallpaperStore.url = bg1
   }
 })
 

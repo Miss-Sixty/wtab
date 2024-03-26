@@ -28,6 +28,7 @@ const activeCustomChange = () => {
   wallpaperStore.url = wallpaperStore.custom
   wallpaperStore.type = 'custom'
 }
+
 </script>
 
 <template>
@@ -52,7 +53,17 @@ const activeCustomChange = () => {
   </WallpaperContent> -->
 
   <div v-if="type === 'baseWallpaper'" grid sm:grid-cols-3 sm:gap-6 gap-3 grid-cols-2>
-    <WallpaperContent v-for="item in wallpaperStore.baseList" @click="activeBaseChange(item)"
-      :active="wallpaperStore.url === item" :src="item" />
+    <WallpaperContent @click="activeBaseChange('/bg/1.heic')" :active="wallpaperStore.url === '/bg/1.heic'"
+      src="/bg/1.heic" />
+    <WallpaperContent @click="activeBaseChange('/bg/2.heic')" :active="wallpaperStore.url === '/bg/2.heic'"
+      src="/bg/2.heic" />
+    <WallpaperContent @click="activeBaseChange('/bg/3.heic')" :active="wallpaperStore.url === '/bg/3.heic'"
+      src="/bg/3.heic" />
+    <WallpaperContent @click="activeBaseChange('/bg/4.heic')" :active="wallpaperStore.url === '/bg/4.heic'"
+      src="/bg/4.heic" />
+    <WallpaperContent @click="activeBaseChange('/bg/5.heic')" :active="wallpaperStore.url === '/bg/5.heic'"
+      src="/bg/5.heic" />
+    <WallpaperContent @click="activeBaseChange('/bg/6.heic')" :active="wallpaperStore.url === '/bg/6.heic'"
+      src="/bg/6.heic" />
   </div>
 </template>
