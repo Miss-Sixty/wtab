@@ -6,7 +6,7 @@ export default defineStore('wallpaperStore', () => {
   const url = ref('')
 
   // 基础壁纸地址
-  const baseList = ['/bg/1.heic', '/bg/2.heic', '/bg/3.heic', '/bg/4.heic', '/bg/5.heic', '/bg/6.heic']
+  const baseList = ['~/bg/1.heic', '~/bg/2.heic', '~/bg/3.heic', '~/bg/4.heic', '~/bg/5.heic', '~/bg/6.heic']
 
   const customFile = ref() // 自定义壁纸文件
   const custom = computed(() => customFile.value ? URL.createObjectURL(customFile.value) : '')
