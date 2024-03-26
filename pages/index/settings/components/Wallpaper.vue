@@ -53,6 +53,6 @@ const activeCustomChange = () => {
 
   <div v-if="type === 'baseWallpaper'" grid sm:grid-cols-3 sm:gap-6 gap-3 grid-cols-2>
     <WallpaperContent v-for="item in wallpaperStore.baseList" @click="activeBaseChange(item)"
-      :active="wallpaperStore.url === item" :src="`/bg/${item}`" />
+      :active="wallpaperStore.url === item" :src="item" />
   </div>
 </template>
