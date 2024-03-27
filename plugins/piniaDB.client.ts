@@ -1,11 +1,7 @@
 import type { PiniaPluginContext } from 'pinia'
 import { openDB } from 'idb';
 import { clone } from 'remeda'
-import useLayoutStore from '@/stores/layout'
-import useAppStore from '@/stores/app'
-import useWallpaperStore from '@/stores/wallpaper'
 
-// export default defineNuxtPlugin(() => {
 const initDb = () => {
   return openDB('wtabDB', 1, {
     upgrade(db) {
@@ -13,23 +9,17 @@ const initDb = () => {
     },
   });
 }
+const db = await initDb()
+console.log(33, db);
+async function PiniaPlugin({ store, options }: PiniaPluginContext) {
+  console.log(11, store, options);
+  const paths = options.paths || []
+  console.log(22, paths);
 
-async function PiniaPlugin({ store }: PiniaPluginContext) {
-  // 需要优化，可以并行获取
-  const db = await initDb()
-
-  let layoutData = await db.get('wtab', 'layoutStore');
-  const layoutStore = useLayoutStore()
-  layoutStore.$patch(layoutData)
-
-  let appData = await db.get('wtab', 'appStore');
-  const appStore = useAppStore()
-  appStore.$patch(appData)
-
-  let wallpaperData = await db.get('wtab', 'wallpaperStore');
-  const wallpaperStore = useWallpaperStore()
-  wallpaperStore.$patch(wallpaperData)
-
+  const state = await db.get('wtab', store.$id);
+  console.log(44, state);
+  if (!state) return
+  store.$patch(state);
 
   store.$subscribe(({ storeId }, state) => {
     // TODO：这里需要优化，不需要每次都存储所有的store
@@ -37,9 +27,7 @@ async function PiniaPlugin({ store }: PiniaPluginContext) {
   })
 }
 
-const piniaPlugina = ({ $pinia }: any) => {
+
+export default defineNuxtPlugin(({ $pinia }: any) => {
   $pinia.use(PiniaPlugin)
-}
-//   return piniaPlugina
-// })
-export default piniaPlugina
+})

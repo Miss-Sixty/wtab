@@ -10,7 +10,7 @@ export default defineStore('wallpaperStore', () => {
     if (type.value !== 'custom') return
     url.value = custom.value
   })
- 
+
   const bingCopyright = ref('') // 必应壁纸版权
   // const bing_mini_url = ref('') // 必应壁纸小图
   // const bing_1080_url = ref('') // 必应壁纸1080P
@@ -47,5 +47,7 @@ export default defineStore('wallpaperStore', () => {
     bingCopyright,
     bing_hd_url
   }
+}, {
+  paths: ['type', 'url', 'customFile', 'bingCopyright', 'bing_hd_url']
 })
 
