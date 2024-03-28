@@ -9,10 +9,11 @@ const initDb = () => {
     },
   });
 }
-const db = await initDb()
+
 console.log(33, db);
 async function PiniaPlugin({ store, options }: PiniaPluginContext) {
   console.log(11, store, options);
+  const db = await initDb()
   const paths = options.paths || []
   console.log(22, paths);
 
