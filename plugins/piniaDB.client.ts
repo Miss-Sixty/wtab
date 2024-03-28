@@ -10,15 +10,11 @@ const initDb = () => {
   });
 }
 
-console.log(33, db);
 async function PiniaPlugin({ store, options }: PiniaPluginContext) {
-  console.log(11, store, options);
   const db = await initDb()
   const paths = options.paths || []
-  console.log(22, paths);
 
   const state = await db.get('wtab', store.$id);
-  console.log(44, state);
   if (!state) return
   store.$patch(state);
 
